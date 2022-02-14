@@ -18,7 +18,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
    /* FIXME: Examine ipfilter's timeouts and conntrack transitions more
       closely.  They're more complex. --RR */
  
-@@ -465,6 +468,9 @@ static bool tcp_in_window(struct nf_conn
+@@ -491,6 +494,9 @@ static bool tcp_in_window(struct nf_conn
  	s32 receiver_offset;
  	bool res, in_recv_win;
  
@@ -28,7 +28,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	/*
  	 * Get the required data from the packet.
  	 */
-@@ -1151,7 +1157,7 @@ int nf_conntrack_tcp_packet(struct nf_co
+@@ -1174,7 +1180,7 @@ int nf_conntrack_tcp_packet(struct nf_co
  		 IP_CT_TCP_FLAG_DATA_UNACKNOWLEDGED &&
  		 timeouts[new_state] > timeouts[TCP_CONNTRACK_UNACK])
  		timeout = timeouts[TCP_CONNTRACK_UNACK];
