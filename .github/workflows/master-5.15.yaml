@@ -1,0 +1,77 @@
+name: Build master-5.15
+on: [push]
+
+jobs:
+    build:
+        name: Prepare and build rockchip-v5.15 armv8 images
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Update and install feeds
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+
+            - name: Generate config for rockchip-v5.15 armv8
+              run: |
+                echo "CONFIG_TARGET_rockchip=y" > .config
+                echo "CONFIG_TARGET_rockchip_armv8=y\n" >> .config
+                echo "CONFIG_TARGET_MULTI_PROFILE=y\n" >> .config
+                echo "CONFIG_TARGET_ALL_PROFILES=y\n" >> .config
+                echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y\n" >> .config
+                echo "CONFIG_PACKAGE_luci=y\n" >> .config
+                echo "CONFIG_PACKAGE_kmod-usb-net-rtl8152=y\n" >> .config
+                make defconfig
+
+            - name: Download package sources
+              run: make download V=s
+
+            - name: Build tools
+              run: |
+                make tools/install -j$(nproc) V=s || \
+                make tools/install V=s
+
+            - name: Build toolchain
+              run: |
+                make toolchain/install -j$(nproc) V=s || \
+                make toolchain/install V=s
+
+            - name: Build target images
+              run: |
+                make -j$(nproc) V=s 'IGNORE_ERRORS=n m' || \
+                make V=s 'IGNORE_ERRORS=n m'
+
+            - name: TAR output
+              run: tar -cvf rockchip-images.tar bin/targets/rockchip/armv8
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                name: rockchip-images
+                path: rockchip-images.tar
+
+    release:
+          name: Make a release
+          runs-on: ubuntu-latest
+          needs: build
+
+          steps:
+            - name: Download the image artifacts
+              uses: actions/download-artifact@v2
+              with:
+                name: rockchip-images
+
+            - name: Extract the image artifacts
+              run: tar xf rockchip-images.tar
+
+            - name: Create a release
+              uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                prerelease: true
+                title: "Rockchip v5.15 Images"
+                automatic_release_tag: "rockchip-v5.15"
+                files: bin/targets/rockchip/armv8/*
