@@ -35,7 +35,7 @@ Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
  	depends on ARCH_PXA || ARCH_MMP || COMPILE_TEST
 --- a/drivers/gpio/Makefile
 +++ b/drivers/gpio/Makefile
-@@ -121,6 +121,7 @@ obj-$(CONFIG_GPIO_PCI_IDIO_16)		+= gpio-
+@@ -122,6 +122,7 @@ obj-$(CONFIG_GPIO_PCI_IDIO_16)		+= gpio-
  obj-$(CONFIG_GPIO_PISOSR)		+= gpio-pisosr.o
  obj-$(CONFIG_GPIO_PL061)		+= gpio-pl061.o
  obj-$(CONFIG_GPIO_PMIC_EIC_SPRD)	+= gpio-pmic-eic-sprd.o
