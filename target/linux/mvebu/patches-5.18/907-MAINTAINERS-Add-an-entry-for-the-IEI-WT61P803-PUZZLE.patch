@@ -16,7 +16,7 @@ Cc: Robert Marko <robert.marko@sartura.hr>
 
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -9460,6 +9460,22 @@ F:	include/net/nl802154.h
+@@ -9461,6 +9461,22 @@ F:	include/net/nl802154.h
  F:	net/ieee802154/
  F:	net/mac802154/
  
