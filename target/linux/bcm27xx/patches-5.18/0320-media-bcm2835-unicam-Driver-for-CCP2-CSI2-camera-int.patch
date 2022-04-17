@@ -31,7 +31,7 @@ Reported-by: kbuild test robot <lkp@intel.com>
 
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -3778,7 +3778,7 @@ M:	Raspberry Pi Kernel Maintenance <kern
+@@ -3779,7 +3779,7 @@ M:	Raspberry Pi Kernel Maintenance <kern
  L:	linux-media@vger.kernel.org
  S:	Maintained
  F:	drivers/media/platform/bcm2835/
