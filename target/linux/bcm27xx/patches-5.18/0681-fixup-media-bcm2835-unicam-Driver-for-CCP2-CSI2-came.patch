@@ -1,0 +1,30 @@
+From 476ee780bec9622e0930025d89fac1c7b1e8d430 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:33:26 +0100
+Subject: [PATCH 681/686] fixup! media: bcm2835-unicam: Driver for CCP2/CSI2
+ camera interface
+
+---
+ drivers/media/platform/bcm2835/bcm2835-unicam.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/drivers/media/platform/bcm2835/bcm2835-unicam.c
++++ b/drivers/media/platform/bcm2835/bcm2835-unicam.c
+@@ -2347,7 +2347,7 @@ static void unicam_start_rx(struct unica
+ 		/* CSI2 */
+ 		set_field(&val, 1, UNICAM_CLE);
+ 		set_field(&val, 1, UNICAM_CLLPE);
+-		if (dev->bus_flags & V4L2_MBUS_CSI2_CONTINUOUS_CLOCK) {
++		if (!(dev->bus_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK)) {
+ 			set_field(&val, 1, UNICAM_CLTRE);
+ 			set_field(&val, 1, UNICAM_CLHSE);
+ 		}
+@@ -2369,7 +2369,7 @@ static void unicam_start_rx(struct unica
+ 		/* CSI2 */
+ 		set_field(&val, 1, UNICAM_DLE);
+ 		set_field(&val, 1, UNICAM_DLLPE);
+-		if (dev->bus_flags & V4L2_MBUS_CSI2_CONTINUOUS_CLOCK) {
++		if (!(dev->bus_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK)) {
+ 			set_field(&val, 1, UNICAM_DLTRE);
+ 			set_field(&val, 1, UNICAM_DLHSE);
+ 		}

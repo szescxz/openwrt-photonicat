@@ -1,0 +1,21 @@
+From 550b8328d9048411968d5f11dcc675a87a2728be Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:34:21 +0100
+Subject: [PATCH 684/686] fixup! staging: vc04_services: ISP: Add a more
+ complex ISP processing component
+
+---
+ drivers/staging/vc04_services/bcm2835-isp/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/staging/vc04_services/bcm2835-isp/Kconfig
++++ b/drivers/staging/vc04_services/bcm2835-isp/Kconfig
+@@ -1,7 +1,7 @@
+ config VIDEO_ISP_BCM2835
+ 	tristate "BCM2835 ISP support"
+ 	depends on MEDIA_SUPPORT
+-	depends on VIDEO_V4L2 && (ARCH_BCM2835 || COMPILE_TEST)
++	depends on VIDEO_DEV && (ARCH_BCM2835 || COMPILE_TEST)
+ 	depends on MEDIA_CONTROLLER
+ 	select BCM2835_VCHIQ_MMAL
+ 	select VIDEOBUF2_DMA_CONTIG

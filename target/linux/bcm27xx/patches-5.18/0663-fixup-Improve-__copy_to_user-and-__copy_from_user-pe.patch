@@ -1,0 +1,24 @@
+From b40c010d65adba01e4308a86e1ab5070e1d39dce Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Tue, 5 Apr 2022 20:32:25 +0100
+Subject: [PATCH 663/686] fixup! Improve __copy_to_user and __copy_from_user
+ performance
+
+---
+ arch/arm/lib/uaccess_with_memcpy.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+--- a/arch/arm/lib/uaccess_with_memcpy.c
++++ b/arch/arm/lib/uaccess_with_memcpy.c
+@@ -187,11 +187,6 @@ __copy_from_user_memcpy(void *to, const
+ 	unsigned long ua_flags;
+ 	int atomic;
+ 
+-	if (unlikely(uaccess_kernel())) {
+-		memcpy(to, (const void *)from, n);
+-		return 0;
+-	}
+-
+ 	/* the mmap semaphore is taken only if not in an atomic context */
+ 	atomic = in_atomic();
+ 

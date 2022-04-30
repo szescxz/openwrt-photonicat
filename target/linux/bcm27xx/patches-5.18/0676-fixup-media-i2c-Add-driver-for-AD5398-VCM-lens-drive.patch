@@ -1,0 +1,21 @@
+From 8c19ba3411f7b5d4b40bc233e07258747300953d Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:30:42 +0100
+Subject: [PATCH 676/686] fixup! media: i2c: Add driver for AD5398 VCM lens
+ driver
+
+---
+ drivers/media/i2c/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/media/i2c/Kconfig
++++ b/drivers/media/i2c/Kconfig
+@@ -796,7 +796,7 @@ menu "Lens drivers"
+ 
+ config VIDEO_AD5398
+ 	tristate "AD5398 lens voice coil support"
+-	depends on GPIOLIB && I2C && VIDEO_V4L2
++	depends on GPIOLIB && I2C && VIDEO_DEV
+ 	select MEDIA_CONTROLLER
+ 	help
+ 	  This is a driver for the AD5398 camera lens voice coil.

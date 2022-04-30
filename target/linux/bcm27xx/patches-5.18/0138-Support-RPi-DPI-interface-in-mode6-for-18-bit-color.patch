@@ -1,0 +1,36 @@
+From e8a94e1e2bc357ac9afad316f00f099923d3537e Mon Sep 17 00:00:00 2001
+From: Joerg Quinten <aBUGSworstnightmare@gmail.com>
+Date: Fri, 18 Jun 2021 13:02:29 +0200
+Subject: [PATCH 138/686] Support RPi DPI interface in mode6 for 18-bit color
+
+A matching media bus format was added and an overlay for using it,
+both with FB and VC4 was added as well.
+
+Signed-off-by: Joerg Quinten <aBUGSworstnightmare@gmail.com>
+---
+ drivers/gpu/drm/vc4/vc4_dpi.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+--- a/drivers/gpu/drm/vc4/vc4_dpi.c
++++ b/drivers/gpu/drm/vc4/vc4_dpi.c
+@@ -165,10 +165,20 @@ static void vc4_dpi_encoder_enable(struc
+ 			dpi_c |= VC4_SET_FIELD(DPI_FORMAT_18BIT_666_RGB_2,
+ 					       DPI_FORMAT);
+ 			break;
++		case MEDIA_BUS_FMT_BGR666_1X24_CPADHI:
++			dpi_c |= VC4_SET_FIELD(DPI_FORMAT_18BIT_666_RGB_2,
++					       DPI_FORMAT);
++			dpi_c |= VC4_SET_FIELD(DPI_ORDER_BGR, DPI_ORDER);
++			break;
+ 		case MEDIA_BUS_FMT_RGB666_1X18:
+ 			dpi_c |= VC4_SET_FIELD(DPI_FORMAT_18BIT_666_RGB_1,
+ 					       DPI_FORMAT);
+ 			break;
++		case MEDIA_BUS_FMT_BGR666_1X18:
++			dpi_c |= VC4_SET_FIELD(DPI_FORMAT_18BIT_666_RGB_1,
++					       DPI_FORMAT);
++			dpi_c |= VC4_SET_FIELD(DPI_ORDER_BGR, DPI_ORDER);
++			break;
+ 		case MEDIA_BUS_FMT_RGB565_1X16:
+ 			dpi_c |= VC4_SET_FIELD(DPI_FORMAT_16BIT_565_RGB_3,
+ 					       DPI_FORMAT);

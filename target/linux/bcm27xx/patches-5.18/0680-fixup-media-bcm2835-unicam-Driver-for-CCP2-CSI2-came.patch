@@ -1,0 +1,21 @@
+From 240b04a1367fd571dbf66469f18d202e560065bb Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:33:05 +0100
+Subject: [PATCH 680/686] fixup! media: bcm2835-unicam: Driver for CCP2/CSI2
+ camera interface
+
+---
+ drivers/media/platform/bcm2835/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/media/platform/bcm2835/Kconfig
++++ b/drivers/media/platform/bcm2835/Kconfig
+@@ -2,7 +2,7 @@
+ 
+ config VIDEO_BCM2835_UNICAM
+ 	tristate "Broadcom BCM283x/BCM271x Unicam video capture driver"
+-	depends on VIDEO_V4L2
++	depends on VIDEO_DEV
+ 	depends on ARCH_BCM2835 || COMPILE_TEST
+ 	select VIDEO_V4L2_SUBDEV_API
+ 	select MEDIA_CONTROLLER
