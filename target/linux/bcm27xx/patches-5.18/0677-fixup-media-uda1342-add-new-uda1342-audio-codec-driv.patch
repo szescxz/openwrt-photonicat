@@ -1,0 +1,21 @@
+From e9c23981a4894b5bf5b37a41e63593d7a6e7a140 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:31:18 +0100
+Subject: [PATCH 677/686] fixup! [media] uda1342: add new uda1342 audio codec
+ driver
+
+---
+ drivers/media/i2c/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/media/i2c/Kconfig
++++ b/drivers/media/i2c/Kconfig
+@@ -1038,7 +1038,7 @@ config VIDEO_UDA1342
+ 
+ config VIDEO_IMX477
+ 	tristate "Sony IMX477 sensor support"
+-	depends on I2C && VIDEO_V4L2 && VIDEO_V4L2_SUBDEV_API
++	depends on I2C && VIDEO_DEV && VIDEO_V4L2_SUBDEV_API
+ 	depends on MEDIA_CAMERA_SUPPORT
+ 	help
+ 	  This is a Video4Linux2 sensor driver for the Sony

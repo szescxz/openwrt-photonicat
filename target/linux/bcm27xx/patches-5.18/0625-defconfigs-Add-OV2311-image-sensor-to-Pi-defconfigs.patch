@@ -1,0 +1,64 @@
+From edfbcae35c25eecb84e6df5c363df3b59af66423 Mon Sep 17 00:00:00 2001
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Fri, 25 Feb 2022 18:14:39 +0000
+Subject: [PATCH 625/686] defconfigs: Add OV2311 image sensor to Pi defconfigs
+
+Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+---
+ arch/arm/configs/bcm2709_defconfig   | 1 +
+ arch/arm/configs/bcm2711_defconfig   | 1 +
+ arch/arm/configs/bcmrpi_defconfig    | 1 +
+ arch/arm64/configs/bcm2711_defconfig | 1 +
+ arch/arm64/configs/bcmrpi3_defconfig | 1 +
+ 5 files changed, 5 insertions(+)
+
+--- a/arch/arm/configs/bcm2709_defconfig
++++ b/arch/arm/configs/bcm2709_defconfig
+@@ -867,6 +867,7 @@ CONFIG_VIDEO_IMX219=m
+ CONFIG_VIDEO_IMX290=m
+ CONFIG_VIDEO_IMX477=m
+ CONFIG_VIDEO_IMX519=m
++CONFIG_VIDEO_OV2311=m
+ CONFIG_VIDEO_OV5647=m
+ CONFIG_VIDEO_OV7251=m
+ CONFIG_VIDEO_OV7640=m
+--- a/arch/arm/configs/bcm2711_defconfig
++++ b/arch/arm/configs/bcm2711_defconfig
+@@ -882,6 +882,7 @@ CONFIG_VIDEO_IMX219=m
+ CONFIG_VIDEO_IMX290=m
+ CONFIG_VIDEO_IMX477=m
+ CONFIG_VIDEO_IMX519=m
++CONFIG_VIDEO_OV2311=m
+ CONFIG_VIDEO_OV5647=m
+ CONFIG_VIDEO_OV7251=m
+ CONFIG_VIDEO_OV7640=m
+--- a/arch/arm/configs/bcmrpi_defconfig
++++ b/arch/arm/configs/bcmrpi_defconfig
+@@ -860,6 +860,7 @@ CONFIG_VIDEO_IMX219=m
+ CONFIG_VIDEO_IMX290=m
+ CONFIG_VIDEO_IMX477=m
+ CONFIG_VIDEO_IMX519=m
++CONFIG_VIDEO_OV2311=m
+ CONFIG_VIDEO_OV5647=m
+ CONFIG_VIDEO_OV7251=m
+ CONFIG_VIDEO_OV7640=m
+--- a/arch/arm64/configs/bcm2711_defconfig
++++ b/arch/arm64/configs/bcm2711_defconfig
+@@ -887,6 +887,7 @@ CONFIG_VIDEO_IMX219=m
+ CONFIG_VIDEO_IMX290=m
+ CONFIG_VIDEO_IMX477=m
+ CONFIG_VIDEO_IMX519=m
++CONFIG_VIDEO_OV2311=m
+ CONFIG_VIDEO_OV5647=m
+ CONFIG_VIDEO_OV7251=m
+ CONFIG_VIDEO_OV7640=m
+--- a/arch/arm64/configs/bcmrpi3_defconfig
++++ b/arch/arm64/configs/bcmrpi3_defconfig
+@@ -808,6 +808,7 @@ CONFIG_VIDEO_IMX219=m
+ CONFIG_VIDEO_IMX290=m
+ CONFIG_VIDEO_IMX477=m
+ CONFIG_VIDEO_IMX519=m
++CONFIG_VIDEO_OV2311=m
+ CONFIG_VIDEO_OV5647=m
+ CONFIG_VIDEO_OV7251=m
+ CONFIG_VIDEO_OV7640=m

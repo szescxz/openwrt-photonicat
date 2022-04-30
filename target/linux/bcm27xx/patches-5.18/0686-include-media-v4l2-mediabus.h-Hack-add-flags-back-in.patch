@@ -1,0 +1,21 @@
+From a137ebd3e69267b24aac38e5c5d6957aa58bb724 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:55:15 +0100
+Subject: [PATCH 686/686] include/media/v4l2-mediabus.h: Hack add flags back
+ in.
+
+Gets it to build, but needs fixing
+---
+ include/media/v4l2-mediabus.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/include/media/v4l2-mediabus.h
++++ b/include/media/v4l2-mediabus.h
+@@ -167,6 +167,7 @@ enum v4l2_mbus_type {
+  */
+ struct v4l2_mbus_config {
+ 	enum v4l2_mbus_type type;
++	unsigned int flags;
+ 	union {
+ 		struct v4l2_mbus_config_parallel parallel;
+ 		struct v4l2_mbus_config_mipi_csi1 mipi_csi1;

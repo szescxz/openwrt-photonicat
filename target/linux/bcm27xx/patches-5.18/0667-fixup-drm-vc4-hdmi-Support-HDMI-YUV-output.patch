@@ -1,0 +1,56 @@
+From fd2bcacc2f4f27c6fab90814bf0afd5b30923116 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Tue, 5 Apr 2022 20:35:14 +0100
+Subject: [PATCH 667/686] fixup! drm/vc4: hdmi: Support HDMI YUV output
+
+---
+ drivers/gpu/drm/vc4/vc4_hdmi.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -1610,12 +1610,12 @@ vc4_hdmi_sink_supports_format_bpc(const
+ 	case VC4_HDMI_OUTPUT_RGB:
+ 		drm_dbg(dev, "RGB Format, checking the constraints.\n");
+ 
+-		if (bpc == 10 && !(info->edid_hdmi_dc_modes & DRM_EDID_HDMI_DC_30)) {
++		if (bpc == 10 && !(info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_30)) {
+ 			drm_dbg(dev, "10 BPC but sink doesn't support Deep Color 30.\n");
+ 			return false;
+ 		}
+ 
+-		if (bpc == 12 && !(info->edid_hdmi_dc_modes & DRM_EDID_HDMI_DC_36)) {
++		if (bpc == 12 && !(info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_36)) {
+ 			drm_dbg(dev, "12 BPC but sink doesn't support Deep Color 36.\n");
+ 			return false;
+ 		}
+@@ -1627,7 +1627,7 @@ vc4_hdmi_sink_supports_format_bpc(const
+ 	case VC4_HDMI_OUTPUT_YUV422:
+ 		drm_dbg(dev, "YUV422 format, checking the constraints.\n");
+ 
+-		if (!(info->color_formats & DRM_COLOR_FORMAT_YCRCB422)) {
++		if (!(info->color_formats & DRM_COLOR_FORMAT_YCBCR422)) {
+ 			drm_dbg(dev, "Sink doesn't support YUV422.\n");
+ 			return false;
+ 		}
+@@ -1644,17 +1644,17 @@ vc4_hdmi_sink_supports_format_bpc(const
+ 	case VC4_HDMI_OUTPUT_YUV444:
+ 		drm_dbg(dev, "YUV444 format, checking the constraints.\n");
+ 
+-		if (!(info->color_formats & DRM_COLOR_FORMAT_YCRCB444)) {
++		if (!(info->color_formats & DRM_COLOR_FORMAT_YCBCR444)) {
+ 			drm_dbg(dev, "Sink doesn't support YUV444.\n");
+ 			return false;
+ 		}
+ 
+-		if (bpc == 10 && !(info->edid_hdmi_dc_modes & DRM_EDID_HDMI_DC_30)) {
++		if (bpc == 10 && !(info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_30)) {
+ 			drm_dbg(dev, "10 BPC but sink doesn't support Deep Color 30.\n");
+ 			return false;
+ 		}
+ 
+-		if (bpc == 12 && !(info->edid_hdmi_dc_modes & DRM_EDID_HDMI_DC_36)) {
++		if (bpc == 12 && !(info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_36)) {
+ 			drm_dbg(dev, "12 BPC but sink doesn't support Deep Color 36.\n");
+ 			return false;
+ 		}

@@ -1,0 +1,66 @@
+From 93117d3e03b076a53ebfa777f0052d3cece9675a Mon Sep 17 00:00:00 2001
+From: Phil Elwell <phil@raspberrypi.com>
+Date: Fri, 25 Feb 2022 15:08:56 +0000
+Subject: [PATCH 620/686] configs: Add CONFIG_TINYDRM_HX8357D=m
+
+See: https://forums.raspberrypi.com/viewtopic.php?t=330088
+
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+---
+ arch/arm/configs/bcm2709_defconfig   | 1 +
+ arch/arm/configs/bcm2711_defconfig   | 1 +
+ arch/arm/configs/bcmrpi_defconfig    | 1 +
+ arch/arm64/configs/bcm2711_defconfig | 1 +
+ arch/arm64/configs/bcmrpi3_defconfig | 1 +
+ 5 files changed, 5 insertions(+)
+
+--- a/arch/arm/configs/bcm2709_defconfig
++++ b/arch/arm/configs/bcm2709_defconfig
+@@ -887,6 +887,7 @@ CONFIG_DRM_SIMPLE_BRIDGE=m
+ CONFIG_DRM_TOSHIBA_TC358762=m
+ CONFIG_DRM_VC4=m
+ CONFIG_DRM_VC4_HDMI_CEC=y
++CONFIG_TINYDRM_HX8357D=m
+ CONFIG_TINYDRM_ILI9225=m
+ CONFIG_TINYDRM_ILI9341=m
+ CONFIG_TINYDRM_MI0283QT=m
+--- a/arch/arm/configs/bcm2711_defconfig
++++ b/arch/arm/configs/bcm2711_defconfig
+@@ -904,6 +904,7 @@ CONFIG_DRM_TOSHIBA_TC358762=m
+ CONFIG_DRM_V3D=m
+ CONFIG_DRM_VC4=m
+ CONFIG_DRM_VC4_HDMI_CEC=y
++CONFIG_TINYDRM_HX8357D=m
+ CONFIG_TINYDRM_ILI9225=m
+ CONFIG_TINYDRM_ILI9341=m
+ CONFIG_TINYDRM_MI0283QT=m
+--- a/arch/arm/configs/bcmrpi_defconfig
++++ b/arch/arm/configs/bcmrpi_defconfig
+@@ -880,6 +880,7 @@ CONFIG_DRM_SIMPLE_BRIDGE=m
+ CONFIG_DRM_TOSHIBA_TC358762=m
+ CONFIG_DRM_VC4=m
+ CONFIG_DRM_VC4_HDMI_CEC=y
++CONFIG_TINYDRM_HX8357D=m
+ CONFIG_TINYDRM_ILI9225=m
+ CONFIG_TINYDRM_ILI9341=m
+ CONFIG_TINYDRM_MI0283QT=m
+--- a/arch/arm64/configs/bcm2711_defconfig
++++ b/arch/arm64/configs/bcm2711_defconfig
+@@ -909,6 +909,7 @@ CONFIG_DRM_TOSHIBA_TC358762=m
+ CONFIG_DRM_V3D=m
+ CONFIG_DRM_VC4=m
+ CONFIG_DRM_VC4_HDMI_CEC=y
++CONFIG_TINYDRM_HX8357D=m
+ CONFIG_TINYDRM_ILI9225=m
+ CONFIG_TINYDRM_ILI9341=m
+ CONFIG_TINYDRM_MI0283QT=m
+--- a/arch/arm64/configs/bcmrpi3_defconfig
++++ b/arch/arm64/configs/bcmrpi3_defconfig
+@@ -828,6 +828,7 @@ CONFIG_DRM_SIMPLE_BRIDGE=m
+ CONFIG_DRM_TOSHIBA_TC358762=m
+ CONFIG_DRM_VC4=m
+ CONFIG_DRM_VC4_HDMI_CEC=y
++CONFIG_TINYDRM_HX8357D=m
+ CONFIG_DRM_GUD=m
+ CONFIG_FB=y
+ CONFIG_FB_BCM2708=y
