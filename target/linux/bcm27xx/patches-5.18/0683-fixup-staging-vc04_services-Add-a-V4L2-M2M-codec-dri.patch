@@ -1,0 +1,21 @@
+From c2b9e008faf8ce1c184405c87c0b0bbec78f523e Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:34:05 +0100
+Subject: [PATCH 683/686] fixup! staging: vc04_services: Add a V4L2 M2M codec
+ driver
+
+---
+ drivers/staging/vc04_services/bcm2835-codec/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/staging/vc04_services/bcm2835-codec/Kconfig
++++ b/drivers/staging/vc04_services/bcm2835-codec/Kconfig
+@@ -1,7 +1,7 @@
+ config VIDEO_CODEC_BCM2835
+ 	tristate "BCM2835 Video codec support"
+ 	depends on MEDIA_SUPPORT && MEDIA_CONTROLLER
+-	depends on VIDEO_V4L2 && (ARCH_BCM2835 || COMPILE_TEST)
++	depends on VIDEO_DEV && (ARCH_BCM2835 || COMPILE_TEST)
+ 	select BCM2835_VCHIQ_MMAL
+ 	select VIDEOBUF2_DMA_CONTIG
+ 	select V4L2_MEM2MEM_DEV

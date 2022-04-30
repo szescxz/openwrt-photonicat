@@ -1,0 +1,33 @@
+From 42261527da1dc9eb071d4bd5f8982a8cfde616e3 Mon Sep 17 00:00:00 2001
+From: Phil Elwell <phil@raspberrypi.com>
+Date: Tue, 30 Nov 2021 15:12:16 +0000
+Subject: [PATCH 524/686] drm/v3d: Allow -EACCES return from pm_runtime_get*
+
+We are currently disabling PM in v3d because it causes a variety of
+errors:
+
+[   13.521599] v3d fec00000.v3d: TLB clear wait idle pre-wait failed
+[   13.621884] v3d fec00000.v3d: TLB clear wait idle failed
+[   13.621906] v3d fec00000.v3d: MMU flush timeout
+
+pm_runtime_get_sync and friends can return -EACCES if disable_depth is
+non-zero, indicating that runtime PM is disabled (or not yet enabled).
+This is not an error, and can be ignored (although we should probably
+get to the bottom of the errors and re-enable it at some point).
+
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+---
+ drivers/gpu/drm/v3d/v3d_gem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/gpu/drm/v3d/v3d_gem.c
++++ b/drivers/gpu/drm/v3d/v3d_gem.c
+@@ -514,7 +514,7 @@ v3d_job_init(struct v3d_dev *v3d, struct
+ 	job->free = free;
+ 
+ 	ret = pm_runtime_get_sync(v3d->drm.dev);
+-	if (ret < 0)
++	if (ret < 0 && ret != -EACCES)
+ 		goto fail;
+ 
+ 	ret = drm_sched_job_init(&job->base, &v3d_priv->sched_entity[queue],

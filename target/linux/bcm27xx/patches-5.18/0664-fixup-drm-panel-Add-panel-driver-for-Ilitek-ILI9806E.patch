@@ -1,0 +1,27 @@
+From 06887cd3ab36cc2309105f1d3666014cf73af5fd Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Tue, 5 Apr 2022 20:33:17 +0100
+Subject: [PATCH 664/686] fixup! drm/panel: Add panel driver for Ilitek
+ ILI9806E panel
+
+---
+ drivers/gpu/drm/panel/panel-ilitek-ili9806e.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+--- a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
++++ b/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
+@@ -452,13 +452,11 @@ static int ili9806_probe(struct spi_devi
+ 	return 0;
+ }
+ 
+-static int ili9806_remove(struct spi_device *spi)
++static void ili9806_remove(struct spi_device *spi)
+ {
+ 	struct ili9806 *ctx = spi_get_drvdata(spi);
+ 
+ 	drm_panel_remove(&ctx->panel);
+-
+-	return 0;
+ }
+ 
+ static const struct spi_device_id ili9806_ids[] = {

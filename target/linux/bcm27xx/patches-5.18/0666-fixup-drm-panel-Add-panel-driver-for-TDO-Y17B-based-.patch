@@ -1,0 +1,27 @@
+From 21fe3356e6082b9c94d78008717283ec6728fb96 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Tue, 5 Apr 2022 20:34:41 +0100
+Subject: [PATCH 666/686] fixup! drm/panel: Add panel driver for TDO Y17B based
+ panels
+
+---
+ drivers/gpu/drm/panel/panel-tdo-y17p.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+--- a/drivers/gpu/drm/panel/panel-tdo-y17p.c
++++ b/drivers/gpu/drm/panel/panel-tdo-y17p.c
+@@ -245,13 +245,11 @@ static int tdo_y17p_probe(struct spi_dev
+ 	return 0;
+ }
+ 
+-static int tdo_y17p_remove(struct spi_device *spi)
++static void tdo_y17p_remove(struct spi_device *spi)
+ {
+ 	struct tdo_y17p *ctx = spi_get_drvdata(spi);
+ 
+ 	drm_panel_remove(&ctx->panel);
+-
+-	return 0;
+ }
+ 
+ static const struct spi_device_id tdo_y17p_ids[] = {

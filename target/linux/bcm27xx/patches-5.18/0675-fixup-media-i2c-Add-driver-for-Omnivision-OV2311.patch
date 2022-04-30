@@ -1,0 +1,20 @@
+From 5cae3cf958cba8d098e4dae19635939c87c4f1d6 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:30:25 +0100
+Subject: [PATCH 675/686] fixup! media/i2c: Add driver for Omnivision OV2311
+
+---
+ drivers/media/i2c/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/media/i2c/Kconfig
++++ b/drivers/media/i2c/Kconfig
+@@ -382,7 +382,7 @@ config VIDEO_OV13B10
+ 
+ config VIDEO_OV2311
+ 	tristate "OmniVision OV2311 sensor support"
+-	depends on I2C && VIDEO_V4L2
++	depends on I2C && VIDEO_DEV
+ 	depends on MEDIA_CAMERA_SUPPORT
+ 	help
+ 	  This is a Video4Linux2 sensor-level driver for the OmniVision
