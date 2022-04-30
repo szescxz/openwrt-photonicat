@@ -1,0 +1,74 @@
+From 1da8602c4739cec400fdeffa7fa5f3572c1deb79 Mon Sep 17 00:00:00 2001
+From: Phil Elwell <phil@raspberrypi.com>
+Date: Thu, 27 Jan 2022 09:58:41 +0000
+Subject: [PATCH 555/686] SQUASH: smsc95xx: Use dev_mod_addr to set MAC addr
+
+Since adeef3e32146 ("net: constify netdev->dev_addr") it has been
+illegal to write to the dev_addr MAC address field. Later commits
+have added explicit checks that it hasn't been modified by nefarious
+means. The dev_addr_mod helper function is the accepted way to change
+the dev_addr field, so use it.
+
+Squash with 96c1def63ee1 ("Allow mac address to be set in smsc95xx").
+
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+---
+ drivers/net/usb/smsc95xx.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+--- a/drivers/net/usb/smsc95xx.c
++++ b/drivers/net/usb/smsc95xx.c
+@@ -52,7 +52,6 @@
+ #define SUSPEND_SUSPEND3		(0x08)
+ #define SUSPEND_ALLMODES		(SUSPEND_SUSPEND0 | SUSPEND_SUSPEND1 | \
+ 					 SUSPEND_SUSPEND2 | SUSPEND_SUSPEND3)
+-#define MAC_ADDR_LEN                    (6)
+ 
+ struct smsc95xx_priv {
+ 	u32 mac_cr;
+@@ -804,10 +803,10 @@ static int smsc95xx_ioctl(struct net_dev
+ }
+ 
+ /* Check the macaddr module parameter for a MAC address */
+-static int smsc95xx_is_macaddr_param(struct usbnet *dev, u8 *dev_mac)
++static int smsc95xx_is_macaddr_param(struct usbnet *dev, struct net_device *nd)
+ {
+        int i, j, got_num, num;
+-       u8 mtbl[MAC_ADDR_LEN];
++       u8 mtbl[ETH_ALEN];
+ 
+        if (macaddr[0] == ':')
+                return 0;
+@@ -816,7 +815,7 @@ static int smsc95xx_is_macaddr_param(str
+        j = 0;
+        num = 0;
+        got_num = 0;
+-       while (j < MAC_ADDR_LEN) {
++       while (j < ETH_ALEN) {
+                if (macaddr[i] && macaddr[i] != ':') {
+                        got_num++;
+                        if ('0' <= macaddr[i] && macaddr[i] <= '9')
+@@ -838,12 +837,11 @@ static int smsc95xx_is_macaddr_param(str
+                }
+        }
+ 
+-       if (j == MAC_ADDR_LEN) {
++       if (j == ETH_ALEN) {
+                netif_dbg(dev, ifup, dev->net, "Overriding MAC address with: "
+                "%02x:%02x:%02x:%02x:%02x:%02x\n", mtbl[0], mtbl[1], mtbl[2],
+                                                mtbl[3], mtbl[4], mtbl[5]);
+-               for (i = 0; i < MAC_ADDR_LEN; i++)
+-                       dev_mac[i] = mtbl[i];
++	       dev_addr_mod(nd, 0, mtbl, ETH_ALEN);
+                return 1;
+        } else {
+                return 0;
+@@ -874,7 +872,7 @@ static void smsc95xx_init_mac_address(st
+ 	}
+ 
+ 	/* Check module parameters */
+-	if (smsc95xx_is_macaddr_param(dev, dev->net->dev_addr))
++	if (smsc95xx_is_macaddr_param(dev, dev->net))
+ 		return;
+ 
+ 	/* no useful static MAC address found. generate a random one */

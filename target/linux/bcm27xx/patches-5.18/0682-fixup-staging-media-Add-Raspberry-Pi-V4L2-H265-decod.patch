@@ -1,0 +1,21 @@
+From 1f35887d6b1918d18a2fe28bc3229a95235db2b8 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:33:45 +0100
+Subject: [PATCH 682/686] fixup! staging: media: Add Raspberry Pi V4L2 H265
+ decoder
+
+---
+ drivers/staging/media/rpivid/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/staging/media/rpivid/Kconfig
++++ b/drivers/staging/media/rpivid/Kconfig
+@@ -2,7 +2,7 @@
+ 
+ config VIDEO_RPIVID
+ 	tristate "Rpi H265 driver"
+-	depends on VIDEO_DEV && VIDEO_V4L2
++	depends on VIDEO_DEV && VIDEO_DEV
+ 	depends on OF
+ 	select MEDIA_CONTROLLER
+ 	select MEDIA_CONTROLLER_REQUEST_API

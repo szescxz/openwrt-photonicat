@@ -1,0 +1,34 @@
+From 32170a37cb68521d09e221dc2e245a5a45be7da2 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:54:46 +0100
+Subject: [PATCH 685/686] fixup! staging: media: Add Raspberry Pi V4L2 H265
+ decoder
+
+---
+ drivers/staging/media/rpivid/rpivid_h265.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- a/drivers/staging/media/rpivid/rpivid_h265.c
++++ b/drivers/staging/media/rpivid/rpivid_h265.c
+@@ -859,8 +859,8 @@ static void pre_slice_decode(struct rpiv
+ 
+ 			msg_slice(de,
+ 				  dpb_no |
+-				  (dec->dpb[dpb_no].rps ==
+-					V4L2_HEVC_DPB_ENTRY_RPS_LT_CURR ?
++				  ((dec->dpb[dpb_no].flags &
++					V4L2_HEVC_DPB_ENTRY_LONG_TERM_REFERENCE) ?
+ 						 (1 << 4) : 0) |
+ 				  (weighted_pred_flag ? (3 << 5) : 0));
+ 			msg_slice(de, dec->dpb[dpb_no].pic_order_cnt[0]);
+@@ -905,8 +905,8 @@ static void pre_slice_decode(struct rpiv
+ 			//          "L1[%d]=dpb[%d]\n", idx, dpb_no);
+ 			msg_slice(de,
+ 				  dpb_no |
+-				  (dec->dpb[dpb_no].rps ==
+-					 V4L2_HEVC_DPB_ENTRY_RPS_LT_CURR ?
++				  ((dec->dpb[dpb_no].flags &
++					 V4L2_HEVC_DPB_ENTRY_LONG_TERM_REFERENCE) ?
+ 						 (1 << 4) : 0) |
+ 					(weighted_pred_flag ? (3 << 5) : 0));
+ 			msg_slice(de, dec->dpb[dpb_no].pic_order_cnt[0]);

@@ -1,0 +1,26 @@
+From 237d81c538c9ec3942c5fa3310f681b13662d8d2 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Tue, 5 Apr 2022 20:35:53 +0100
+Subject: [PATCH 669/686] fixup! staging/fbtft: Add support for display
+ variants
+
+---
+ drivers/staging/fbtft/fbtft.h | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+--- a/drivers/staging/fbtft/fbtft.h
++++ b/drivers/staging/fbtft/fbtft.h
+@@ -282,12 +282,11 @@ static int fbtft_driver_probe_spi(struct
+ 	return fbtft_probe_common(_display, spi, NULL, dt_ids);	           \
+ }                                                                          \
+ 									   \
+-static int fbtft_driver_remove_spi(struct spi_device *spi)                 \
++static void fbtft_driver_remove_spi(struct spi_device *spi)                 \
+ {                                                                          \
+ 	struct fb_info *info = spi_get_drvdata(spi);                       \
+ 									   \
+ 	fbtft_remove_common(&spi->dev, info);                              \
+-	return 0;                                                          \
+ }                                                                          \
+ 									   \
+ static int fbtft_driver_probe_pdev(struct platform_device *pdev)           \

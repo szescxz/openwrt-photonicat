@@ -1,0 +1,20 @@
+From 7163cb6498ccb833a194acd45955d1681e442c0a Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 6 Apr 2022 13:31:38 +0100
+Subject: [PATCH 678/686] fixup! media: i2c: add ov9281 driver.
+
+---
+ drivers/media/i2c/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/media/i2c/Kconfig
++++ b/drivers/media/i2c/Kconfig
+@@ -1339,7 +1339,7 @@ config VIDEO_TW2804
+ 
+ config VIDEO_OV9281
+ 	tristate "OmniVision OV9281 sensor support"
+-	depends on I2C && VIDEO_V4L2
++	depends on I2C && VIDEO_DEV
+ 	depends on MEDIA_CAMERA_SUPPORT
+ 	help
+ 	  This is a Video4Linux2 sensor-level driver for the OmniVision
