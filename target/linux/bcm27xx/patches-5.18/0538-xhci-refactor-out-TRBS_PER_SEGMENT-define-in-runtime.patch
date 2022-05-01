@@ -212,8 +212,8 @@ Signed-off-by: Jonathan Bell <jonathan@raspberrypi.com>
 +		if (event_loop++ < xhci->event_ring->trbs_per_seg / 2)
  			continue;
  		xhci_update_erst_dequeue(xhci, event_ring_deq);
- 
-@@ -3294,7 +3297,8 @@ static int prepare_ring(struct xhci_hcd
+ 		event_ring_deq = xhci->event_ring->dequeue;
+@@ -3295,7 +3298,8 @@ static int prepare_ring(struct xhci_hcd
  		}
  	}
  
@@ -225,7 +225,7 @@ Signed-off-by: Jonathan Bell <jonathan@raspberrypi.com>
  	}
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -858,8 +858,8 @@ static void xhci_clear_command_ring(stru
+@@ -869,8 +869,8 @@ static void xhci_clear_command_ring(stru
  	seg = ring->deq_seg;
  	do {
  		memset(seg->trbs, 0,
@@ -236,7 +236,7 @@ Signed-off-by: Jonathan Bell <jonathan@raspberrypi.com>
  			cpu_to_le32(~TRB_CYCLE);
  		seg = seg->next;
  	} while (seg != ring->deq_seg);
-@@ -870,7 +870,7 @@ static void xhci_clear_command_ring(stru
+@@ -881,7 +881,7 @@ static void xhci_clear_command_ring(stru
  	ring->enq_seg = ring->deq_seg;
  	ring->enqueue = ring->dequeue;
  
