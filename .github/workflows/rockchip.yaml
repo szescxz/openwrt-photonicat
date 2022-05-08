@@ -1,0 +1,54 @@
+name: Build rockchip
+on: [push]
+
+jobs:
+    build:
+        name: Prepare and build rockchip armv8 images
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Update and install feeds
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+
+            - name: Generate config for rockchip armv8
+              run: |
+                echo "CONFIG_TARGET_rockchip=y" > .config
+                echo "CONFIG_TARGET_rockchip_armv8=y" >> .config
+                echo "CONFIG_TARGET_MULTI_PROFILE=y" >> .config
+                echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y" >> .config
+                echo "CONFIG_TARGET_ALL_PROFILES=y" >> .config
+                echo "CONFIG_PACKAGE_luci=y" >> .config
+                echo "CONFIG_PACKAGE_kmod-usb-net-rtl8152=y" >> .config
+                make defconfig
+
+            - name: Download package sources
+              run: make download V=s
+
+            - name: Build tools
+              run: |
+                make tools/install -j$(nproc) V=s || \
+                make tools/install V=s
+
+            - name: Build toolchain
+              run: |
+                make toolchain/install -j$(nproc) V=s || \
+                make toolchain/install V=s
+
+            - name: Build target images
+              run: |
+                make -j$(nproc) V=s 'IGNORE_ERRORS=n m' || \
+                make V=s 'IGNORE_ERRORS=n m'
+
+            - name: TAR output
+              run: tar -cvf rockchip-images.tar bin/targets/rockchip/armv8
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                name: rockchip-images
+                path: rockchip-images.tar
