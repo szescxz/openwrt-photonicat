@@ -1,0 +1,32 @@
+From 6f277adf11890c09853df4417e96650f7dd5029b Mon Sep 17 00:00:00 2001
+From: Frank Wunderlich <frank-w@public-files.de>
+Date: Sat, 2 Apr 2022 13:00:44 +0200
+Subject: [PATCH] arm64: dts: rockchip: Change io-domains of bpi-r2-pro
+
+New 1.0 Hardware revision has different io domain settings than the first
+board.
+
+Pre-1.0 version was not sold, so the setting can be savely overridden.
+
+Fixes: f901aaadaa2a ("arm64: dts: rockchip: Add Bananapi R2 Pro")
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Link: https://lore.kernel.org/r/20220402110045.104031-2-linux@fw-web.de
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+@@ -345,9 +345,9 @@
+ 	pmuio2-supply = <&vcc3v3_pmu>;
+ 	vccio1-supply = <&vccio_acodec>;
+ 	vccio3-supply = <&vccio_sd>;
+-	vccio4-supply = <&vcc_1v8>;
++	vccio4-supply = <&vcc_3v3>;
+ 	vccio5-supply = <&vcc_3v3>;
+-	vccio6-supply = <&vcc_3v3>;
++	vccio6-supply = <&vcc_1v8>;
+ 	vccio7-supply = <&vcc_3v3>;
+ 	status = "okay";
+ };
