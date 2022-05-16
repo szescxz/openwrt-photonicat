@@ -90,7 +90,7 @@ Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 +...
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -3768,6 +3768,13 @@ N:	bcm113*
+@@ -3769,6 +3769,13 @@ N:	bcm113*
  N:	bcm216*
  N:	kona
  
