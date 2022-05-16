@@ -28,7 +28,7 @@ Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
 
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -3776,7 +3776,7 @@ F:	Documentation/devicetree/bindings/med
+@@ -3777,7 +3777,7 @@ F:	Documentation/devicetree/bindings/med
  F:	drivers/staging/media/rpivid
  
  BROADCOM BCM2835 CAMERA DRIVER

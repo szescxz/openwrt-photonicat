@@ -14,7 +14,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
 
 --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
 +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -219,6 +219,7 @@ vc4_hdmi_connector_detect(struct drm_con
+@@ -220,6 +220,7 @@ vc4_hdmi_connector_detect(struct drm_con
  			connected = true;
  	}
  
@@ -22,7 +22,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
  	if (connected) {
  		if (connector->status != connector_status_connected) {
  			struct edid *edid = drm_get_edid(connector, vc4_hdmi->ddc);
-@@ -738,15 +739,6 @@ static void vc4_hdmi_encoder_post_crtc_p
+@@ -739,15 +740,6 @@ static void vc4_hdmi_encoder_post_crtc_p
  	mutex_unlock(&vc4_hdmi->mutex);
  }
  
@@ -38,7 +38,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
  static void vc4_hdmi_csc_setup(struct vc4_hdmi *vc4_hdmi,
  			       struct drm_connector_state *state,
  			       const struct drm_display_mode *mode)
-@@ -1242,15 +1234,6 @@ static void vc4_hdmi_encoder_post_crtc_e
+@@ -1243,15 +1235,6 @@ static void vc4_hdmi_encoder_post_crtc_e
  	mutex_unlock(&vc4_hdmi->mutex);
  }
  
@@ -54,7 +54,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
  static void vc4_hdmi_encoder_atomic_mode_set(struct drm_encoder *encoder,
  					     struct drm_crtc_state *crtc_state,
  					     struct drm_connector_state *conn_state)
-@@ -1343,8 +1326,6 @@ static const struct drm_encoder_helper_f
+@@ -1344,8 +1327,6 @@ static const struct drm_encoder_helper_f
  	.atomic_check = vc4_hdmi_encoder_atomic_check,
  	.atomic_mode_set = vc4_hdmi_encoder_atomic_mode_set,
  	.mode_valid = vc4_hdmi_encoder_mode_valid,
@@ -63,7 +63,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
  };
  
  static u32 vc4_hdmi_channel_map(struct vc4_hdmi *vc4_hdmi, u32 channel_mask)
-@@ -1444,16 +1425,10 @@ static bool vc4_hdmi_audio_can_stream(st
+@@ -1445,16 +1426,10 @@ static bool vc4_hdmi_audio_can_stream(st
  	lockdep_assert_held(&vc4_hdmi->mutex);
  
  	/*

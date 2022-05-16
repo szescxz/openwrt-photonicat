@@ -30,7 +30,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
 
 --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
 +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -2217,7 +2217,6 @@ static int vc4_hdmi_cec_init(struct vc4_
+@@ -2218,7 +2218,6 @@ static int vc4_hdmi_cec_init(struct vc4_
  	struct platform_device *pdev = vc4_hdmi->pdev;
  	struct device *dev = &pdev->dev;
  	unsigned long flags;
@@ -38,7 +38,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  	int ret;
  
  	if (!of_find_property(dev->of_node, "interrupts", NULL)) {
-@@ -2236,15 +2235,6 @@ static int vc4_hdmi_cec_init(struct vc4_
+@@ -2237,15 +2236,6 @@ static int vc4_hdmi_cec_init(struct vc4_
  	cec_fill_conn_info_from_drm(&conn_info, &vc4_hdmi->connector);
  	cec_s_conn_info(vc4_hdmi->cec_adap, &conn_info);
  
@@ -54,7 +54,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  	if (vc4_hdmi->variant->external_irq_controller) {
  		ret = request_threaded_irq(platform_get_irq_byname(pdev, "cec-rx"),
  					   vc4_cec_irq_handler_rx_bare,
-@@ -2307,6 +2297,29 @@ static void vc4_hdmi_cec_exit(struct vc4
+@@ -2308,6 +2298,29 @@ static void vc4_hdmi_cec_exit(struct vc4
  
  	cec_unregister_adapter(vc4_hdmi->cec_adap);
  }
@@ -84,7 +84,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  #else
  static int vc4_hdmi_cec_init(struct vc4_hdmi *vc4_hdmi)
  {
-@@ -2315,6 +2328,10 @@ static int vc4_hdmi_cec_init(struct vc4_
+@@ -2316,6 +2329,10 @@ static int vc4_hdmi_cec_init(struct vc4_
  
  static void vc4_hdmi_cec_exit(struct vc4_hdmi *vc4_hdmi) {};
  
@@ -95,7 +95,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  #endif
  
  static int vc4_hdmi_build_regset(struct vc4_hdmi *vc4_hdmi,
-@@ -2549,6 +2566,15 @@ static int vc4_hdmi_runtime_resume(struc
+@@ -2550,6 +2567,15 @@ static int vc4_hdmi_runtime_resume(struc
  	if (ret)
  		return ret;
  
@@ -111,7 +111,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  	return 0;
  }
  
-@@ -2639,20 +2665,11 @@ static int vc4_hdmi_bind(struct device *
+@@ -2640,20 +2666,11 @@ static int vc4_hdmi_bind(struct device *
  	if (ret)
  		goto err_put_ddc;
  

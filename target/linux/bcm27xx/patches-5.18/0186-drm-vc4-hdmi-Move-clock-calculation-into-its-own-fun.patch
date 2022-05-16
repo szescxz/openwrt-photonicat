@@ -15,7 +15,7 @@ Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
 +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -1259,6 +1259,35 @@ vc4_hdmi_encoder_clock_valid(const struc
+@@ -1260,6 +1260,35 @@ vc4_hdmi_encoder_clock_valid(const struc
  	return MODE_OK;
  }
  
@@ -51,7 +51,7 @@ Signed-off-by: Maxime Ripard <maxime@cerno.tech>
  #define WIFI_2_4GHz_CH1_MIN_FREQ	2400000000ULL
  #define WIFI_2_4GHz_CH1_MAX_FREQ	2422000000ULL
  
-@@ -1271,6 +1300,7 @@ static int vc4_hdmi_encoder_atomic_check
+@@ -1272,6 +1301,7 @@ static int vc4_hdmi_encoder_atomic_check
  	struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
  	unsigned long long pixel_rate = mode->clock * 1000;
  	unsigned long long tmds_rate;
@@ -59,7 +59,7 @@ Signed-off-by: Maxime Ripard <maxime@cerno.tech>
  
  	if (vc4_hdmi->variant->unsupported_odd_h_timings &&
  	    !(mode->flags & DRM_MODE_FLAG_DBLCLK) &&
-@@ -1292,21 +1322,10 @@ static int vc4_hdmi_encoder_atomic_check
+@@ -1293,21 +1323,10 @@ static int vc4_hdmi_encoder_atomic_check
  		pixel_rate = mode->clock * 1000;
  	}
  
