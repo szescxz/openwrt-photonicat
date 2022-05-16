@@ -132,7 +132,7 @@ Signed-off-by: Lee Jackson <info@arducam.com>
 +...
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -18434,6 +18434,14 @@ F:	Documentation/devicetree/bindings/med
+@@ -18437,6 +18437,14 @@ F:	Documentation/devicetree/bindings/med
  F:	Documentation/devicetree/bindings/media/i2c/imx477.yaml
  F:	drivers/media/i2c/imx477.c
  

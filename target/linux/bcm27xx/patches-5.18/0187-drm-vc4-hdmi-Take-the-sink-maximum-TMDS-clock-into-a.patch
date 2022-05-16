@@ -19,7 +19,7 @@ Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
 +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -1250,12 +1250,18 @@ static enum drm_mode_status
+@@ -1251,12 +1251,18 @@ static enum drm_mode_status
  vc4_hdmi_encoder_clock_valid(const struct vc4_hdmi *vc4_hdmi,
  			     unsigned long long clock)
  {

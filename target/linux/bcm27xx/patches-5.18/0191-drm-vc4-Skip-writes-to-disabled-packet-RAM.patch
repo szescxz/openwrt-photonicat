@@ -15,7 +15,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
 
 --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
 +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -748,6 +748,7 @@ static void vc4_hdmi_encoder_post_crtc_d
+@@ -749,6 +749,7 @@ static void vc4_hdmi_encoder_post_crtc_d
  
  	mutex_lock(&vc4_hdmi->mutex);
  
@@ -23,7 +23,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
  	spin_lock_irqsave(&vc4_hdmi->hw_lock, flags);
  
  	HDMI_WRITE(HDMI_RAM_PACKET_CONFIG, 0);
-@@ -1357,6 +1358,7 @@ static void vc4_hdmi_encoder_post_crtc_e
+@@ -1358,6 +1359,7 @@ static void vc4_hdmi_encoder_post_crtc_e
  			   VC4_HDMI_RAM_PACKET_ENABLE);
  
  		spin_unlock_irqrestore(&vc4_hdmi->hw_lock, flags);
@@ -31,7 +31,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
  
  		vc4_hdmi_set_infoframes(encoder);
  	}
-@@ -1959,7 +1961,8 @@ static int vc4_hdmi_audio_prepare(struct
+@@ -1960,7 +1962,8 @@ static int vc4_hdmi_audio_prepare(struct
  	spin_unlock_irqrestore(&vc4_hdmi->hw_lock, flags);
  
  	memcpy(&vc4_hdmi->audio.infoframe, &params->cea, sizeof(params->cea));
