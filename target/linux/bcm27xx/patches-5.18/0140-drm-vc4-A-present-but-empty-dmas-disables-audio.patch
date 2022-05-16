@@ -16,7 +16,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
 
 --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
 +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -1706,10 +1706,12 @@ static int vc4_hdmi_audio_init(struct vc
+@@ -1707,10 +1707,12 @@ static int vc4_hdmi_audio_init(struct vc
  	const __be32 *addr;
  	int index;
  	int ret;

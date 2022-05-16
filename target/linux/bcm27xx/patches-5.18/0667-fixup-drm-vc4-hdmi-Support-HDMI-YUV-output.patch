@@ -9,7 +9,7 @@ Subject: [PATCH 667/686] fixup! drm/vc4: hdmi: Support HDMI YUV output
 
 --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
 +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -1610,12 +1610,12 @@ vc4_hdmi_sink_supports_format_bpc(const
+@@ -1611,12 +1611,12 @@ vc4_hdmi_sink_supports_format_bpc(const
  	case VC4_HDMI_OUTPUT_RGB:
  		drm_dbg(dev, "RGB Format, checking the constraints.\n");
  
@@ -24,7 +24,7 @@ Subject: [PATCH 667/686] fixup! drm/vc4: hdmi: Support HDMI YUV output
  			drm_dbg(dev, "12 BPC but sink doesn't support Deep Color 36.\n");
  			return false;
  		}
-@@ -1627,7 +1627,7 @@ vc4_hdmi_sink_supports_format_bpc(const
+@@ -1628,7 +1628,7 @@ vc4_hdmi_sink_supports_format_bpc(const
  	case VC4_HDMI_OUTPUT_YUV422:
  		drm_dbg(dev, "YUV422 format, checking the constraints.\n");
  
@@ -33,7 +33,7 @@ Subject: [PATCH 667/686] fixup! drm/vc4: hdmi: Support HDMI YUV output
  			drm_dbg(dev, "Sink doesn't support YUV422.\n");
  			return false;
  		}
-@@ -1644,17 +1644,17 @@ vc4_hdmi_sink_supports_format_bpc(const
+@@ -1645,17 +1645,17 @@ vc4_hdmi_sink_supports_format_bpc(const
  	case VC4_HDMI_OUTPUT_YUV444:
  		drm_dbg(dev, "YUV444 format, checking the constraints.\n");
  
