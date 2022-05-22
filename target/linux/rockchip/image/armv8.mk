@@ -32,6 +32,16 @@ define Device/pine64_rockpro64
 endef
 TARGET_DEVICES += pine64_rockpro64
 
+define Device/pine64_rock64
+  DEVICE_VENDOR := Pine64
+  DEVICE_MODEL := Rock64
+  SOC := rk3328
+  UBOOT_DEVICE_NAME := rock64-rk3328
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script nanopi-r2s | pine64-img | gzip | append-metadata
+  DEVICE_PACKAGES := kmod-usb-dwc2
+endef
+TARGET_DEVICES += pine64_rock64
+
 define Device/radxa_rock-pi-4a
   DEVICE_VENDOR := Radxa
   DEVICE_MODEL := ROCK Pi 4A

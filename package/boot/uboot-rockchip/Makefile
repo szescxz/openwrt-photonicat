@@ -34,6 +34,16 @@ define U-Boot/nanopi-r2s-rk3328
   ATF:=rk3328_bl31.elf
 endef
 
+define U-Boot/rock64-rk3328
+  BUILD_SUBTARGET:=armv8
+  NAME:=Rock64
+  BUILD_DEVICES:= \
+    pine64_rock64
+  DEPENDS:=+PACKAGE_u-boot-rock64-rk3328:arm-trusted-firmware-rockchip
+  PKG_BUILD_DEPENDS:=arm-trusted-firmware-rockchip
+  ATF:=rk3328_bl31.elf
+endef
+
 
 # RK3399 boards
 
@@ -71,6 +81,7 @@ UBOOT_TARGETS := \
   nanopi-r4s-rk3399 \
   rock-pi-4-rk3399 \
   rockpro64-rk3399 \
+  rock64-rk3328 \
   nanopi-r2s-rk3328
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
