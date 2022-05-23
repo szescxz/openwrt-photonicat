@@ -12,7 +12,7 @@ Signed-off-by: Etienne Champetier <champetier.etienne@gmail.com>
 
 --- a/net/bridge/br_input.c
 +++ b/net/bridge/br_input.c
-@@ -126,10 +126,14 @@ int br_handle_frame_finish(struct net *n
+@@ -133,10 +133,14 @@ int br_handle_frame_finish(struct net *n
  		}
  	}
  
