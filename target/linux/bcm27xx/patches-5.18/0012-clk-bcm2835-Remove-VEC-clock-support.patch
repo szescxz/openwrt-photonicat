@@ -10,7 +10,7 @@ Signed-off-by: Dom Cobley <popcornmix@gmail.com>
 
 --- a/drivers/clk/bcm/clk-bcm2835.c
 +++ b/drivers/clk/bcm/clk-bcm2835.c
-@@ -2206,21 +2206,6 @@ static const struct bcm2835_clk_desc clk
+@@ -2207,21 +2207,6 @@ static const struct bcm2835_clk_desc clk
  		.frac_bits = 12,
  		.tcnt_mux = 28),
  

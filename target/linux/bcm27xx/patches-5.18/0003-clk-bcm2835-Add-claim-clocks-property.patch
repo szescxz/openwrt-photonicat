@@ -17,7 +17,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
 
 --- a/drivers/clk/bcm/clk-bcm2835.c
 +++ b/drivers/clk/bcm/clk-bcm2835.c
-@@ -1304,6 +1304,8 @@ static const struct clk_ops bcm2835_vpu_
+@@ -1305,6 +1305,8 @@ static const struct clk_ops bcm2835_vpu_
  	.debug_init = bcm2835_clock_debug_init,
  };
  
@@ -26,7 +26,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
  static struct clk_hw *bcm2835_register_pll(struct bcm2835_cprman *cprman,
  					   const void *data)
  {
-@@ -1321,6 +1323,9 @@ static struct clk_hw *bcm2835_register_p
+@@ -1322,6 +1324,9 @@ static struct clk_hw *bcm2835_register_p
  	init.ops = &bcm2835_pll_clk_ops;
  	init.flags = pll_data->flags | CLK_IGNORE_UNUSED;
  
@@ -36,7 +36,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
  	pll = kzalloc(sizeof(*pll), GFP_KERNEL);
  	if (!pll)
  		return NULL;
-@@ -1376,9 +1381,11 @@ bcm2835_register_pll_divider(struct bcm2
+@@ -1377,9 +1382,11 @@ bcm2835_register_pll_divider(struct bcm2
  	divider->div.hw.init = &init;
  	divider->div.table = NULL;
  
@@ -51,7 +51,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
  	}
  
  	divider->cprman = cprman;
-@@ -1435,6 +1442,15 @@ static struct clk_hw *bcm2835_register_c
+@@ -1436,6 +1443,15 @@ static struct clk_hw *bcm2835_register_c
  	init.flags = clock_data->flags | CLK_IGNORE_UNUSED;
  
  	/*
@@ -67,7 +67,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
  	 * Pass the CLK_SET_RATE_PARENT flag if we are allowed to propagate
  	 * rate changes on at least of the parents.
  	 */
-@@ -2213,6 +2229,8 @@ static const struct bcm2835_clk_desc clk
+@@ -2214,6 +2230,8 @@ static const struct bcm2835_clk_desc clk
  		.ctl_reg = CM_PERIICTL),
  };
  
@@ -76,7 +76,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
  /*
   * Permanently take a reference on the parent of the SDRAM clock.
   *
-@@ -2232,6 +2250,19 @@ static int bcm2835_mark_sdc_parent_criti
+@@ -2233,6 +2251,19 @@ static int bcm2835_mark_sdc_parent_criti
  	return clk_prepare_enable(parent);
  }
  
@@ -96,7 +96,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
  static int bcm2835_clk_probe(struct platform_device *pdev)
  {
  	struct device *dev = &pdev->dev;
-@@ -2241,6 +2272,7 @@ static int bcm2835_clk_probe(struct plat
+@@ -2242,6 +2273,7 @@ static int bcm2835_clk_probe(struct plat
  	const size_t asize = ARRAY_SIZE(clk_desc_array);
  	const struct cprman_plat_data *pdata;
  	size_t i;
@@ -104,7 +104,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.org>
  	int ret;
  
  	pdata = of_device_get_match_data(&pdev->dev);
-@@ -2259,6 +2291,13 @@ static int bcm2835_clk_probe(struct plat
+@@ -2260,6 +2292,13 @@ static int bcm2835_clk_probe(struct plat
  	if (IS_ERR(cprman->regs))
  		return PTR_ERR(cprman->regs);
  

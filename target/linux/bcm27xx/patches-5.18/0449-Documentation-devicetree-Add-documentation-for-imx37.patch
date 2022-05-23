@@ -132,7 +132,7 @@ Signed-off-by: David Plowman <david.plowman@raspberrypi.com>
 +...
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -18433,6 +18433,7 @@ M:	Raspberry Pi Kernel Maintenance <kern
+@@ -18432,6 +18432,7 @@ M:	Raspberry Pi Kernel Maintenance <kern
  L:	linux-media@vger.kernel.org
  S:	Maintained
  T:	git git://linuxtv.org/media_tree.git
