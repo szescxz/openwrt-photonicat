@@ -1,0 +1,25 @@
+--- a/hif/pcie/pcie.c
++++ b/hif/pcie/pcie.c
+@@ -1292,10 +1292,12 @@ static void pcie_bf_mimo_ctrl_decode(str
+ 	const char filename[] = "/tmp/BF_MIMO_Ctrl_Field_Output.txt";
+ 	char str_buf[256];
+ 	char *buf = &str_buf[0];
++#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 18, 0))
+ 	mm_segment_t oldfs;
+ 
+ 	oldfs = get_fs();
+ 	set_fs(KERNEL_DS);
++#endif
+ 
+ 	buf += sprintf(buf, "\nMAC: %pM\n", bf_mimo_ctrl->rec_mac);
+ 	buf += sprintf(buf, "SU_0_MU_1: %d\n", bf_mimo_ctrl->type);
+@@ -1315,7 +1317,9 @@ static void pcie_bf_mimo_ctrl_decode(str
+ 			  filename, (unsigned int)fp_data);
+ 	}
+ 
++#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 15, 0))
+ 	set_fs(oldfs);
++#endif
+ }
+ 
+ static void pcie_process_account(struct ieee80211_hw *hw)
