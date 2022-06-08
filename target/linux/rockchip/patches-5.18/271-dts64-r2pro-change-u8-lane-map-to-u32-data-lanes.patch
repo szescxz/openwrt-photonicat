@@ -1,0 +1,20 @@
+From 423cd68c101f613b4ba92714c795f3577c205060 Mon Sep 17 00:00:00 2001
+From: Frank Wunderlich <frank-w@public-files.de>
+Date: Fri, 20 May 2022 13:24:43 +0200
+Subject: [PATCH 37/40] dts64: r2pro: change u8 lane-map to u32 data-lanes
+
+---
+ arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+@@ -468,7 +468,7 @@
+ };
+ 
+ &pcie30phy {
+-	lane-map = /bits/ 8 <1 2>;
++	data-lanes = <1 2>;
+ 	status = "okay";
+ };
+ 

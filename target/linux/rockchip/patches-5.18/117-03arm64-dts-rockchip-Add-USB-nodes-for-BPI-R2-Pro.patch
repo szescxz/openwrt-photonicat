@@ -19,6 +19,16 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  		vin-supply = <&dc_12v>;
  	};
 +
++	vbus: vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "vbus";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&dc_12v>;
++	};
++
 +	vcc5v0_usb: vcc5v0_usb {
 +		compatible = "regulator-fixed";
 +		regulator-name = "vcc5v0_usb";
@@ -52,16 +62,6 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 +		regulator-max-microvolt = <5000000>;
 +		vin-supply = <&vcc5v0_usb>;
 +	};
-+};
-+
-+&combphy0 {
-+	/* used for USB3 */
-+	status = "okay";
-+};
-+
-+&combphy1 {
-+	/* used for USB3 */
-+	status = "okay";
  };
  
  &gmac0 {
@@ -82,7 +82,7 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  };
  
  &pmu_io_domains {
-@@ -485,3 +539,42 @@
+@@ -485,3 +539,33 @@
  	pinctrl-0 = <&uart9m1_xfer>;
  	status = "disabled";
  };
@@ -95,20 +95,11 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 +	status = "okay";
 +};
 +
-+&usb_host0_xhci {
-+	extcon = <&usb2phy0>;
-+	status = "okay";
-+};
-+
 +&usb_host1_ehci {
 +	status = "okay";
 +};
 +
 +&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_xhci {
 +	status = "okay";
 +};
 +

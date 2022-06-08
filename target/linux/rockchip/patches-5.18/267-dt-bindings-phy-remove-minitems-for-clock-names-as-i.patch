@@ -1,0 +1,21 @@
+From e759ffcc8d0eaebc13f1248cb506f0bacc4c759d Mon Sep 17 00:00:00 2001
+From: Frank Wunderlich <frank-w@public-files.de>
+Date: Sun, 15 May 2022 12:31:17 +0200
+Subject: [PATCH 33/40] dt-bindings: phy: remove minitems for clock-names as i
+ have static list to fix error
+
+---
+ Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml | 2 --
+ 1 file changed, 2 deletions(-)
+
+--- a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+@@ -27,8 +27,6 @@ properties:
+       - const: refclk_n
+       - const: pclk
+ 
+-    minItems: 3
+-
+   lane-map:
+     description: which lanes (by position) should be mapped to which
+       controller (value). 0 means lane unused, higher value means used.

@@ -1,0 +1,54 @@
+From dcab95e09a71e3ed05905e6941421de710e2fd5c Mon Sep 17 00:00:00 2001
+From: Frank Wunderlich <frank-w@public-files.de>
+Date: Sat, 2 Apr 2022 13:31:43 +0200
+Subject: [PATCH 10/40] arm64: dts: rockchip: Add USB3 nodes for BPI-R2-Pro
+
+Add USB3 Devicetree nodes to Bananapi R2 Pro Board.
+
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+@@ -119,6 +119,16 @@
+ 	};
+ };
+ 
++&combphy0 {
++	/* used for USB3 */
++	status = "okay";
++};
++
++&combphy1 {
++	/* used for USB3 */
++	status = "okay";
++};
++
+ &gmac0 {
+ 	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
+ 	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
+@@ -548,6 +558,11 @@
+ 	status = "okay";
+ };
+ 
++&usb_host0_xhci {
++	extcon = <&usb2phy0>;
++	status = "okay";
++};
++
+ &usb_host1_ehci {
+ 	status = "okay";
+ };
+@@ -556,6 +571,10 @@
+ 	status = "okay";
+ };
+ 
++&usb_host1_xhci {
++	status = "okay";
++};
++
+ &usb2phy0 {
+ 	status = "okay";
+ };

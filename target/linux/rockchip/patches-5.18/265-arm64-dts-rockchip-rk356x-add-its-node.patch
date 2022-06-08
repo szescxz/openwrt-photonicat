@@ -1,0 +1,37 @@
+From 5653afaad3fa6168ca57da0d8a5beb06d57b4ea7 Mon Sep 17 00:00:00 2001
+From: Frank Wunderlich <frank-w@public-files.de>
+Date: Thu, 5 May 2022 19:02:51 +0200
+Subject: [PATCH 31/40] arm64: dts: rockchip: rk356x: add its node
+
+PCIe v3 requires ITS for working properly. Add its node.
+
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -315,6 +315,8 @@
+ 
+ 	gic: interrupt-controller@fd400000 {
+ 		compatible = "arm,gic-v3";
++		#address-cells = <2>;
++		#size-cells = <2>;
+ 		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
+ 		      <0x0 0xfd460000 0 0x80000>; /* GICR */
+ 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+@@ -323,6 +325,13 @@
+ 		mbi-alias = <0x0 0xfd410000>;
+ 		mbi-ranges = <296 24>;
+ 		msi-controller;
++
++		its: interrupt-controller@fd440000 {
++			compatible = "arm,gic-v3-its";
++			msi-controller;
++			#msi-cells = <1>;
++			reg = <0x0 0xfd440000 0x0 0x20000>;
++		};
+ 	};
+ 
+ 	usb_host0_ehci: usb@fd800000 {
