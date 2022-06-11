@@ -1,0 +1,38 @@
+From 269ead797bb8e1057fe12f1f7a01a0afab6bc351 Mon Sep 17 00:00:00 2001
+From: Frank Wunderlich <frank-w@public-files.de>
+Date: Sat, 16 Apr 2022 15:45:37 +0200
+Subject: [PATCH 02/10] dt-bindings: soc: grf: add pcie30-{phy,pipe}-grf
+
+Add compatibles for PCIe v3 General Register Files.
+
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+v4:
+- rebase on 5.19-rc1
+- add acked-by
+
+v3:
+- fix order of grf-bindings
+
+v2:
+- add soc-part to pcie3-phy-grf
+---
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -16,9 +16,12 @@ properties:
+           - enum:
+               - rockchip,rk3288-sgrf
+               - rockchip,rk3566-pipe-grf
++              - rockchip,rk3568-pcie3-phy-grf
+               - rockchip,rk3568-pipe-grf
+               - rockchip,rk3568-pipe-phy-grf
+               - rockchip,rk3568-usb2phy-grf
++              - rockchip,rk3588-pcie3-phy-grf
++              - rockchip,rk3588-pcie3-pipe-grf
+               - rockchip,rv1108-usbgrf
+           - const: syscon
+       - items:
