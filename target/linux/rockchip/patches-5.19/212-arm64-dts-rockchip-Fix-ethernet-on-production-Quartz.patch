@@ -1,0 +1,31 @@
+From 74eaba55aee30c1e2d3284aae0ce63c4464f05fd Mon Sep 17 00:00:00 2001
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Mon, 6 Jun 2022 12:30:23 -0400
+Subject: [PATCH 12/16] arm64: dts: rockchip: Fix ethernet on production
+ Quartz64-B
+
+The production Quartz64 Model B has compatibility issues when using
+rgmii-id mode. Switch to rgmii mode and use the SoC's delays to ensure
+full compatibility.
+
+Reported-by: Frank Mankel <frank.mankel@gmail.com>
+Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B device tree")
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+Tested-by: Frank Mankel <frank.mankel@gmail.com>
+Link: https://lore.kernel.org/r/20220606163023.3677147-1-pgwipeout@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+@@ -133,7 +133,7 @@
+ 	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>;
+ 	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>, <&gmac1_clkin>;
+ 	clock_in_out = "input";
+-	phy-mode = "rgmii-id";
++	phy-mode = "rgmii";
+ 	phy-supply = <&vcc_3v3>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac1m1_miim
