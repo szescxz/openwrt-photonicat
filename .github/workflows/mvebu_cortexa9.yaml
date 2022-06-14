@@ -1,0 +1,86 @@
+name: Build mvebu_cortexa9 5.19
+on: [push]
+
+jobs:
+    build:
+        name: Prepare and build mvebu_cortexa9 images
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup Ubuntu
+              run: |
+                sudo apt update
+                sudo apt install ccache ecj fastjar \
+                gettext java-propose-classpath libelf-dev libncurses5-dev \
+                libncursesw5-dev python2.7-dev \
+                xsltproc
+
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Update and install feeds
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+
+            - name: Generate config for mvebu_cortexa9-5.18
+              run: |
+                echo "CONFIG_TARGET_mvebu=y" > .config
+                echo "CONFIG_TARGET_mvebu_cortexa9=y" >> .config
+                echo "CONFIG_TARGET_MULTI_PROFILE=y" >> .config
+                echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y" >> .config
+                echo "CONFIG_PACKAGE_luci=y" >> .config
+                echo "CONFIG_PACKAGE_luci-app-advanced-reboot=y" >> .config
+                echo "CONFIG_TARGET_ALL_PROFILES=y" >> .config
+                make defconfig
+
+            - name: Download package sources
+              run: make download V=s
+
+            - name: Build tools
+              run: |
+                make tools/install -j$(nproc) V=s || \
+                make tools/install V=s
+
+            - name: Build toolchain
+              run: |
+                make toolchain/install -j$(nproc) V=s || \
+                make toolchain/install V=s
+
+            - name: Build target images
+              run: |
+                make -j$(nproc) V=s 'IGNORE_ERRORS=n m' || \
+                make V=s 'IGNORE_ERRORS=n m'
+
+            - name: TAR output
+              run: tar -cvf mvebu_cortexa9-images.tar bin/targets/mvebu/cortexa9
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                name: mvebu_cortexa9-images
+                path: mvebu_cortexa9-images.tar
+
+    release:
+          name: Make a release
+          runs-on: ubuntu-latest
+          needs: build
+
+          steps:
+            - name: Download the image artifacts
+              uses: actions/download-artifact@v2
+              with:
+                name: mvebu_cortexa9-images
+
+            - name: Extract the image artifacts
+              run: tar xf mvebu_cortexa9-images.tar
+
+            - name: Create a release
+              uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                prerelease: true
+                title: "mvebu v5.19 images"
+                automatic_release_tag: "mvebu-5.19"
+                files: bin/targets/mvebu/cortexa9/*
