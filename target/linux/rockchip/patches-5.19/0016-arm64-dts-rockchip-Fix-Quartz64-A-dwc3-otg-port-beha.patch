@@ -1,0 +1,29 @@
+From a410a623038db1cafff18905228caaaa5eba0b56 Mon Sep 17 00:00:00 2001
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Fri, 10 Jun 2022 09:25:42 -0400
+Subject: [PATCH 16/51] arm64: dts: rockchip: Fix Quartz64-A dwc3 otg port
+ behavior
+
+The otg_id line on the Quartz64 Model A is not connected to anything.
+This prevents automatic selection of the dual role usb port. In otg mode
+it defaults to device mode. Force it to host mode to retain previous
+behavior.
+
+Fixes: bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x")
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+Link: https://lore.kernel.org/r/20220610132542.159978-1-pgwipeout@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+@@ -784,6 +784,7 @@
+ };
+ 
+ &usb_host0_xhci {
++	dr_mode = "host";
+ 	status = "okay";
+ };
+ 
