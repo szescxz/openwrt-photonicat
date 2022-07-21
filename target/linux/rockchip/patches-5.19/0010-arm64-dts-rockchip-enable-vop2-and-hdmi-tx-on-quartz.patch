@@ -68,7 +68,7 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  &i2c0 {
  	status = "okay";
  
-@@ -781,3 +811,20 @@
+@@ -782,3 +812,20 @@
  	phy-supply = <&vcc5v0_usb20_host>;
  	status = "okay";
  };
