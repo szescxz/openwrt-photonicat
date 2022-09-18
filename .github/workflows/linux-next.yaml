@@ -1,0 +1,96 @@
+name: Build linux-next rockchip
+on: [push]
+
+jobs:
+    build:
+        name: Build images for rockchip linux-next
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup Ubuntu
+              run: |
+                sudo apt update
+                sudo apt install build-essential ccache ecj fastjar file g++ gawk \
+                gettext git java-propose-classpath libelf-dev libncurses5-dev \
+                libncursesw5-dev libssl-dev python2.7-dev python3 unzip wget \
+                python3-setuptools python3-dev rsync subversion \
+                swig time xsltproc zlib1g-dev
+
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Update and install feeds
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+                cd feeds/luci
+                wget https://patch-diff.githubusercontent.com/raw/openwrt/luci/pull/5918.patch
+                git apply 5918.patch
+                wget https://github.com/mj22226/luci/commit/777019144e7e3f9645ea19190eb900ba09e502ba.patch
+                git apply 777019144e7e3f9645ea19190eb900ba09e502ba.patch
+                cd -
+                sed -i "70s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "83s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "193s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "209s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+
+            - name: Generate config for rockchip linux-next
+              run: |
+                cp .github/workflows/config.buildinfo .config
+                make defconfig
+
+            - name: Download linux next custom kernel
+              run: |
+                mkdir dl
+                wget https://github.com/mj22226/linux/archive/refs/tags/6.1-rc20221007.tar.gz -O dl/linux-6.1-rc20221007.tar.gz
+
+            - name: Download package sources
+              run: make download V=s
+
+            - name: Build tools
+              run: |
+                make tools/install -j$(nproc) V=s || \
+                make tools/install V=s
+
+            - name: Build toolchain
+              run: |
+                make toolchain/install -j$(nproc) V=s || \
+                make toolchain/install V=s
+
+            - name: Build target images
+              run: |
+                make -j$(nproc) V=s 'IGNORE_ERRORS=n m' || \
+                make V=s 'IGNORE_ERRORS=n m'
+
+            - name: TAR output
+              run: tar -cvf rockchip-images.tar bin/targets/rockchip/armv8
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                name: rockchip-images
+                path: rockchip-images.tar
+
+    release:
+          name: Make a release
+          runs-on: ubuntu-latest
+          needs: build
+
+          steps:
+            - name: Download the image artifacts
+              uses: actions/download-artifact@v2
+              with:
+                name: rockchip-images
+
+            - name: Extract the image artifacts
+              run: tar xf rockchip-images.tar
+
+            - name: Create a release
+              uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                prerelease: true
+                title: "Rockchip linux-next Images"
+                automatic_release_tag: "linux-next"
+                files: bin/targets/rockchip/armv8/*
