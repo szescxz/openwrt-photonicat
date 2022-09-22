@@ -11,7 +11,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/include/linux/netdevice.h
 +++ b/include/linux/netdevice.h
-@@ -2119,6 +2119,8 @@ struct net_device {
+@@ -2125,6 +2125,8 @@ struct net_device {
  
  
  

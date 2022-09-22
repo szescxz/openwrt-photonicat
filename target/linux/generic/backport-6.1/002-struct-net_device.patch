@@ -1,6 +1,6 @@
 --- a/include/linux/netdevice.h
 +++ b/include/linux/netdevice.h
-@@ -546,8 +546,8 @@ static inline bool napi_if_scheduled_mar
+@@ -552,8 +552,8 @@ static inline bool napi_if_scheduled_mar
  {
  	unsigned long val, new;
  
@@ -10,7 +10,7 @@
  		if (val & NAPIF_STATE_DISABLE)
  			return true;
  
-@@ -555,7 +555,7 @@ static inline bool napi_if_scheduled_mar
+@@ -561,7 +561,7 @@ static inline bool napi_if_scheduled_mar
  			return false;
  
  		new = val | NAPIF_STATE_MISSED;
@@ -19,7 +19,7 @@
  
  	return true;
  }
-@@ -1851,6 +1851,7 @@ enum netdev_ml_priv_type {
+@@ -1857,6 +1857,7 @@ enum netdev_ml_priv_type {
   *	@tipc_ptr:	TIPC specific data
   *	@atalk_ptr:	AppleTalk link
   *	@ip_ptr:	IPv4 specific data
@@ -27,7 +27,7 @@
   *	@ip6_ptr:	IPv6 specific data
   *	@ax25_ptr:	AX.25 specific data
   *	@ieee80211_ptr:	IEEE 802.11 specific data, assign before registering
-@@ -2116,6 +2117,8 @@ struct net_device {
+@@ -2122,6 +2123,8 @@ struct net_device {
  	struct netdev_hw_addr_list	mc;
  	struct netdev_hw_addr_list	dev_addrs;
  
@@ -36,7 +36,7 @@
  #ifdef CONFIG_SYSFS
  	struct kset		*queues_kset;
  #endif
-@@ -2132,8 +2135,6 @@ struct net_device {
+@@ -2138,8 +2141,6 @@ struct net_device {
  
  	/* Protocol-specific pointers */
  
@@ -45,7 +45,7 @@
  #if IS_ENABLED(CONFIG_VLAN_8021Q)
  	struct vlan_info __rcu	*vlan_info;
  #endif
-@@ -2146,15 +2147,16 @@ struct net_device {
+@@ -2152,15 +2153,16 @@ struct net_device {
  #if IS_ENABLED(CONFIG_ATALK)
  	void 			*atalk_ptr;
  #endif
@@ -66,7 +66,7 @@
  #if IS_ENABLED(CONFIG_MPLS_ROUTING)
  	struct mpls_dev __rcu	*mpls_ptr;
  #endif
-@@ -2569,6 +2571,8 @@ netif_napi_add_tx_weight(struct net_devi
+@@ -2575,6 +2577,8 @@ netif_napi_add_tx_weight(struct net_devi
  	netif_napi_add_weight(dev, napi, poll, weight);
  }
  
@@ -95,7 +95,7 @@
  wpan_phy_new(const struct cfg802154_ops *ops, size_t priv_size);
 --- a/net/batman-adv/hard-interface.c
 +++ b/net/batman-adv/hard-interface.c
-@@ -307,11 +307,9 @@ static bool batadv_is_cfg80211_netdev(st
+@@ -308,11 +308,9 @@ static bool batadv_is_cfg80211_netdev(st
  	if (!net_device)
  		return false;
  
