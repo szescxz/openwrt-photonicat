@@ -21,7 +21,7 @@
  
 --- a/src/ap/wpa_auth_glue.c
 +++ b/src/ap/wpa_auth_glue.c
-@@ -1595,8 +1595,12 @@ int hostapd_setup_wpa(struct hostapd_dat
+@@ -1615,8 +1615,12 @@ int hostapd_setup_wpa(struct hostapd_dat
  	    wpa_key_mgmt_ft(hapd->conf->wpa_key_mgmt)) {
  		const char *ft_iface;
  
