@@ -31,7 +31,7 @@
  		/*
 --- a/wpa_supplicant/wpa_supplicant.c
 +++ b/wpa_supplicant/wpa_supplicant.c
-@@ -2463,7 +2463,7 @@ void ibss_mesh_setup_freq(struct wpa_sup
+@@ -2582,7 +2582,7 @@ void ibss_mesh_setup_freq(struct wpa_sup
  	int ieee80211_mode = wpas_mode_to_ieee80211_mode(ssid->mode);
  	enum hostapd_hw_mode hw_mode;
  	struct hostapd_hw_modes *mode = NULL;
@@ -40,7 +40,7 @@
  			   184, 192 };
  	int bw80[] = { 5180, 5260, 5500, 5580, 5660, 5745, 5955,
  		       6035, 6115, 6195, 6275, 6355, 6435, 6515,
-@@ -2471,7 +2471,7 @@ void ibss_mesh_setup_freq(struct wpa_sup
+@@ -2590,7 +2590,7 @@ void ibss_mesh_setup_freq(struct wpa_sup
  	int bw160[] = { 5955, 6115, 6275, 6435, 6595, 6755, 6915 };
  	struct hostapd_channel_data *pri_chan = NULL, *sec_chan = NULL;
  	u8 channel;
@@ -49,7 +49,7 @@
  	unsigned int j, k;
  	struct hostapd_freq_params vht_freq;
  	int chwidth, seg0, seg1;
-@@ -2562,7 +2562,7 @@ void ibss_mesh_setup_freq(struct wpa_sup
+@@ -2681,7 +2681,7 @@ void ibss_mesh_setup_freq(struct wpa_sup
  #endif /* CONFIG_HE_OVERRIDES */
  
  	/* Setup higher BW only for 5 GHz */
