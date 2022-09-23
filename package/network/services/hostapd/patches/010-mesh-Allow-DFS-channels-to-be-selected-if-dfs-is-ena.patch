@@ -14,7 +14,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
 
 --- a/wpa_supplicant/wpa_supplicant.c
 +++ b/wpa_supplicant/wpa_supplicant.c
-@@ -2436,7 +2436,7 @@ static int drv_supports_vht(struct wpa_s
+@@ -2555,7 +2555,7 @@ static int drv_supports_vht(struct wpa_s
  }
  
  
@@ -23,7 +23,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
  {
  	int i;
  
-@@ -2445,7 +2445,10 @@ static bool ibss_mesh_is_80mhz_avail(int
+@@ -2564,7 +2564,10 @@ static bool ibss_mesh_is_80mhz_avail(int
  
  		chan = hw_get_channel_chan(mode, i, NULL);
  		if (!chan ||
@@ -35,7 +35,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
  			return false;
  	}
  
-@@ -2474,6 +2477,8 @@ void ibss_mesh_setup_freq(struct wpa_sup
+@@ -2593,6 +2596,8 @@ void ibss_mesh_setup_freq(struct wpa_sup
  	int chwidth, seg0, seg1;
  	u32 vht_caps = 0;
  	bool is_24ghz, is_6ghz;
@@ -44,7 +44,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
  
  	freq->freq = ssid->frequency;
  
-@@ -2570,8 +2575,11 @@ void ibss_mesh_setup_freq(struct wpa_sup
+@@ -2689,8 +2694,11 @@ void ibss_mesh_setup_freq(struct wpa_sup
  		return;
  
  	/* Check primary channel flags */
@@ -57,7 +57,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
  
  	freq->channel = pri_chan->chan;
  
-@@ -2604,8 +2612,11 @@ void ibss_mesh_setup_freq(struct wpa_sup
+@@ -2723,8 +2731,11 @@ void ibss_mesh_setup_freq(struct wpa_sup
  		return;
  
  	/* Check secondary channel flags */
@@ -70,7 +70,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
  
  	if (ht40 == -1) {
  		if (!(pri_chan->flag & HOSTAPD_CHAN_HT40MINUS))
-@@ -2694,7 +2705,7 @@ skip_to_6ghz:
+@@ -2813,7 +2824,7 @@ skip_to_6ghz:
  		return;
  
  	/* Back to HT configuration if channel not usable */
@@ -79,7 +79,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
  		return;
  
  	chwidth = CONF_OPER_CHWIDTH_80MHZ;
-@@ -2708,7 +2719,7 @@ skip_to_6ghz:
+@@ -2827,7 +2838,7 @@ skip_to_6ghz:
  		 * above; check the remaining four 20 MHz channels for the total
  		 * of 160 MHz bandwidth.
  		 */
@@ -88,7 +88,7 @@ Signed-off-by: Peter Oh <peter.oh@bowerswilkins.com>
  			return;
  
  		for (j = 0; j < ARRAY_SIZE(bw160); j++) {
-@@ -2738,10 +2749,12 @@ skip_to_6ghz:
+@@ -2857,10 +2868,12 @@ skip_to_6ghz:
  				if (!chan)
  					continue;
  
