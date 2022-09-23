@@ -11,7 +11,7 @@
  	} else if (os_strcmp(buf, "wds_bridge") == 0) {
 --- a/src/ap/ap_drv_ops.c
 +++ b/src/ap/ap_drv_ops.c
-@@ -340,8 +340,6 @@ int hostapd_set_wds_sta(struct hostapd_d
+@@ -348,8 +348,6 @@ int hostapd_set_wds_sta(struct hostapd_d
  		return -1;
  	if (hapd->conf->wds_bridge[0])
  		bridge = hapd->conf->wds_bridge;
