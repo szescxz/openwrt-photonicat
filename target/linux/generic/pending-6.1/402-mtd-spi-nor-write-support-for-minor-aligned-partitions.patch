@@ -378,7 +378,7 @@ Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
  
 --- a/include/linux/mtd/mtd.h
 +++ b/include/linux/mtd/mtd.h
-@@ -238,6 +238,8 @@ struct mtd_info {
+@@ -245,6 +245,8 @@ struct mtd_info {
  	 * information below if they desire
  	 */
  	uint32_t erasesize;

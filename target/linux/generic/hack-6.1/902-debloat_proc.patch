@@ -135,7 +135,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	do {								\
 --- a/ipc/msg.c
 +++ b/ipc/msg.c
-@@ -1366,6 +1366,9 @@ void __init msg_init(void)
+@@ -1370,6 +1370,9 @@ void __init msg_init(void)
  {
  	msg_init_ns(&init_ipc_ns);
  
