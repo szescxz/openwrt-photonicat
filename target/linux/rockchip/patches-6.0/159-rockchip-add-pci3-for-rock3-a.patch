@@ -187,15 +187,6 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
  	status = "okay";
  };
  
-@@ -581,7 +646,7 @@
- };
- 
- &usb2phy0_otg {
--	vbus-supply = <&vcc5v0_usb_otg>;
-+	phy-supply = <&vcc5v0_usb_otg>;
- 	status = "okay";
- };
- 
 @@ -590,12 +655,10 @@
  };
  
