@@ -1087,7 +1087,7 @@ Signed-off-by: Alexandros C. Couloumbis <alex@ozo.com>
  #define JFFS2_NODE_ACCURATE 0x2000
 --- a/lib/Kconfig
 +++ b/lib/Kconfig
-@@ -350,6 +350,12 @@ config ZSTD_DECOMPRESS
+@@ -354,6 +354,12 @@ config ZSTD_DECOMPRESS
  
  source "lib/xz/Kconfig"
  

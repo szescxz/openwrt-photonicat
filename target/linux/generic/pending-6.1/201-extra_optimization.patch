@@ -14,7 +14,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/Makefile
 +++ b/Makefile
-@@ -820,10 +820,12 @@ KBUILD_CFLAGS	+= $(call cc-disable-warni
+@@ -821,10 +821,12 @@ KBUILD_CFLAGS	+= $(call cc-disable-warni
  KBUILD_CFLAGS	+= $(call cc-disable-warning, address-of-packed-member)
  
  ifdef CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
@@ -31,7 +31,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/init/Kconfig
 +++ b/init/Kconfig
-@@ -1414,6 +1414,20 @@ config CC_OPTIMIZE_FOR_PERFORMANCE
+@@ -1409,6 +1409,20 @@ config CC_OPTIMIZE_FOR_PERFORMANCE
  	  with the "-O2" compiler flag for best performance and most
  	  helpful compile-time warnings.
  
