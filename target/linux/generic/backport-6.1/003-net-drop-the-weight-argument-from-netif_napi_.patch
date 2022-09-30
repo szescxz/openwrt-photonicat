@@ -1,0 +1,2319 @@
+From 85cc8341a480bd61b28a1f12b3250828a8cfe4f0 Mon Sep 17 00:00:00 2001
+From: Marty Jones <mj8263788@gmail.com>
+Date: Fri, 30 Sep 2022 17:14:20 -0400
+Subject: [PATCH] net: drop the weight argument from netif_napi_add
+
+This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
+---
+ drivers/net/can/ctucanfd/ctucanfd_base.c      |  2 +-
+ drivers/net/can/ifi_canfd/ifi_canfd.c         |  2 +-
+ drivers/net/can/m_can/m_can.c                 |  3 ++-
+ drivers/net/ethernet/actions/owl-emac.c       |  2 +-
+ drivers/net/ethernet/aeroflex/greth.c         |  2 +-
+ drivers/net/ethernet/agere/et131x.c           |  2 +-
+ drivers/net/ethernet/alacritech/slicoss.c     |  2 +-
+ drivers/net/ethernet/altera/altera_tse_main.c |  2 +-
+ drivers/net/ethernet/amazon/ena/ena_netdev.c  |  6 ++++--
+ drivers/net/ethernet/amd/xgbe/xgbe-drv.c      |  4 ++--
+ drivers/net/ethernet/apm/xgene-v2/main.c      |  2 +-
+ .../net/ethernet/apm/xgene/xgene_enet_main.c  |  6 ++++--
+ .../net/ethernet/aquantia/atlantic/aq_ptp.c   |  3 ++-
+ .../net/ethernet/aquantia/atlantic/aq_vec.c   |  3 ++-
+ drivers/net/ethernet/atheros/alx/main.c       |  2 +-
+ .../net/ethernet/atheros/atl1c/atl1c_main.c   |  2 +-
+ .../net/ethernet/atheros/atl1e/atl1e_main.c   |  2 +-
+ drivers/net/ethernet/atheros/atlx/atl1.c      |  2 +-
+ drivers/net/ethernet/broadcom/b44.c           |  2 +-
+ drivers/net/ethernet/broadcom/bcm4908_enet.c  |  2 +-
+ drivers/net/ethernet/broadcom/bcmsysport.c    |  2 +-
+ drivers/net/ethernet/broadcom/bgmac.c         |  2 +-
+ drivers/net/ethernet/broadcom/bnx2.c          |  2 +-
+ .../net/ethernet/broadcom/bnx2x/bnx2x_cmn.c   |  6 ++++--
+ drivers/net/ethernet/broadcom/bnxt/bnxt.c     |  6 +++---
+ .../net/ethernet/broadcom/genet/bcmgenet.c    |  3 ++-
+ drivers/net/ethernet/broadcom/tg3.c           |  4 ++--
+ drivers/net/ethernet/brocade/bna/bnad.c       |  2 +-
+ drivers/net/ethernet/cadence/macb_main.c      |  4 ++--
+ drivers/net/ethernet/calxeda/xgmac.c          |  2 +-
+ .../net/ethernet/cavium/liquidio/lio_core.c   |  2 +-
+ .../net/ethernet/cavium/thunder/nicvf_main.c  |  3 ++-
+ drivers/net/ethernet/chelsio/cxgb/cxgb2.c     |  2 +-
+ .../net/ethernet/chelsio/cxgb3/cxgb3_main.c   |  3 ++-
+ drivers/net/ethernet/chelsio/cxgb4/sge.c      |  2 +-
+ drivers/net/ethernet/chelsio/cxgb4vf/sge.c    |  2 +-
+ drivers/net/ethernet/cirrus/ep93xx_eth.c      |  2 +-
+ drivers/net/ethernet/cisco/enic/enic_main.c   |  9 ++++-----
+ drivers/net/ethernet/cortina/gemini.c         |  2 +-
+ drivers/net/ethernet/dnet.c                   |  2 +-
+ drivers/net/ethernet/emulex/benet/be_main.c   |  3 ++-
+ drivers/net/ethernet/engleder/tsnep_main.c    |  2 +-
+ drivers/net/ethernet/ethoc.c                  |  2 +-
+ drivers/net/ethernet/faraday/ftgmac100.c      |  2 +-
+ drivers/net/ethernet/faraday/ftmac100.c       |  2 +-
+ .../net/ethernet/freescale/dpaa/dpaa_eth.c    |  3 ++-
+ .../net/ethernet/freescale/dpaa2/dpaa2-eth.c  |  3 ++-
+ .../ethernet/freescale/dpaa2/dpaa2-switch.c   |  5 +++--
+ drivers/net/ethernet/freescale/enetc/enetc.c  |  3 ++-
+ drivers/net/ethernet/freescale/fec_main.c     |  2 +-
+ drivers/net/ethernet/freescale/gianfar.c      |  2 +-
+ drivers/net/ethernet/freescale/ucc_geth.c     |  2 +-
+ .../ethernet/fungible/funeth/funeth_main.c    |  3 ++-
+ drivers/net/ethernet/google/gve/gve_main.c    |  3 ++-
+ drivers/net/ethernet/hisilicon/hip04_eth.c    |  2 +-
+ drivers/net/ethernet/hisilicon/hix5hd2_gmac.c |  2 +-
+ drivers/net/ethernet/hisilicon/hns/hns_enet.c |  6 ++++--
+ .../net/ethernet/hisilicon/hns3/hns3_enet.c   |  2 +-
+ drivers/net/ethernet/ibm/ehea/ehea_main.c     |  2 +-
+ drivers/net/ethernet/ibm/ibmvnic.c            |  2 +-
+ drivers/net/ethernet/intel/e1000/e1000_main.c |  2 +-
+ drivers/net/ethernet/intel/e1000e/netdev.c    |  2 +-
+ drivers/net/ethernet/intel/fm10k/fm10k_main.c |  3 ++-
+ drivers/net/ethernet/intel/i40e/i40e_main.c   |  3 ++-
+ drivers/net/ethernet/intel/iavf/iavf_main.c   |  2 +-
+ drivers/net/ethernet/intel/ice/ice_base.c     |  3 ++-
+ drivers/net/ethernet/intel/ice/ice_eswitch.c  |  4 ++--
+ drivers/net/ethernet/intel/ice/ice_main.c     |  2 +-
+ drivers/net/ethernet/intel/igb/igb_main.c     |  3 ++-
+ drivers/net/ethernet/intel/igbvf/netdev.c     |  2 +-
+ drivers/net/ethernet/intel/igc/igc_main.c     |  3 ++-
+ drivers/net/ethernet/intel/ixgb/ixgb_main.c   |  2 +-
+ drivers/net/ethernet/intel/ixgbe/ixgbe_lib.c  |  3 ++-
+ .../net/ethernet/intel/ixgbevf/ixgbevf_main.c |  2 +-
+ drivers/net/ethernet/jme.c                    |  2 +-
+ drivers/net/ethernet/korina.c                 |  2 +-
+ drivers/net/ethernet/lantiq_xrx200.c          |  3 ++-
+ drivers/net/ethernet/marvell/mv643xx_eth.c    |  2 +-
+ drivers/net/ethernet/marvell/mvneta.c         |  5 +++--
+ .../net/ethernet/marvell/mvpp2/mvpp2_main.c   |  6 ++++--
+ .../ethernet/marvell/octeon_ep/octep_main.c   |  2 +-
+ .../ethernet/marvell/octeontx2/nic/otx2_pf.c  |  3 ++-
+ .../ethernet/marvell/prestera/prestera_rxtx.c |  2 +-
+ drivers/net/ethernet/marvell/skge.c           |  2 +-
+ drivers/net/ethernet/marvell/sky2.c           |  2 +-
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   |  6 ++++--
+ drivers/net/ethernet/mediatek/mtk_star_emac.c |  3 ++-
+ drivers/net/ethernet/mellanox/mlx4/en_cq.c    |  2 +-
+ .../net/ethernet/mellanox/mlx5/core/en/ptp.c  |  2 +-
+ .../net/ethernet/mellanox/mlx5/core/en/trap.c |  2 +-
+ .../net/ethernet/mellanox/mlx5/core/en_main.c |  2 +-
+ .../mellanox/mlxbf_gige/mlxbf_gige_main.c     |  2 +-
+ drivers/net/ethernet/microchip/lan743x_main.c |  4 +++-
+ .../ethernet/microchip/lan966x/lan966x_fdma.c |  3 ++-
+ drivers/net/ethernet/natsemi/natsemi.c        |  2 +-
+ drivers/net/ethernet/neterion/s2io.c          |  4 ++--
+ .../ethernet/netronome/nfp/nfp_net_common.c   |  4 +++-
+ drivers/net/ethernet/ni/nixge.c               |  2 +-
+ drivers/net/ethernet/nvidia/forcedeth.c       |  2 +-
+ .../ethernet/oki-semi/pch_gbe/pch_gbe_main.c  |  3 ++-
+ drivers/net/ethernet/pasemi/pasemi_mac.c      |  2 +-
+ .../net/ethernet/pensando/ionic/ionic_lif.c   | 12 ++++++++----
+ .../ethernet/qlogic/netxen/netxen_nic_main.c  |  3 ++-
+ drivers/net/ethernet/qlogic/qede/qede_main.c  |  3 ++-
+ drivers/net/ethernet/qlogic/qla3xxx.c         |  2 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_io.c    | 19 ++++++++++++-------
+ drivers/net/ethernet/qualcomm/emac/emac.c     |  3 ++-
+ drivers/net/ethernet/rdc/r6040.c              |  2 +-
+ drivers/net/ethernet/realtek/8139too.c        |  2 +-
+ drivers/net/ethernet/realtek/r8169_main.c     |  2 +-
+ drivers/net/ethernet/renesas/ravb_main.c      |  4 ++--
+ drivers/net/ethernet/renesas/sh_eth.c         |  2 +-
+ drivers/net/ethernet/rocker/rocker_main.c     |  3 ++-
+ .../net/ethernet/samsung/sxgbe/sxgbe_main.c   |  2 +-
+ drivers/net/ethernet/sfc/ef100_rep.c          |  3 ++-
+ drivers/net/ethernet/sfc/efx_channels.c       |  2 +-
+ drivers/net/ethernet/sfc/falcon/efx.c         |  2 +-
+ drivers/net/ethernet/sfc/siena/efx_channels.c |  2 +-
+ drivers/net/ethernet/smsc/epic100.c           |  2 +-
+ drivers/net/ethernet/smsc/smsc9420.c          |  2 +-
+ drivers/net/ethernet/socionext/netsec.c       |  2 +-
+ drivers/net/ethernet/socionext/sni_ave.c      |  3 ++-
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |  6 ++++--
+ drivers/net/ethernet/sun/cassini.c            |  2 +-
+ drivers/net/ethernet/sun/ldmvsw.c             |  3 ++-
+ drivers/net/ethernet/sun/niu.c                |  2 +-
+ drivers/net/ethernet/sun/sungem.c             |  2 +-
+ drivers/net/ethernet/sun/sunvnet.c            |  3 ++-
+ drivers/net/ethernet/sunplus/spl2sw_driver.c  |  2 +-
+ .../net/ethernet/synopsys/dwc-xlgmac-net.c    |  5 +++--
+ drivers/net/ethernet/tehuti/tehuti.c          |  2 +-
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      |  2 +-
+ drivers/net/ethernet/ti/cpmac.c               |  2 +-
+ drivers/net/ethernet/ti/cpsw.c                |  3 ++-
+ drivers/net/ethernet/ti/cpsw_new.c            |  4 +++-
+ drivers/net/ethernet/ti/davinci_emac.c        |  2 +-
+ drivers/net/ethernet/ti/netcp_core.c          |  2 +-
+ drivers/net/ethernet/toshiba/ps3_gelic_net.c  |  2 +-
+ drivers/net/ethernet/toshiba/spider_net.c     |  3 ++-
+ drivers/net/ethernet/tundra/tsi108_eth.c      |  2 +-
+ drivers/net/ethernet/via/via-rhine.c          |  2 +-
+ drivers/net/ethernet/via/via-velocity.c       |  2 +-
+ .../net/ethernet/xilinx/xilinx_axienet_main.c |  4 ++--
+ drivers/net/fjes/fjes_main.c                  |  2 +-
+ drivers/net/hyperv/netvsc.c                   |  3 ++-
+ drivers/net/hyperv/rndis_filter.c             |  2 +-
+ drivers/net/ipa/gsi.c                         |  2 +-
+ drivers/net/thunderbolt.c                     |  2 +-
+ drivers/net/usb/lan78xx.c                     |  2 +-
+ drivers/net/veth.c                            |  4 ++--
+ drivers/net/vmxnet3/vmxnet3_drv.c             |  4 ++--
+ drivers/net/wireguard/peer.c                  |  3 ++-
+ drivers/net/wireless/ath/ath10k/pci.c         |  3 ++-
+ drivers/net/wireless/ath/ath10k/sdio.c        |  3 ++-
+ drivers/net/wireless/ath/ath10k/snoc.c        |  3 ++-
+ drivers/net/wireless/ath/ath10k/usb.c         |  3 ++-
+ drivers/net/wireless/ath/ath11k/ahb.c         |  2 +-
+ drivers/net/wireless/ath/ath11k/pcic.c        |  2 +-
+ drivers/net/wireless/ath/wil6210/netdev.c     |  6 ++++--
+ drivers/net/wireless/intel/iwlwifi/pcie/rx.c  |  2 +-
+ drivers/net/wireless/mediatek/mt76/dma.c      |  2 +-
+ drivers/net/wireless/realtek/rtw88/pci.c      |  3 ++-
+ drivers/net/wireless/realtek/rtw89/core.c     |  2 +-
+ drivers/net/xen-netback/interface.c           |  3 ++-
+ drivers/net/xen-netfront.c                    |  3 ++-
+ drivers/s390/net/qeth_l2_main.c               |  2 +-
+ drivers/s390/net/qeth_l3_main.c               |  2 +-
+ drivers/staging/qlge/qlge_main.c              |  4 ++--
+ include/linux/netdevice.h                     |  5 +++--
+ net/core/gro_cells.c                          |  3 ++-
+ 170 files changed, 284 insertions(+), 207 deletions(-)
+
+--- a/drivers/net/can/ctucanfd/ctucanfd_base.c
++++ b/drivers/net/can/ctucanfd/ctucanfd_base.c
+@@ -1424,7 +1424,7 @@ int ctucan_probe_common(struct device *d
+ 
+ 	priv->can.clock.freq = can_clk_rate;
+ 
+-	netif_napi_add(ndev, &priv->napi, ctucan_rx_poll);
++	netif_napi_add(ndev, &priv->napi, ctucan_rx_poll, NAPI_POLL_WEIGHT);
+ 
+ 	ret = register_candev(ndev);
+ 	if (ret) {
+--- a/drivers/net/can/ifi_canfd/ifi_canfd.c
++++ b/drivers/net/can/ifi_canfd/ifi_canfd.c
+@@ -973,7 +973,7 @@ static int ifi_canfd_plat_probe(struct p
+ 	priv->ndev = ndev;
+ 	priv->base = addr;
+ 
+-	netif_napi_add(ndev, &priv->napi, ifi_canfd_poll);
++	netif_napi_add(ndev, &priv->napi, ifi_canfd_poll, 64);
+ 
+ 	priv->can.state = CAN_STATE_STOPPED;
+ 
+--- a/drivers/net/can/m_can/m_can.c
++++ b/drivers/net/can/m_can/m_can.c
+@@ -1467,7 +1467,8 @@ static int m_can_dev_setup(struct m_can_
+ 	}
+ 
+ 	if (!cdev->is_peripheral)
+-		netif_napi_add(dev, &cdev->napi, m_can_poll);
++		netif_napi_add(dev, &cdev->napi,
++			       m_can_poll, NAPI_POLL_WEIGHT);
+ 
+ 	/* Shared properties of all M_CAN versions */
+ 	cdev->version = m_can_version;
+--- a/drivers/net/ethernet/actions/owl-emac.c
++++ b/drivers/net/ethernet/actions/owl-emac.c
+@@ -1576,7 +1576,7 @@ static int owl_emac_probe(struct platfor
+ 	netdev->watchdog_timeo = OWL_EMAC_TX_TIMEOUT;
+ 	netdev->netdev_ops = &owl_emac_netdev_ops;
+ 	netdev->ethtool_ops = &owl_emac_ethtool_ops;
+-	netif_napi_add(netdev, &priv->napi, owl_emac_poll);
++	netif_napi_add(netdev, &priv->napi, owl_emac_poll, NAPI_POLL_WEIGHT);
+ 
+ 	ret = devm_register_netdev(dev, netdev);
+ 	if (ret) {
+--- a/drivers/net/ethernet/aeroflex/greth.c
++++ b/drivers/net/ethernet/aeroflex/greth.c
+@@ -1507,7 +1507,7 @@ static int greth_of_probe(struct platfor
+ 	}
+ 
+ 	/* setup NAPI */
+-	netif_napi_add(dev, &greth->napi, greth_poll);
++	netif_napi_add(dev, &greth->napi, greth_poll, 64);
+ 
+ 	return 0;
+ 
+--- a/drivers/net/ethernet/agere/et131x.c
++++ b/drivers/net/ethernet/agere/et131x.c
+@@ -3969,7 +3969,7 @@ static int et131x_pci_setup(struct pci_d
+ 
+ 	et131x_init_send(adapter);
+ 
+-	netif_napi_add(netdev, &adapter->napi, et131x_poll);
++	netif_napi_add(netdev, &adapter->napi, et131x_poll, 64);
+ 
+ 	eth_hw_addr_set(netdev, adapter->addr);
+ 
+--- a/drivers/net/ethernet/alacritech/slicoss.c
++++ b/drivers/net/ethernet/alacritech/slicoss.c
+@@ -1803,7 +1803,7 @@ static int slic_probe(struct pci_dev *pd
+ 		goto unmap;
+ 	}
+ 
+-	netif_napi_add(dev, &sdev->napi, slic_poll);
++	netif_napi_add(dev, &sdev->napi, slic_poll, NAPI_POLL_WEIGHT);
+ 	netif_carrier_off(dev);
+ 
+ 	err = register_netdev(dev);
+--- a/drivers/net/ethernet/altera/altera_tse_main.c
++++ b/drivers/net/ethernet/altera/altera_tse_main.c
+@@ -1365,7 +1365,7 @@ static int altera_tse_probe(struct platf
+ 	ndev->features |= NETIF_F_HW_VLAN_CTAG_RX;
+ 
+ 	/* setup NAPI interface */
+-	netif_napi_add(ndev, &priv->napi, tse_poll);
++	netif_napi_add(ndev, &priv->napi, tse_poll, NAPI_POLL_WEIGHT);
+ 
+ 	spin_lock_init(&priv->mac_cfg_lock);
+ 	spin_lock_init(&priv->tx_lock);
+--- a/drivers/net/ethernet/amazon/ena/ena_netdev.c
++++ b/drivers/net/ethernet/amazon/ena/ena_netdev.c
+@@ -2265,8 +2265,10 @@ static void ena_init_napi_in_range(struc
+ 	for (i = first_index; i < first_index + count; i++) {
+ 		struct ena_napi *napi = &adapter->ena_napi[i];
+ 
+-		netif_napi_add(adapter->netdev, &napi->napi,
+-			       ENA_IS_XDP_INDEX(adapter, i) ? ena_xdp_io_poll : ena_io_poll);
++		netif_napi_add(adapter->netdev,
++			       &napi->napi,
++			       ENA_IS_XDP_INDEX(adapter, i) ? ena_xdp_io_poll : ena_io_poll,
++			       NAPI_POLL_WEIGHT);
+ 
+ 		if (!ENA_IS_XDP_INDEX(adapter, i)) {
+ 			napi->rx_ring = &adapter->rx_ring[i];
+--- a/drivers/net/ethernet/amd/xgbe/xgbe-drv.c
++++ b/drivers/net/ethernet/amd/xgbe/xgbe-drv.c
+@@ -952,14 +952,14 @@ static void xgbe_napi_enable(struct xgbe
+ 			channel = pdata->channel[i];
+ 			if (add)
+ 				netif_napi_add(pdata->netdev, &channel->napi,
+-					       xgbe_one_poll);
++					       xgbe_one_poll, NAPI_POLL_WEIGHT);
+ 
+ 			napi_enable(&channel->napi);
+ 		}
+ 	} else {
+ 		if (add)
+ 			netif_napi_add(pdata->netdev, &pdata->napi,
+-				       xgbe_all_poll);
++				       xgbe_all_poll, NAPI_POLL_WEIGHT);
+ 
+ 		napi_enable(&pdata->napi);
+ 	}
+--- a/drivers/net/ethernet/apm/xgene-v2/main.c
++++ b/drivers/net/ethernet/apm/xgene-v2/main.c
+@@ -672,7 +672,7 @@ static int xge_probe(struct platform_dev
+ 	if (ret)
+ 		goto err;
+ 
+-	netif_napi_add(ndev, &pdata->napi, xge_napi);
++	netif_napi_add(ndev, &pdata->napi, xge_napi, NAPI_POLL_WEIGHT);
+ 
+ 	ret = register_netdev(ndev);
+ 	if (ret) {
+--- a/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
++++ b/drivers/net/ethernet/apm/xgene/xgene_enet_main.c
+@@ -1977,12 +1977,14 @@ static void xgene_enet_napi_add(struct x
+ 
+ 	for (i = 0; i < pdata->rxq_cnt; i++) {
+ 		napi = &pdata->rx_ring[i]->napi;
+-		netif_napi_add(pdata->ndev, napi, xgene_enet_napi);
++		netif_napi_add(pdata->ndev, napi, xgene_enet_napi,
++			       NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	for (i = 0; i < pdata->cq_cnt; i++) {
+ 		napi = &pdata->tx_ring[i]->cp_ring->napi;
+-		netif_napi_add(pdata->ndev, napi, xgene_enet_napi);
++		netif_napi_add(pdata->ndev, napi, xgene_enet_napi,
++			       NAPI_POLL_WEIGHT);
+ 	}
+ }
+ 
+--- a/drivers/net/ethernet/aquantia/atlantic/aq_ptp.c
++++ b/drivers/net/ethernet/aquantia/atlantic/aq_ptp.c
+@@ -1217,7 +1217,8 @@ int aq_ptp_init(struct aq_nic_s *aq_nic,
+ 	atomic_set(&aq_ptp->offset_egress, 0);
+ 	atomic_set(&aq_ptp->offset_ingress, 0);
+ 
+-	netif_napi_add(aq_nic_get_ndev(aq_nic), &aq_ptp->napi, aq_ptp_poll);
++	netif_napi_add(aq_nic_get_ndev(aq_nic), &aq_ptp->napi,
++		       aq_ptp_poll, NAPI_POLL_WEIGHT);
+ 
+ 	aq_ptp->idx_vector = idx_vec;
+ 
+--- a/drivers/net/ethernet/aquantia/atlantic/aq_vec.c
++++ b/drivers/net/ethernet/aquantia/atlantic/aq_vec.c
+@@ -119,7 +119,8 @@ struct aq_vec_s *aq_vec_alloc(struct aq_
+ 	self->tx_rings = 0;
+ 	self->rx_rings = 0;
+ 
+-	netif_napi_add(aq_nic_get_ndev(aq_nic), &self->napi, aq_vec_poll);
++	netif_napi_add(aq_nic_get_ndev(aq_nic), &self->napi,
++		       aq_vec_poll, NAPI_POLL_WEIGHT);
+ 
+ err_exit:
+ 	return self;
+--- a/drivers/net/ethernet/atheros/alx/main.c
++++ b/drivers/net/ethernet/atheros/alx/main.c
+@@ -752,7 +752,7 @@ static int alx_alloc_napis(struct alx_pr
+ 			goto err_out;
+ 
+ 		np->alx = alx;
+-		netif_napi_add(alx->dev, &np->napi, alx_poll);
++		netif_napi_add(alx->dev, &np->napi, alx_poll, 64);
+ 		alx->qnapi[i] = np;
+ 	}
+ 
+--- a/drivers/net/ethernet/atheros/atl1c/atl1c_main.c
++++ b/drivers/net/ethernet/atheros/atl1c/atl1c_main.c
+@@ -2732,7 +2732,7 @@ static int atl1c_probe(struct pci_dev *p
+ 	dev_set_threaded(netdev, true);
+ 	for (i = 0; i < adapter->rx_queue_count; ++i)
+ 		netif_napi_add(netdev, &adapter->rrd_ring[i].napi,
+-			       atl1c_clean_rx);
++			       atl1c_clean_rx, 64);
+ 	for (i = 0; i < adapter->tx_queue_count; ++i)
+ 		netif_napi_add_tx(netdev, &adapter->tpd_ring[i].napi,
+ 				  atl1c_clean_tx);
+--- a/drivers/net/ethernet/atheros/atl1e/atl1e_main.c
++++ b/drivers/net/ethernet/atheros/atl1e/atl1e_main.c
+@@ -2354,7 +2354,7 @@ static int atl1e_probe(struct pci_dev *p
+ 	adapter->mii.phy_id_mask = 0x1f;
+ 	adapter->mii.reg_num_mask = MDIO_REG_ADDR_MASK;
+ 
+-	netif_napi_add(netdev, &adapter->napi, atl1e_clean);
++	netif_napi_add(netdev, &adapter->napi, atl1e_clean, 64);
+ 
+ 	timer_setup(&adapter->phy_config_timer, atl1e_phy_config, 0);
+ 
+--- a/drivers/net/ethernet/atheros/atlx/atl1.c
++++ b/drivers/net/ethernet/atheros/atlx/atl1.c
+@@ -2977,7 +2977,7 @@ static int atl1_probe(struct pci_dev *pd
+ 
+ 	netdev->netdev_ops = &atl1_netdev_ops;
+ 	netdev->watchdog_timeo = 5 * HZ;
+-	netif_napi_add(netdev, &adapter->napi, atl1_rings_clean);
++	netif_napi_add(netdev, &adapter->napi, atl1_rings_clean, 64);
+ 
+ 	netdev->ethtool_ops = &atl1_ethtool_ops;
+ 	adapter->bd_number = cards_found;
+--- a/drivers/net/ethernet/broadcom/b44.c
++++ b/drivers/net/ethernet/broadcom/b44.c
+@@ -2375,7 +2375,7 @@ static int b44_init_one(struct ssb_devic
+ 	bp->tx_pending = B44_DEF_TX_RING_PENDING;
+ 
+ 	dev->netdev_ops = &b44_netdev_ops;
+-	netif_napi_add(dev, &bp->napi, b44_poll);
++	netif_napi_add(dev, &bp->napi, b44_poll, 64);
+ 	dev->watchdog_timeo = B44_TX_TIMEOUT;
+ 	dev->min_mtu = B44_MIN_MTU;
+ 	dev->max_mtu = B44_MAX_MTU;
+--- a/drivers/net/ethernet/broadcom/bcm4908_enet.c
++++ b/drivers/net/ethernet/broadcom/bcm4908_enet.c
+@@ -725,7 +725,7 @@ static int bcm4908_enet_probe(struct pla
+ 	netdev->mtu = ETH_DATA_LEN;
+ 	netdev->max_mtu = ENET_MTU_MAX;
+ 	netif_napi_add_tx(netdev, &enet->tx_ring.napi, bcm4908_enet_poll_tx);
+-	netif_napi_add(netdev, &enet->rx_ring.napi, bcm4908_enet_poll_rx);
++	netif_napi_add(netdev, &enet->rx_ring.napi, bcm4908_enet_poll_rx, NAPI_POLL_WEIGHT);
+ 
+ 	err = register_netdev(netdev);
+ 	if (err)
+--- a/drivers/net/ethernet/broadcom/bcmsysport.c
++++ b/drivers/net/ethernet/broadcom/bcmsysport.c
+@@ -2564,7 +2564,7 @@ static int bcm_sysport_probe(struct plat
+ 	dev_set_drvdata(&pdev->dev, dev);
+ 	dev->ethtool_ops = &bcm_sysport_ethtool_ops;
+ 	dev->netdev_ops = &bcm_sysport_netdev_ops;
+-	netif_napi_add(dev, &priv->napi, bcm_sysport_poll);
++	netif_napi_add(dev, &priv->napi, bcm_sysport_poll, 64);
+ 
+ 	dev->features |= NETIF_F_RXCSUM | NETIF_F_HIGHDMA |
+ 			 NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM |
+--- a/drivers/net/ethernet/broadcom/bgmac.c
++++ b/drivers/net/ethernet/broadcom/bgmac.c
+@@ -1527,7 +1527,7 @@ int bgmac_enet_probe(struct bgmac *bgmac
+ 	if (bcm47xx_nvram_getenv("et0_no_txint", NULL, 0) == 0)
+ 		bgmac->int_mask &= ~BGMAC_IS_TX_MASK;
+ 
+-	netif_napi_add(net_dev, &bgmac->napi, bgmac_poll);
++	netif_napi_add(net_dev, &bgmac->napi, bgmac_poll, NAPI_POLL_WEIGHT);
+ 
+ 	err = bgmac_phy_connect(bgmac);
+ 	if (err) {
+--- a/drivers/net/ethernet/broadcom/bnx2.c
++++ b/drivers/net/ethernet/broadcom/bnx2.c
+@@ -8522,7 +8522,7 @@ bnx2_init_napi(struct bnx2 *bp)
+ 		else
+ 			poll = bnx2_poll_msix;
+ 
+-		netif_napi_add(bp->dev, &bp->bnx2_napi[i].napi, poll);
++		netif_napi_add(bp->dev, &bp->bnx2_napi[i].napi, poll, 64);
+ 		bnapi->bp = bp;
+ 	}
+ }
+--- a/drivers/net/ethernet/broadcom/bnx2x/bnx2x_cmn.c
++++ b/drivers/net/ethernet/broadcom/bnx2x/bnx2x_cmn.c
+@@ -44,7 +44,8 @@ static void bnx2x_add_all_napi_cnic(stru
+ 
+ 	/* Add NAPI objects */
+ 	for_each_rx_queue_cnic(bp, i) {
+-		netif_napi_add(bp->dev, &bnx2x_fp(bp, i, napi), bnx2x_poll);
++		netif_napi_add(bp->dev, &bnx2x_fp(bp, i, napi),
++			       bnx2x_poll, NAPI_POLL_WEIGHT);
+ 	}
+ }
+ 
+@@ -54,7 +55,8 @@ static void bnx2x_add_all_napi(struct bn
+ 
+ 	/* Add NAPI objects */
+ 	for_each_eth_queue(bp, i) {
+-		netif_napi_add(bp->dev, &bnx2x_fp(bp, i, napi), bnx2x_poll);
++		netif_napi_add(bp->dev, &bnx2x_fp(bp, i, napi),
++			       bnx2x_poll, NAPI_POLL_WEIGHT);
+ 	}
+ }
+ 
+--- a/drivers/net/ethernet/broadcom/bnxt/bnxt.c
++++ b/drivers/net/ethernet/broadcom/bnxt/bnxt.c
+@@ -9366,16 +9366,16 @@ static void bnxt_init_napi(struct bnxt *
+ 			cp_nr_rings--;
+ 		for (i = 0; i < cp_nr_rings; i++) {
+ 			bnapi = bp->bnapi[i];
+-			netif_napi_add(bp->dev, &bnapi->napi, poll_fn);
++			netif_napi_add(bp->dev, &bnapi->napi, poll_fn, 64);
+ 		}
+ 		if (BNXT_CHIP_TYPE_NITRO_A0(bp)) {
+ 			bnapi = bp->bnapi[cp_nr_rings];
+ 			netif_napi_add(bp->dev, &bnapi->napi,
+-				       bnxt_poll_nitroa0);
++				       bnxt_poll_nitroa0, 64);
+ 		}
+ 	} else {
+ 		bnapi = bp->bnapi[0];
+-		netif_napi_add(bp->dev, &bnapi->napi, bnxt_poll);
++		netif_napi_add(bp->dev, &bnapi->napi, bnxt_poll, 64);
+ 	}
+ }
+ 
+--- a/drivers/net/ethernet/broadcom/genet/bcmgenet.c
++++ b/drivers/net/ethernet/broadcom/genet/bcmgenet.c
+@@ -2707,7 +2707,8 @@ static int bcmgenet_init_rx_ring(struct
+ 	bcmgenet_init_rx_coalesce(ring);
+ 
+ 	/* Initialize Rx NAPI */
+-	netif_napi_add(priv->dev, &ring->napi, bcmgenet_rx_poll);
++	netif_napi_add(priv->dev, &ring->napi, bcmgenet_rx_poll,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	bcmgenet_rdma_ring_writel(priv, index, 0, RDMA_PROD_INDEX);
+ 	bcmgenet_rdma_ring_writel(priv, index, 0, RDMA_CONS_INDEX);
+--- a/drivers/net/ethernet/broadcom/tg3.c
++++ b/drivers/net/ethernet/broadcom/tg3.c
+@@ -7380,9 +7380,9 @@ static void tg3_napi_init(struct tg3 *tp
+ {
+ 	int i;
+ 
+-	netif_napi_add(tp->dev, &tp->napi[0].napi, tg3_poll);
++	netif_napi_add(tp->dev, &tp->napi[0].napi, tg3_poll, 64);
+ 	for (i = 1; i < tp->irq_cnt; i++)
+-		netif_napi_add(tp->dev, &tp->napi[i].napi, tg3_poll_msix);
++		netif_napi_add(tp->dev, &tp->napi[i].napi, tg3_poll_msix, 64);
+ }
+ 
+ static void tg3_napi_fini(struct tg3 *tp)
+--- a/drivers/net/ethernet/brocade/bna/bnad.c
++++ b/drivers/net/ethernet/brocade/bna/bnad.c
+@@ -1891,7 +1891,7 @@ bnad_napi_add(struct bnad *bnad, u32 rx_
+ 	for (i = 0; i <	bnad->num_rxp_per_rx; i++) {
+ 		rx_ctrl = &bnad->rx_info[rx_id].rx_ctrl[i];
+ 		netif_napi_add(bnad->netdev, &rx_ctrl->napi,
+-			       bnad_napi_poll_rx);
++			       bnad_napi_poll_rx, NAPI_POLL_WEIGHT);
+ 	}
+ }
+ 
+--- a/drivers/net/ethernet/cadence/macb_main.c
++++ b/drivers/net/ethernet/cadence/macb_main.c
+@@ -3978,8 +3978,8 @@ static int macb_init(struct platform_dev
+ 		queue = &bp->queues[q];
+ 		queue->bp = bp;
+ 		spin_lock_init(&queue->tx_ptr_lock);
+-		netif_napi_add(dev, &queue->napi_rx, macb_rx_poll);
+-		netif_napi_add(dev, &queue->napi_tx, macb_tx_poll);
++		netif_napi_add(dev, &queue->napi_rx, macb_rx_poll, NAPI_POLL_WEIGHT);
++		netif_napi_add(dev, &queue->napi_tx, macb_tx_poll, NAPI_POLL_WEIGHT);
+ 		if (hw_q) {
+ 			queue->ISR  = GEM_ISR(hw_q - 1);
+ 			queue->IER  = GEM_IER(hw_q - 1);
+--- a/drivers/net/ethernet/calxeda/xgmac.c
++++ b/drivers/net/ethernet/calxeda/xgmac.c
+@@ -1792,7 +1792,7 @@ static int xgmac_probe(struct platform_d
+ 		netdev_warn(ndev, "MAC address %pM not valid",
+ 			 ndev->dev_addr);
+ 
+-	netif_napi_add(ndev, &priv->napi, xgmac_poll);
++	netif_napi_add(ndev, &priv->napi, xgmac_poll, 64);
+ 	ret = register_netdev(ndev);
+ 	if (ret)
+ 		goto err_reg;
+--- a/drivers/net/ethernet/cavium/liquidio/lio_core.c
++++ b/drivers/net/ethernet/cavium/liquidio/lio_core.c
+@@ -851,7 +851,7 @@ int liquidio_setup_io_queues(struct octe
+ 		napi = &droq->napi;
+ 		dev_dbg(&octeon_dev->pci_dev->dev, "netif_napi_add netdev:%llx oct:%llx\n",
+ 			(u64)netdev, (u64)octeon_dev);
+-		netif_napi_add(netdev, napi, liquidio_napi_poll);
++		netif_napi_add(netdev, napi, liquidio_napi_poll, 64);
+ 
+ 		/* designate a CPU for this droq */
+ 		droq->cpu_id = cpu_id;
+--- a/drivers/net/ethernet/cavium/thunder/nicvf_main.c
++++ b/drivers/net/ethernet/cavium/thunder/nicvf_main.c
+@@ -1472,7 +1472,8 @@ int nicvf_open(struct net_device *netdev
+ 		}
+ 		cq_poll->cq_idx = qidx;
+ 		cq_poll->nicvf = nic;
+-		netif_napi_add(netdev, &cq_poll->napi, nicvf_poll);
++		netif_napi_add(netdev, &cq_poll->napi, nicvf_poll,
++			       NAPI_POLL_WEIGHT);
+ 		napi_enable(&cq_poll->napi);
+ 		nic->napi[qidx] = cq_poll;
+ 	}
+--- a/drivers/net/ethernet/chelsio/cxgb/cxgb2.c
++++ b/drivers/net/ethernet/chelsio/cxgb/cxgb2.c
+@@ -1053,7 +1053,7 @@ static int init_one(struct pci_dev *pdev
+ 		netdev->hard_header_len += (netdev->hw_features & NETIF_F_TSO) ?
+ 			sizeof(struct cpl_tx_pkt_lso) : sizeof(struct cpl_tx_pkt);
+ 
+-		netif_napi_add(netdev, &adapter->napi, t1_poll);
++		netif_napi_add(netdev, &adapter->napi, t1_poll, 64);
+ 
+ 		netdev->ethtool_ops = &t1_ethtool_ops;
+ 
+--- a/drivers/net/ethernet/chelsio/cxgb3/cxgb3_main.c
++++ b/drivers/net/ethernet/chelsio/cxgb3/cxgb3_main.c
+@@ -609,7 +609,8 @@ static void init_napi(struct adapter *ad
+ 		struct sge_qset *qs = &adap->sge.qs[i];
+ 
+ 		if (qs->adap)
+-			netif_napi_add(qs->netdev, &qs->napi, qs->napi.poll);
++			netif_napi_add(qs->netdev, &qs->napi, qs->napi.poll,
++				       64);
+ 	}
+ 
+ 	/*
+--- a/drivers/net/ethernet/chelsio/cxgb4/sge.c
++++ b/drivers/net/ethernet/chelsio/cxgb4/sge.c
+@@ -4467,7 +4467,7 @@ int t4_sge_alloc_rxq(struct adapter *ada
+ 	if (ret)
+ 		goto err;
+ 
+-	netif_napi_add(dev, &iq->napi, napi_rx_handler);
++	netif_napi_add(dev, &iq->napi, napi_rx_handler, 64);
+ 	iq->cur_desc = iq->desc;
+ 	iq->cidx = 0;
+ 	iq->gen = 1;
+--- a/drivers/net/ethernet/chelsio/cxgb4vf/sge.c
++++ b/drivers/net/ethernet/chelsio/cxgb4vf/sge.c
+@@ -2336,7 +2336,7 @@ int t4vf_sge_alloc_rxq(struct adapter *a
+ 	if (ret)
+ 		goto err;
+ 
+-	netif_napi_add(dev, &rspq->napi, napi_rx_handler);
++	netif_napi_add(dev, &rspq->napi, napi_rx_handler, 64);
+ 	rspq->cur_desc = rspq->desc;
+ 	rspq->cidx = 0;
+ 	rspq->gen = 1;
+--- a/drivers/net/ethernet/cirrus/ep93xx_eth.c
++++ b/drivers/net/ethernet/cirrus/ep93xx_eth.c
+@@ -812,7 +812,7 @@ static int ep93xx_eth_probe(struct platf
+ 	ep = netdev_priv(dev);
+ 	ep->dev = dev;
+ 	SET_NETDEV_DEV(dev, &pdev->dev);
+-	netif_napi_add(dev, &ep->napi, ep93xx_poll);
++	netif_napi_add(dev, &ep->napi, ep93xx_poll, 64);
+ 
+ 	platform_set_drvdata(pdev, dev);
+ 
+--- a/drivers/net/ethernet/cisco/enic/enic_main.c
++++ b/drivers/net/ethernet/cisco/enic/enic_main.c
+@@ -2633,17 +2633,16 @@ static int enic_dev_init(struct enic *en
+ 
+ 	switch (vnic_dev_get_intr_mode(enic->vdev)) {
+ 	default:
+-		netif_napi_add(netdev, &enic->napi[0], enic_poll);
++		netif_napi_add(netdev, &enic->napi[0], enic_poll, 64);
+ 		break;
+ 	case VNIC_DEV_INTR_MODE_MSIX:
+ 		for (i = 0; i < enic->rq_count; i++) {
+ 			netif_napi_add(netdev, &enic->napi[i],
+-				       enic_poll_msix_rq);
++				enic_poll_msix_rq, NAPI_POLL_WEIGHT);
+ 		}
+ 		for (i = 0; i < enic->wq_count; i++)
+-			netif_napi_add(netdev,
+-				       &enic->napi[enic_cq_wq(enic, i)],
+-				       enic_poll_msix_wq);
++			netif_napi_add(netdev, &enic->napi[enic_cq_wq(enic, i)],
++				       enic_poll_msix_wq, NAPI_POLL_WEIGHT);
+ 		break;
+ 	}
+ 
+--- a/drivers/net/ethernet/cortina/gemini.c
++++ b/drivers/net/ethernet/cortina/gemini.c
+@@ -2471,7 +2471,7 @@ static int gemini_ethernet_port_probe(st
+ 	netdev->max_mtu = 10236 - VLAN_ETH_HLEN;
+ 
+ 	port->freeq_refill = 0;
+-	netif_napi_add(netdev, &port->napi, gmac_napi_poll);
++	netif_napi_add(netdev, &port->napi, gmac_napi_poll, NAPI_POLL_WEIGHT);
+ 
+ 	ret = of_get_mac_address(np, mac);
+ 	if (!ret) {
+--- a/drivers/net/ethernet/dnet.c
++++ b/drivers/net/ethernet/dnet.c
+@@ -788,7 +788,7 @@ static int dnet_probe(struct platform_de
+ 	}
+ 
+ 	dev->netdev_ops = &dnet_netdev_ops;
+-	netif_napi_add(dev, &bp->napi, dnet_poll);
++	netif_napi_add(dev, &bp->napi, dnet_poll, 64);
+ 	dev->ethtool_ops = &dnet_ethtool_ops;
+ 
+ 	dev->base_addr = (unsigned long)bp->regs;
+--- a/drivers/net/ethernet/emulex/benet/be_main.c
++++ b/drivers/net/ethernet/emulex/benet/be_main.c
+@@ -2982,7 +2982,8 @@ static int be_evt_queues_create(struct b
+ 			return -ENOMEM;
+ 		cpumask_set_cpu(cpumask_local_spread(i, numa_node),
+ 				eqo->affinity_mask);
+-		netif_napi_add(adapter->netdev, &eqo->napi, be_poll);
++		netif_napi_add(adapter->netdev, &eqo->napi, be_poll,
++			       NAPI_POLL_WEIGHT);
+ 	}
+ 	return 0;
+ }
+--- a/drivers/net/ethernet/engleder/tsnep_main.c
++++ b/drivers/net/ethernet/engleder/tsnep_main.c
+@@ -899,7 +899,7 @@ static int tsnep_netdev_open(struct net_
+ 
+ 	for (i = 0; i < adapter->num_queues; i++) {
+ 		netif_napi_add(adapter->netdev, &adapter->queue[i].napi,
+-			       tsnep_poll);
++			       tsnep_poll, 64);
+ 		napi_enable(&adapter->queue[i].napi);
+ 
+ 		tsnep_enable_irq(adapter, adapter->queue[i].irq_mask);
+--- a/drivers/net/ethernet/ethoc.c
++++ b/drivers/net/ethernet/ethoc.c
+@@ -1224,7 +1224,7 @@ static int ethoc_probe(struct platform_d
+ 	netdev->ethtool_ops = &ethoc_ethtool_ops;
+ 
+ 	/* setup NAPI */
+-	netif_napi_add(netdev, &priv->napi, ethoc_poll);
++	netif_napi_add(netdev, &priv->napi, ethoc_poll, 64);
+ 
+ 	spin_lock_init(&priv->lock);
+ 
+--- a/drivers/net/ethernet/faraday/ftgmac100.c
++++ b/drivers/net/ethernet/faraday/ftgmac100.c
+@@ -1506,7 +1506,7 @@ static int ftgmac100_open(struct net_dev
+ 		goto err_hw;
+ 
+ 	/* Initialize NAPI */
+-	netif_napi_add(netdev, &priv->napi, ftgmac100_poll);
++	netif_napi_add(netdev, &priv->napi, ftgmac100_poll, 64);
+ 
+ 	/* Grab our interrupt */
+ 	err = request_irq(netdev->irq, ftgmac100_interrupt, 0, netdev->name, netdev);
+--- a/drivers/net/ethernet/faraday/ftmac100.c
++++ b/drivers/net/ethernet/faraday/ftmac100.c
+@@ -1091,7 +1091,7 @@ static int ftmac100_probe(struct platfor
+ 	spin_lock_init(&priv->tx_lock);
+ 
+ 	/* initialize NAPI */
+-	netif_napi_add(netdev, &priv->napi, ftmac100_poll);
++	netif_napi_add(netdev, &priv->napi, ftmac100_poll, 64);
+ 
+ 	/* map io memory */
+ 	priv->res = request_mem_region(res->start, resource_size(res),
+--- a/drivers/net/ethernet/freescale/dpaa/dpaa_eth.c
++++ b/drivers/net/ethernet/freescale/dpaa/dpaa_eth.c
+@@ -3183,7 +3183,8 @@ static int dpaa_napi_add(struct net_devi
+ 	for_each_possible_cpu(cpu) {
+ 		percpu_priv = per_cpu_ptr(priv->percpu_priv, cpu);
+ 
+-		netif_napi_add(net_dev, &percpu_priv->np.napi, dpaa_eth_poll);
++		netif_napi_add(net_dev, &percpu_priv->np.napi,
++			       dpaa_eth_poll, NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	return 0;
+--- a/drivers/net/ethernet/freescale/dpaa2/dpaa2-eth.c
++++ b/drivers/net/ethernet/freescale/dpaa2/dpaa2-eth.c
+@@ -4565,7 +4565,8 @@ static void dpaa2_eth_add_ch_napi(struct
+ 	for (i = 0; i < priv->num_channels; i++) {
+ 		ch = priv->channel[i];
+ 		/* NAPI weight *MUST* be a multiple of DPAA2_ETH_STORE_SIZE */
+-		netif_napi_add(priv->net_dev, &ch->napi, dpaa2_eth_poll);
++		netif_napi_add(priv->net_dev, &ch->napi, dpaa2_eth_poll,
++			       NAPI_POLL_WEIGHT);
+ 	}
+ }
+ 
+--- a/drivers/net/ethernet/freescale/dpaa2/dpaa2-switch.c
++++ b/drivers/net/ethernet/freescale/dpaa2/dpaa2-switch.c
+@@ -3373,8 +3373,9 @@ static int dpaa2_switch_probe(struct fsl
+ 	 * different queues for each switch ports.
+ 	 */
+ 	for (i = 0; i < DPAA2_SWITCH_RX_NUM_FQS; i++)
+-		netif_napi_add(ethsw->ports[0]->netdev, &ethsw->fq[i].napi,
+-			       dpaa2_switch_poll);
++		netif_napi_add(ethsw->ports[0]->netdev,
++			       &ethsw->fq[i].napi, dpaa2_switch_poll,
++			       NAPI_POLL_WEIGHT);
+ 
+ 	/* Setup IRQs */
+ 	err = dpaa2_switch_setup_irqs(sw_dev);
+--- a/drivers/net/ethernet/freescale/enetc/enetc.c
++++ b/drivers/net/ethernet/freescale/enetc/enetc.c
+@@ -2765,7 +2765,8 @@ int enetc_alloc_msix(struct enetc_ndev_p
+ 			v->rx_dim_en = true;
+ 		}
+ 		INIT_WORK(&v->rx_dim.work, enetc_rx_dim_work);
+-		netif_napi_add(priv->ndev, &v->napi, enetc_poll);
++		netif_napi_add(priv->ndev, &v->napi, enetc_poll,
++			       NAPI_POLL_WEIGHT);
+ 		v->count_tx_rings = v_tx_rings;
+ 
+ 		for (j = 0; j < v_tx_rings; j++) {
+--- a/drivers/net/ethernet/freescale/fec_main.c
++++ b/drivers/net/ethernet/freescale/fec_main.c
+@@ -3608,7 +3608,7 @@ static int fec_enet_init(struct net_devi
+ 	ndev->ethtool_ops = &fec_enet_ethtool_ops;
+ 
+ 	writel(FEC_RX_DISABLED_IMASK, fep->hwp + FEC_IMASK);
+-	netif_napi_add(ndev, &fep->napi, fec_enet_rx_napi);
++	netif_napi_add(ndev, &fep->napi, fec_enet_rx_napi, NAPI_POLL_WEIGHT);
+ 
+ 	if (fep->quirks & FEC_QUIRK_HAS_VLAN)
+ 		/* enable hw VLAN support */
+--- a/drivers/net/ethernet/freescale/gianfar.c
++++ b/drivers/net/ethernet/freescale/gianfar.c
+@@ -3233,7 +3233,7 @@ static int gfar_probe(struct platform_de
+ 	/* Register for napi ...We are registering NAPI for each grp */
+ 	for (i = 0; i < priv->num_grps; i++) {
+ 		netif_napi_add(dev, &priv->gfargrp[i].napi_rx,
+-			       gfar_poll_rx_sq);
++			       gfar_poll_rx_sq, NAPI_POLL_WEIGHT);
+ 		netif_napi_add_tx_weight(dev, &priv->gfargrp[i].napi_tx,
+ 					 gfar_poll_tx_sq, 2);
+ 	}
+--- a/drivers/net/ethernet/freescale/ucc_geth.c
++++ b/drivers/net/ethernet/freescale/ucc_geth.c
+@@ -3712,7 +3712,7 @@ static int ucc_geth_probe(struct platfor
+ 	dev->netdev_ops = &ucc_geth_netdev_ops;
+ 	dev->watchdog_timeo = TX_TIMEOUT;
+ 	INIT_WORK(&ugeth->timeout_work, ucc_geth_timeout_work);
+-	netif_napi_add(dev, &ugeth->napi, ucc_geth_poll);
++	netif_napi_add(dev, &ugeth->napi, ucc_geth_poll, 64);
+ 	dev->mtu = 1500;
+ 	dev->max_mtu = 1518;
+ 
+--- a/drivers/net/ethernet/fungible/funeth/funeth_main.c
++++ b/drivers/net/ethernet/fungible/funeth/funeth_main.c
+@@ -339,7 +339,8 @@ static int fun_alloc_queue_irqs(struct n
+ 			return PTR_ERR(irq);
+ 
+ 		fp->num_rx_irqs++;
+-		netif_napi_add(dev, &irq->napi, fun_rxq_napi_poll);
++		netif_napi_add(dev, &irq->napi, fun_rxq_napi_poll,
++			       NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	netif_info(fp, intr, dev, "Reserved %u/%u IRQs for Tx/Rx queues\n",
+--- a/drivers/net/ethernet/google/gve/gve_main.c
++++ b/drivers/net/ethernet/google/gve/gve_main.c
+@@ -526,7 +526,8 @@ static void gve_add_napi(struct gve_priv
+ {
+ 	struct gve_notify_block *block = &priv->ntfy_blocks[ntfy_idx];
+ 
+-	netif_napi_add(priv->dev, &block->napi, gve_poll);
++	netif_napi_add(priv->dev, &block->napi, gve_poll,
++		       NAPI_POLL_WEIGHT);
+ }
+ 
+ static void gve_remove_napi(struct gve_priv *priv, int ntfy_idx)
+--- a/drivers/net/ethernet/hisilicon/hip04_eth.c
++++ b/drivers/net/ethernet/hisilicon/hip04_eth.c
+@@ -990,7 +990,7 @@ static int hip04_mac_probe(struct platfo
+ 	ndev->watchdog_timeo = TX_TIMEOUT;
+ 	ndev->priv_flags |= IFF_UNICAST_FLT;
+ 	ndev->irq = irq;
+-	netif_napi_add(ndev, &priv->napi, hip04_rx_poll);
++	netif_napi_add(ndev, &priv->napi, hip04_rx_poll, NAPI_POLL_WEIGHT);
+ 
+ 	hip04_reset_dreq(priv);
+ 	hip04_reset_ppe(priv);
+--- a/drivers/net/ethernet/hisilicon/hix5hd2_gmac.c
++++ b/drivers/net/ethernet/hisilicon/hix5hd2_gmac.c
+@@ -1243,7 +1243,7 @@ static int hix5hd2_dev_probe(struct plat
+ 	if (ret)
+ 		goto out_phy_node;
+ 
+-	netif_napi_add(ndev, &priv->napi, hix5hd2_poll);
++	netif_napi_add(ndev, &priv->napi, hix5hd2_poll, NAPI_POLL_WEIGHT);
+ 
+ 	if (HAS_CAP_TSO(priv->hw_cap)) {
+ 		ret = hix5hd2_init_sg_desc_queue(priv);
+--- a/drivers/net/ethernet/hisilicon/hns/hns_enet.c
++++ b/drivers/net/ethernet/hisilicon/hns/hns_enet.c
+@@ -2109,7 +2109,8 @@ static int hns_nic_init_ring_data(struct
+ 		rd->fini_process = is_ver1 ? hns_nic_tx_fini_pro :
+ 			hns_nic_tx_fini_pro_v2;
+ 
+-		netif_napi_add(priv->netdev, &rd->napi, hns_nic_common_poll);
++		netif_napi_add(priv->netdev, &rd->napi,
++			       hns_nic_common_poll, NAPI_POLL_WEIGHT);
+ 		rd->ring->irq_init_flag = RCB_IRQ_NOT_INITED;
+ 	}
+ 	for (i = h->q_num; i < h->q_num * 2; i++) {
+@@ -2121,7 +2122,8 @@ static int hns_nic_init_ring_data(struct
+ 		rd->fini_process = is_ver1 ? hns_nic_rx_fini_pro :
+ 			hns_nic_rx_fini_pro_v2;
+ 
+-		netif_napi_add(priv->netdev, &rd->napi, hns_nic_common_poll);
++		netif_napi_add(priv->netdev, &rd->napi,
++			       hns_nic_common_poll, NAPI_POLL_WEIGHT);
+ 		rd->ring->irq_init_flag = RCB_IRQ_NOT_INITED;
+ 	}
+ 
+--- a/drivers/net/ethernet/hisilicon/hns3/hns3_enet.c
++++ b/drivers/net/ethernet/hisilicon/hns3/hns3_enet.c
+@@ -4692,7 +4692,7 @@ static int hns3_nic_init_vector_data(str
+ 			goto map_ring_fail;
+ 
+ 		netif_napi_add(priv->netdev, &tqp_vector->napi,
+-			       hns3_nic_common_poll);
++			       hns3_nic_common_poll, NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	return 0;
+--- a/drivers/net/ethernet/ibm/ehea/ehea_main.c
++++ b/drivers/net/ethernet/ibm/ehea/ehea_main.c
+@@ -1546,7 +1546,7 @@ static int ehea_init_port_res(struct ehe
+ 
+ 	kfree(init_attr);
+ 
+-	netif_napi_add(pr->port->netdev, &pr->napi, ehea_poll);
++	netif_napi_add(pr->port->netdev, &pr->napi, ehea_poll, 64);
+ 
+ 	ret = 0;
+ 	goto out;
+--- a/drivers/net/ethernet/ibm/ibmvnic.c
++++ b/drivers/net/ethernet/ibm/ibmvnic.c
+@@ -1262,7 +1262,7 @@ static int init_napi(struct ibmvnic_adap
+ 	for (i = 0; i < adapter->req_rx_queues; i++) {
+ 		netdev_dbg(adapter->netdev, "Adding napi[%d]\n", i);
+ 		netif_napi_add(adapter->netdev, &adapter->napi[i],
+-			       ibmvnic_poll);
++			       ibmvnic_poll, NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	adapter->num_active_rx_napi = adapter->req_rx_queues;
+--- a/drivers/net/ethernet/intel/e1000/e1000_main.c
++++ b/drivers/net/ethernet/intel/e1000/e1000_main.c
+@@ -1012,7 +1012,7 @@ static int e1000_probe(struct pci_dev *p
+ 	netdev->netdev_ops = &e1000_netdev_ops;
+ 	e1000_set_ethtool_ops(netdev);
+ 	netdev->watchdog_timeo = 5 * HZ;
+-	netif_napi_add(netdev, &adapter->napi, e1000_clean);
++	netif_napi_add(netdev, &adapter->napi, e1000_clean, 64);
+ 
+ 	strncpy(netdev->name, pci_name(pdev), sizeof(netdev->name) - 1);
+ 
+--- a/drivers/net/ethernet/intel/e1000e/netdev.c
++++ b/drivers/net/ethernet/intel/e1000e/netdev.c
+@@ -7479,7 +7479,7 @@ static int e1000_probe(struct pci_dev *p
+ 	netdev->netdev_ops = &e1000e_netdev_ops;
+ 	e1000e_set_ethtool_ops(netdev);
+ 	netdev->watchdog_timeo = 5 * HZ;
+-	netif_napi_add(netdev, &adapter->napi, e1000e_poll);
++	netif_napi_add(netdev, &adapter->napi, e1000e_poll, 64);
+ 	strscpy(netdev->name, pci_name(pdev), sizeof(netdev->name));
+ 
+ 	netdev->mem_start = mmio_start;
+--- a/drivers/net/ethernet/intel/fm10k/fm10k_main.c
++++ b/drivers/net/ethernet/intel/fm10k/fm10k_main.c
+@@ -1595,7 +1595,8 @@ static int fm10k_alloc_q_vector(struct f
+ 		return -ENOMEM;
+ 
+ 	/* initialize NAPI */
+-	netif_napi_add(interface->netdev, &q_vector->napi, fm10k_poll);
++	netif_napi_add(interface->netdev, &q_vector->napi,
++		       fm10k_poll, NAPI_POLL_WEIGHT);
+ 
+ 	/* tie q_vector and interface together */
+ 	interface->q_vector[v_idx] = q_vector;
+--- a/drivers/net/ethernet/intel/i40e/i40e_main.c
++++ b/drivers/net/ethernet/intel/i40e/i40e_main.c
+@@ -11941,7 +11941,8 @@ static int i40e_vsi_alloc_q_vector(struc
+ 	cpumask_copy(&q_vector->affinity_mask, cpu_possible_mask);
+ 
+ 	if (vsi->netdev)
+-		netif_napi_add(vsi->netdev, &q_vector->napi, i40e_napi_poll);
++		netif_napi_add(vsi->netdev, &q_vector->napi,
++			       i40e_napi_poll, NAPI_POLL_WEIGHT);
+ 
+ 	/* tie q_vector and vsi together */
+ 	vsi->q_vectors[v_idx] = q_vector;
+--- a/drivers/net/ethernet/intel/iavf/iavf_main.c
++++ b/drivers/net/ethernet/intel/iavf/iavf_main.c
+@@ -1831,7 +1831,7 @@ static int iavf_alloc_q_vectors(struct i
+ 		q_vector->reg_idx = q_idx;
+ 		cpumask_copy(&q_vector->affinity_mask, cpu_possible_mask);
+ 		netif_napi_add(adapter->netdev, &q_vector->napi,
+-			       iavf_napi_poll);
++			       iavf_napi_poll, NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	return 0;
+--- a/drivers/net/ethernet/intel/ice/ice_base.c
++++ b/drivers/net/ethernet/intel/ice/ice_base.c
+@@ -130,7 +130,8 @@ static int ice_vsi_alloc_q_vector(struct
+ 	 * handler here (i.e. resume, reset/rebuild, etc.)
+ 	 */
+ 	if (vsi->netdev)
+-		netif_napi_add(vsi->netdev, &q_vector->napi, ice_napi_poll);
++		netif_napi_add(vsi->netdev, &q_vector->napi, ice_napi_poll,
++			       NAPI_POLL_WEIGHT);
+ 
+ out:
+ 	/* tie q_vector and VSI together */
+--- a/drivers/net/ethernet/intel/ice/ice_eswitch.c
++++ b/drivers/net/ethernet/intel/ice/ice_eswitch.c
+@@ -292,8 +292,8 @@ static int ice_eswitch_setup_reprs(struc
+ 		if (max_vsi_num < vsi->vsi_num)
+ 			max_vsi_num = vsi->vsi_num;
+ 
+-		netif_napi_add(vf->repr->netdev, &vf->repr->q_vector->napi,
+-			       ice_napi_poll);
++		netif_napi_add(vf->repr->netdev, &vf->repr->q_vector->napi, ice_napi_poll,
++			       NAPI_POLL_WEIGHT);
+ 
+ 		netif_keep_dst(vf->repr->netdev);
+ 	}
+--- a/drivers/net/ethernet/intel/ice/ice_main.c
++++ b/drivers/net/ethernet/intel/ice/ice_main.c
+@@ -3310,7 +3310,7 @@ static void ice_napi_add(struct ice_vsi
+ 
+ 	ice_for_each_q_vector(vsi, v_idx)
+ 		netif_napi_add(vsi->netdev, &vsi->q_vectors[v_idx]->napi,
+-			       ice_napi_poll);
++			       ice_napi_poll, NAPI_POLL_WEIGHT);
+ }
+ 
+ /**
+--- a/drivers/net/ethernet/intel/igb/igb_main.c
++++ b/drivers/net/ethernet/intel/igb/igb_main.c
+@@ -1211,7 +1211,8 @@ static int igb_alloc_q_vector(struct igb
+ 		return -ENOMEM;
+ 
+ 	/* initialize NAPI */
+-	netif_napi_add(adapter->netdev, &q_vector->napi, igb_poll);
++	netif_napi_add(adapter->netdev, &q_vector->napi,
++		       igb_poll, 64);
+ 
+ 	/* tie q_vector and adapter together */
+ 	adapter->q_vector[v_idx] = q_vector;
+--- a/drivers/net/ethernet/intel/igbvf/netdev.c
++++ b/drivers/net/ethernet/intel/igbvf/netdev.c
+@@ -1109,7 +1109,7 @@ static int igbvf_alloc_queues(struct igb
+ 		return -ENOMEM;
+ 	}
+ 
+-	netif_napi_add(netdev, &adapter->rx_ring->napi, igbvf_poll);
++	netif_napi_add(netdev, &adapter->rx_ring->napi, igbvf_poll, 64);
+ 
+ 	return 0;
+ }
+--- a/drivers/net/ethernet/intel/igc/igc_main.c
++++ b/drivers/net/ethernet/intel/igc/igc_main.c
+@@ -4394,7 +4394,8 @@ static int igc_alloc_q_vector(struct igc
+ 		return -ENOMEM;
+ 
+ 	/* initialize NAPI */
+-	netif_napi_add(adapter->netdev, &q_vector->napi, igc_poll);
++	netif_napi_add(adapter->netdev, &q_vector->napi,
++		       igc_poll, 64);
+ 
+ 	/* tie q_vector and adapter together */
+ 	adapter->q_vector[v_idx] = q_vector;
+--- a/drivers/net/ethernet/intel/ixgb/ixgb_main.c
++++ b/drivers/net/ethernet/intel/ixgb/ixgb_main.c
+@@ -414,7 +414,7 @@ ixgb_probe(struct pci_dev *pdev, const s
+ 	netdev->netdev_ops = &ixgb_netdev_ops;
+ 	ixgb_set_ethtool_ops(netdev);
+ 	netdev->watchdog_timeo = 5 * HZ;
+-	netif_napi_add(netdev, &adapter->napi, ixgb_clean);
++	netif_napi_add(netdev, &adapter->napi, ixgb_clean, 64);
+ 
+ 	strncpy(netdev->name, pci_name(pdev), sizeof(netdev->name) - 1);
+ 
+--- a/drivers/net/ethernet/intel/ixgbe/ixgbe_lib.c
++++ b/drivers/net/ethernet/intel/ixgbe/ixgbe_lib.c
+@@ -874,7 +874,8 @@ static int ixgbe_alloc_q_vector(struct i
+ 
+ #endif
+ 	/* initialize NAPI */
+-	netif_napi_add(adapter->netdev, &q_vector->napi, ixgbe_poll);
++	netif_napi_add(adapter->netdev, &q_vector->napi,
++		       ixgbe_poll, 64);
+ 
+ 	/* tie q_vector and adapter together */
+ 	adapter->q_vector[v_idx] = q_vector;
+--- a/drivers/net/ethernet/intel/ixgbevf/ixgbevf_main.c
++++ b/drivers/net/ethernet/intel/ixgbevf/ixgbevf_main.c
+@@ -2733,7 +2733,7 @@ static int ixgbevf_alloc_q_vector(struct
+ 		return -ENOMEM;
+ 
+ 	/* initialize NAPI */
+-	netif_napi_add(adapter->netdev, &q_vector->napi, ixgbevf_poll);
++	netif_napi_add(adapter->netdev, &q_vector->napi, ixgbevf_poll, 64);
+ 
+ 	/* tie q_vector and adapter together */
+ 	adapter->q_vector[v_idx] = q_vector;
+--- a/drivers/net/ethernet/jme.c
++++ b/drivers/net/ethernet/jme.c
+@@ -3009,7 +3009,7 @@ jme_init_one(struct pci_dev *pdev,
+ 		jwrite32(jme, JME_APMC, apmc);
+ 	}
+ 
+-	netif_napi_add(netdev, &jme->napi, jme_poll);
++	netif_napi_add(netdev, &jme->napi, jme_poll, NAPI_POLL_WEIGHT);
+ 
+ 	spin_lock_init(&jme->phy_lock);
+ 	spin_lock_init(&jme->macaddr_lock);
+--- a/drivers/net/ethernet/korina.c
++++ b/drivers/net/ethernet/korina.c
+@@ -1355,7 +1355,7 @@ static int korina_probe(struct platform_
+ 	dev->netdev_ops = &korina_netdev_ops;
+ 	dev->ethtool_ops = &netdev_ethtool_ops;
+ 	dev->watchdog_timeo = TX_TIMEOUT;
+-	netif_napi_add(dev, &lp->napi, korina_poll);
++	netif_napi_add(dev, &lp->napi, korina_poll, NAPI_POLL_WEIGHT);
+ 
+ 	lp->mii_if.dev = dev;
+ 	lp->mii_if.mdio_read = korina_mdio_read;
+--- a/drivers/net/ethernet/lantiq_xrx200.c
++++ b/drivers/net/ethernet/lantiq_xrx200.c
+@@ -620,7 +620,8 @@ static int xrx200_probe(struct platform_
+ 			 PMAC_HD_CTL);
+ 
+ 	/* setup NAPI */
+-	netif_napi_add(net_dev, &priv->chan_rx.napi, xrx200_poll_rx);
++	netif_napi_add(net_dev, &priv->chan_rx.napi, xrx200_poll_rx,
++		       NAPI_POLL_WEIGHT);
+ 	netif_napi_add_tx(net_dev, &priv->chan_tx.napi,
+ 			  xrx200_tx_housekeeping);
+ 
+--- a/drivers/net/ethernet/marvell/mv643xx_eth.c
++++ b/drivers/net/ethernet/marvell/mv643xx_eth.c
+@@ -3183,7 +3183,7 @@ static int mv643xx_eth_probe(struct plat
+ 
+ 	INIT_WORK(&mp->tx_timeout_task, tx_timeout_task);
+ 
+-	netif_napi_add(dev, &mp->napi, mv643xx_eth_poll);
++	netif_napi_add(dev, &mp->napi, mv643xx_eth_poll, NAPI_POLL_WEIGHT);
+ 
+ 	timer_setup(&mp->rx_oom, oom_timer_wrapper, 0);
+ 
+--- a/drivers/net/ethernet/marvell/mvneta.c
++++ b/drivers/net/ethernet/marvell/mvneta.c
+@@ -5600,13 +5600,14 @@ static int mvneta_probe(struct platform_
+ 	 * operation, so only single NAPI should be initialized.
+ 	 */
+ 	if (pp->neta_armada3700) {
+-		netif_napi_add(dev, &pp->napi, mvneta_poll);
++		netif_napi_add(dev, &pp->napi, mvneta_poll, NAPI_POLL_WEIGHT);
+ 	} else {
+ 		for_each_present_cpu(cpu) {
+ 			struct mvneta_pcpu_port *port =
+ 				per_cpu_ptr(pp->ports, cpu);
+ 
+-			netif_napi_add(dev, &port->napi, mvneta_poll);
++			netif_napi_add(dev, &port->napi, mvneta_poll,
++				       NAPI_POLL_WEIGHT);
+ 			port->pp = pp;
+ 		}
+ 	}
+--- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
++++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+@@ -5770,7 +5770,8 @@ static int mvpp2_simple_queue_vectors_in
+ 	v->irq = irq_of_parse_and_map(port_node, 0);
+ 	if (v->irq <= 0)
+ 		return -EINVAL;
+-	netif_napi_add(port->dev, &v->napi, mvpp2_poll);
++	netif_napi_add(port->dev, &v->napi, mvpp2_poll,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	port->nqvecs = 1;
+ 
+@@ -5830,7 +5831,8 @@ static int mvpp2_multi_queue_vectors_ini
+ 			goto err;
+ 		}
+ 
+-		netif_napi_add(port->dev, &v->napi, mvpp2_poll);
++		netif_napi_add(port->dev, &v->napi, mvpp2_poll,
++			       NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	return 0;
+--- a/drivers/net/ethernet/marvell/octeon_ep/octep_main.c
++++ b/drivers/net/ethernet/marvell/octeon_ep/octep_main.c
+@@ -410,7 +410,7 @@ static void octep_napi_add(struct octep_
+ 	for (i = 0; i < oct->num_oqs; i++) {
+ 		netdev_dbg(oct->netdev, "Adding NAPI on Q-%d\n", i);
+ 		netif_napi_add(oct->netdev, &oct->ioq_vector[i]->napi,
+-			       octep_napi_poll);
++			       octep_napi_poll, 64);
+ 		oct->oq[i]->napi = &oct->ioq_vector[i]->napi;
+ 	}
+ }
+--- a/drivers/net/ethernet/marvell/octeontx2/nic/otx2_pf.c
++++ b/drivers/net/ethernet/marvell/octeontx2/nic/otx2_pf.c
+@@ -1661,7 +1661,8 @@ int otx2_open(struct net_device *netdev)
+ 		cq_poll->dev = (void *)pf;
+ 		cq_poll->dim.mode = DIM_CQ_PERIOD_MODE_START_FROM_CQE;
+ 		INIT_WORK(&cq_poll->dim.work, otx2_dim_work);
+-		netif_napi_add(netdev, &cq_poll->napi, otx2_napi_handler);
++		netif_napi_add(netdev, &cq_poll->napi,
++			       otx2_napi_handler, NAPI_POLL_WEIGHT);
+ 		napi_enable(&cq_poll->napi);
+ 	}
+ 
+--- a/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
++++ b/drivers/net/ethernet/marvell/prestera/prestera_rxtx.c
+@@ -659,7 +659,7 @@ static int prestera_sdma_switch_init(str
+ 
+ 	init_dummy_netdev(&sdma->napi_dev);
+ 
+-	netif_napi_add(&sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll);
++	netif_napi_add(&sdma->napi_dev, &sdma->rx_napi, prestera_sdma_rx_poll, 64);
+ 	napi_enable(&sdma->rx_napi);
+ 
+ 	return 0;
+--- a/drivers/net/ethernet/marvell/skge.c
++++ b/drivers/net/ethernet/marvell/skge.c
+@@ -3832,7 +3832,7 @@ static struct net_device *skge_devinit(s
+ 		dev->features |= NETIF_F_HIGHDMA;
+ 
+ 	skge = netdev_priv(dev);
+-	netif_napi_add(dev, &skge->napi, skge_poll);
++	netif_napi_add(dev, &skge->napi, skge_poll, NAPI_POLL_WEIGHT);
+ 	skge->netdev = dev;
+ 	skge->hw = hw;
+ 	skge->msg_enable = netif_msg_init(debug, default_msg);
+--- a/drivers/net/ethernet/marvell/sky2.c
++++ b/drivers/net/ethernet/marvell/sky2.c
+@@ -4937,7 +4937,7 @@ static int sky2_probe(struct pci_dev *pd
+ 		}
+ 	}
+ 
+-	netif_napi_add(dev, &hw->napi, sky2_poll);
++	netif_napi_add(dev, &hw->napi, sky2_poll, NAPI_POLL_WEIGHT);
+ 
+ 	err = register_netdev(dev);
+ 	if (err) {
+--- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
++++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+@@ -4166,8 +4166,10 @@ static int mtk_probe(struct platform_dev
+ 	 * for NAPI to work
+ 	 */
+ 	init_dummy_netdev(&eth->dummy_dev);
+-	netif_napi_add(&eth->dummy_dev, &eth->tx_napi, mtk_napi_tx);
+-	netif_napi_add(&eth->dummy_dev, &eth->rx_napi, mtk_napi_rx);
++	netif_napi_add(&eth->dummy_dev, &eth->tx_napi, mtk_napi_tx,
++		       NAPI_POLL_WEIGHT);
++	netif_napi_add(&eth->dummy_dev, &eth->rx_napi, mtk_napi_rx,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	platform_set_drvdata(pdev, eth);
+ 
+--- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
++++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+@@ -1651,7 +1651,8 @@ static int mtk_star_probe(struct platfor
+ 	ndev->netdev_ops = &mtk_star_netdev_ops;
+ 	ndev->ethtool_ops = &mtk_star_ethtool_ops;
+ 
+-	netif_napi_add(ndev, &priv->rx_napi, mtk_star_rx_poll);
++	netif_napi_add(ndev, &priv->rx_napi, mtk_star_rx_poll,
++		       NAPI_POLL_WEIGHT);
+ 	netif_napi_add_tx(ndev, &priv->tx_napi, mtk_star_tx_poll);
+ 
+ 	return devm_register_netdev(dev, ndev);
+--- a/drivers/net/ethernet/mellanox/mlx4/en_cq.c
++++ b/drivers/net/ethernet/mellanox/mlx4/en_cq.c
+@@ -152,7 +152,7 @@ int mlx4_en_activate_cq(struct mlx4_en_p
+ 		break;
+ 	case RX:
+ 		cq->mcq.comp = mlx4_en_rx_irq;
+-		netif_napi_add(cq->dev, &cq->napi, mlx4_en_poll_rx_cq);
++		netif_napi_add(cq->dev, &cq->napi, mlx4_en_poll_rx_cq, 64);
+ 		napi_enable(&cq->napi);
+ 		break;
+ 	case TX_XDP:
+--- a/drivers/net/ethernet/mellanox/mlx5/core/en/ptp.c
++++ b/drivers/net/ethernet/mellanox/mlx5/core/en/ptp.c
+@@ -725,7 +725,7 @@ int mlx5e_ptp_open(struct mlx5e_priv *pr
+ 	if (err)
+ 		goto err_free;
+ 
+-	netif_napi_add(netdev, &c->napi, mlx5e_ptp_napi_poll);
++	netif_napi_add(netdev, &c->napi, mlx5e_ptp_napi_poll, 64);
+ 
+ 	mlx5e_ptp_build_params(c, cparams, params);
+ 
+--- a/drivers/net/ethernet/mellanox/mlx5/core/en/trap.c
++++ b/drivers/net/ethernet/mellanox/mlx5/core/en/trap.c
+@@ -147,7 +147,7 @@ static struct mlx5e_trap *mlx5e_open_tra
+ 	t->mkey_be  = cpu_to_be32(priv->mdev->mlx5e_res.hw_objs.mkey);
+ 	t->stats    = &priv->trap_stats.ch;
+ 
+-	netif_napi_add(netdev, &t->napi, mlx5e_trap_napi_poll);
++	netif_napi_add(netdev, &t->napi, mlx5e_trap_napi_poll, 64);
+ 
+ 	err = mlx5e_open_trap_rq(priv, t);
+ 	if (unlikely(err))
+--- a/drivers/net/ethernet/mellanox/mlx5/core/en_main.c
++++ b/drivers/net/ethernet/mellanox/mlx5/core/en_main.c
+@@ -2288,7 +2288,7 @@ static int mlx5e_open_channel(struct mlx
+ 	c->aff_mask = irq_get_effective_affinity_mask(irq);
+ 	c->lag_port = mlx5e_enumerate_lag_port(priv->mdev, ix);
+ 
+-	netif_napi_add(netdev, &c->napi, mlx5e_napi_poll);
++	netif_napi_add(netdev, &c->napi, mlx5e_napi_poll, 64);
+ 
+ 	err = mlx5e_open_queues(c, params, cparam);
+ 	if (unlikely(err))
+--- a/drivers/net/ethernet/mellanox/mlxbf_gige/mlxbf_gige_main.c
++++ b/drivers/net/ethernet/mellanox/mlxbf_gige/mlxbf_gige_main.c
+@@ -156,7 +156,7 @@ static int mlxbf_gige_open(struct net_de
+ 
+ 	phy_start(phydev);
+ 
+-	netif_napi_add(netdev, &priv->napi, mlxbf_gige_poll);
++	netif_napi_add(netdev, &priv->napi, mlxbf_gige_poll, NAPI_POLL_WEIGHT);
+ 	napi_enable(&priv->napi);
+ 	netif_start_queue(netdev);
+ 
+--- a/drivers/net/ethernet/microchip/lan743x_main.c
++++ b/drivers/net/ethernet/microchip/lan743x_main.c
+@@ -2875,7 +2875,9 @@ static int lan743x_rx_open(struct lan743
+ 	if (ret)
+ 		goto return_error;
+ 
+-	netif_napi_add(adapter->netdev, &rx->napi, lan743x_rx_napi_poll);
++	netif_napi_add(adapter->netdev,
++		       &rx->napi, lan743x_rx_napi_poll,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	lan743x_csr_write(adapter, DMAC_CMD,
+ 			  DMAC_CMD_RX_SWR_(rx->channel_number));
+--- a/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
++++ b/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
+@@ -787,7 +787,8 @@ void lan966x_fdma_netdev_init(struct lan
+ 		return;
+ 
+ 	lan966x->fdma_ndev = dev;
+-	netif_napi_add(dev, &lan966x->napi, lan966x_fdma_napi_poll);
++	netif_napi_add(dev, &lan966x->napi, lan966x_fdma_napi_poll,
++		       NAPI_POLL_WEIGHT);
+ 	napi_enable(&lan966x->napi);
+ }
+ 
+--- a/drivers/net/ethernet/natsemi/natsemi.c
++++ b/drivers/net/ethernet/natsemi/natsemi.c
+@@ -869,7 +869,7 @@ static int natsemi_probe1(struct pci_dev
+ 	np = netdev_priv(dev);
+ 	np->ioaddr = ioaddr;
+ 
+-	netif_napi_add(dev, &np->napi, natsemi_poll);
++	netif_napi_add(dev, &np->napi, natsemi_poll, 64);
+ 	np->dev = dev;
+ 
+ 	np->pci_dev = pdev;
+--- a/drivers/net/ethernet/neterion/s2io.c
++++ b/drivers/net/ethernet/neterion/s2io.c
+@@ -7904,10 +7904,10 @@ s2io_init_nic(struct pci_dev *pdev, cons
+ 		for (i = 0; i < config->rx_ring_num ; i++) {
+ 			struct ring_info *ring = &mac_control->rings[i];
+ 
+-			netif_napi_add(dev, &ring->napi, s2io_poll_msix);
++			netif_napi_add(dev, &ring->napi, s2io_poll_msix, 64);
+ 		}
+ 	} else {
+-		netif_napi_add(dev, &sp->napi, s2io_poll_inta);
++		netif_napi_add(dev, &sp->napi, s2io_poll_inta, 64);
+ 	}
+ 
+ 	/* Not needed for Herc */
+--- a/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
++++ b/drivers/net/ethernet/netronome/nfp/nfp_net_common.c
+@@ -771,7 +771,9 @@ nfp_net_napi_add(struct nfp_net_dp *dp,
+ {
+ 	if (dp->netdev)
+ 		netif_napi_add(dp->netdev, &r_vec->napi,
+-			       nfp_net_has_xsk_pool_slow(dp, idx) ? dp->ops->xsk_poll : dp->ops->poll);
++			       nfp_net_has_xsk_pool_slow(dp, idx) ?
++			       dp->ops->xsk_poll : dp->ops->poll,
++			       NAPI_POLL_WEIGHT);
+ 	else
+ 		tasklet_enable(&r_vec->tasklet);
+ }
+--- a/drivers/net/ethernet/ni/nixge.c
++++ b/drivers/net/ethernet/ni/nixge.c
+@@ -1294,7 +1294,7 @@ static int nixge_probe(struct platform_d
+ 	priv->ndev = ndev;
+ 	priv->dev = &pdev->dev;
+ 
+-	netif_napi_add(ndev, &priv->napi, nixge_poll);
++	netif_napi_add(ndev, &priv->napi, nixge_poll, NAPI_POLL_WEIGHT);
+ 	err = nixge_of_get_resources(pdev);
+ 	if (err)
+ 		goto free_netdev;
+--- a/drivers/net/ethernet/nvidia/forcedeth.c
++++ b/drivers/net/ethernet/nvidia/forcedeth.c
+@@ -5876,7 +5876,7 @@ static int nv_probe(struct pci_dev *pci_
+ 	else
+ 		dev->netdev_ops = &nv_netdev_ops_optimized;
+ 
+-	netif_napi_add(dev, &np->napi, nv_napi_poll);
++	netif_napi_add(dev, &np->napi, nv_napi_poll, NAPI_POLL_WEIGHT);
+ 	dev->ethtool_ops = &ops;
+ 	dev->watchdog_timeo = NV_WATCHDOG_TIMEO;
+ 
+--- a/drivers/net/ethernet/oki-semi/pch_gbe/pch_gbe_main.c
++++ b/drivers/net/ethernet/oki-semi/pch_gbe/pch_gbe_main.c
+@@ -2516,7 +2516,8 @@ static int pch_gbe_probe(struct pci_dev
+ 
+ 	netdev->netdev_ops = &pch_gbe_netdev_ops;
+ 	netdev->watchdog_timeo = PCH_GBE_WATCHDOG_PERIOD;
+-	netif_napi_add(netdev, &adapter->napi, pch_gbe_napi_poll);
++	netif_napi_add(netdev, &adapter->napi,
++		       pch_gbe_napi_poll, NAPI_POLL_WEIGHT);
+ 	netdev->hw_features = NETIF_F_RXCSUM |
+ 		NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM;
+ 	netdev->features = netdev->hw_features;
+--- a/drivers/net/ethernet/pasemi/pasemi_mac.c
++++ b/drivers/net/ethernet/pasemi/pasemi_mac.c
+@@ -1697,7 +1697,7 @@ pasemi_mac_probe(struct pci_dev *pdev, c
+ 	mac->pdev = pdev;
+ 	mac->netdev = dev;
+ 
+-	netif_napi_add(dev, &mac->napi, pasemi_mac_poll);
++	netif_napi_add(dev, &mac->napi, pasemi_mac_poll, 64);
+ 
+ 	dev->features = NETIF_F_IP_CSUM | NETIF_F_LLTX | NETIF_F_SG |
+ 			NETIF_F_HIGHDMA | NETIF_F_GSO;
+--- a/drivers/net/ethernet/pensando/ionic/ionic_lif.c
++++ b/drivers/net/ethernet/pensando/ionic/ionic_lif.c
+@@ -774,7 +774,8 @@ static int ionic_lif_txq_init(struct ion
+ 	dev_dbg(dev, "txq->hw_index %d\n", q->hw_index);
+ 
+ 	if (test_bit(IONIC_LIF_F_SPLIT_INTR, lif->state))
+-		netif_napi_add(lif->netdev, &qcq->napi, ionic_tx_napi);
++		netif_napi_add(lif->netdev, &qcq->napi, ionic_tx_napi,
++			       NAPI_POLL_WEIGHT);
+ 
+ 	qcq->flags |= IONIC_QCQ_F_INITED;
+ 
+@@ -829,9 +830,11 @@ static int ionic_lif_rxq_init(struct ion
+ 	dev_dbg(dev, "rxq->hw_index %d\n", q->hw_index);
+ 
+ 	if (test_bit(IONIC_LIF_F_SPLIT_INTR, lif->state))
+-		netif_napi_add(lif->netdev, &qcq->napi, ionic_rx_napi);
++		netif_napi_add(lif->netdev, &qcq->napi, ionic_rx_napi,
++			       NAPI_POLL_WEIGHT);
+ 	else
+-		netif_napi_add(lif->netdev, &qcq->napi, ionic_txrx_napi);
++		netif_napi_add(lif->netdev, &qcq->napi, ionic_txrx_napi,
++			       NAPI_POLL_WEIGHT);
+ 
+ 	qcq->flags |= IONIC_QCQ_F_INITED;
+ 
+@@ -3162,7 +3165,8 @@ static int ionic_lif_adminq_init(struct
+ 	dev_dbg(dev, "adminq->hw_type %d\n", q->hw_type);
+ 	dev_dbg(dev, "adminq->hw_index %d\n", q->hw_index);
+ 
+-	netif_napi_add(lif->netdev, &qcq->napi, ionic_adminq_napi);
++	netif_napi_add(lif->netdev, &qcq->napi, ionic_adminq_napi,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	napi_enable(&qcq->napi);
+ 
+--- a/drivers/net/ethernet/qlogic/netxen/netxen_nic_main.c
++++ b/drivers/net/ethernet/qlogic/netxen/netxen_nic_main.c
+@@ -173,7 +173,8 @@ netxen_napi_add(struct netxen_adapter *a
+ 
+ 	for (ring = 0; ring < adapter->max_sds_rings; ring++) {
+ 		sds_ring = &recv_ctx->sds_rings[ring];
+-		netif_napi_add(netdev, &sds_ring->napi, netxen_nic_poll);
++		netif_napi_add(netdev, &sds_ring->napi,
++				netxen_nic_poll, NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	return 0;
+--- a/drivers/net/ethernet/qlogic/qede/qede_main.c
++++ b/drivers/net/ethernet/qlogic/qede/qede_main.c
+@@ -1904,7 +1904,8 @@ static void qede_napi_add_enable(struct
+ 
+ 	/* Add NAPI objects */
+ 	for_each_queue(i) {
+-		netif_napi_add(edev->ndev, &edev->fp_array[i].napi, qede_poll);
++		netif_napi_add(edev->ndev, &edev->fp_array[i].napi,
++			       qede_poll, NAPI_POLL_WEIGHT);
+ 		napi_enable(&edev->fp_array[i].napi);
+ 	}
+ }
+--- a/drivers/net/ethernet/qlogic/qla3xxx.c
++++ b/drivers/net/ethernet/qlogic/qla3xxx.c
+@@ -3813,7 +3813,7 @@ static int ql3xxx_probe(struct pci_dev *
+ 	ndev->ethtool_ops = &ql3xxx_ethtool_ops;
+ 	ndev->watchdog_timeo = 5 * HZ;
+ 
+-	netif_napi_add(ndev, &qdev->napi, ql_poll);
++	netif_napi_add(ndev, &qdev->napi, ql_poll, 64);
+ 
+ 	ndev->irq = pdev->irq;
+ 
+--- a/drivers/net/ethernet/qlogic/qlcnic/qlcnic_io.c
++++ b/drivers/net/ethernet/qlogic/qlcnic/qlcnic_io.c
+@@ -1586,15 +1586,17 @@ int qlcnic_82xx_napi_add(struct qlcnic_a
+ 		sds_ring = &recv_ctx->sds_rings[ring];
+ 		if (qlcnic_check_multi_tx(adapter) &&
+ 		    !adapter->ahw->diag_test) {
+-			netif_napi_add(netdev, &sds_ring->napi,
+-				       qlcnic_rx_poll);
++			netif_napi_add(netdev, &sds_ring->napi, qlcnic_rx_poll,
++				       NAPI_POLL_WEIGHT);
+ 		} else {
+ 			if (ring == (adapter->drv_sds_rings - 1))
+ 				netif_napi_add(netdev, &sds_ring->napi,
+-					       qlcnic_poll);
++					       qlcnic_poll,
++					       NAPI_POLL_WEIGHT);
+ 			else
+ 				netif_napi_add(netdev, &sds_ring->napi,
+-					       qlcnic_rx_poll);
++					       qlcnic_rx_poll,
++					       NAPI_POLL_WEIGHT);
+ 		}
+ 	}
+ 
+@@ -2113,14 +2115,17 @@ int qlcnic_83xx_napi_add(struct qlcnic_a
+ 		if (adapter->flags & QLCNIC_MSIX_ENABLED) {
+ 			if (!(adapter->flags & QLCNIC_TX_INTR_SHARED))
+ 				netif_napi_add(netdev, &sds_ring->napi,
+-					       qlcnic_83xx_rx_poll);
++					       qlcnic_83xx_rx_poll,
++					       NAPI_POLL_WEIGHT);
+ 			else
+ 				netif_napi_add(netdev, &sds_ring->napi,
+-					       qlcnic_83xx_msix_sriov_vf_poll);
++					       qlcnic_83xx_msix_sriov_vf_poll,
++					       NAPI_POLL_WEIGHT);
+ 
+ 		} else {
+ 			netif_napi_add(netdev, &sds_ring->napi,
+-				       qlcnic_83xx_poll);
++				       qlcnic_83xx_poll,
++				       NAPI_POLL_WEIGHT);
+ 		}
+ 	}
+ 
+--- a/drivers/net/ethernet/qualcomm/emac/emac.c
++++ b/drivers/net/ethernet/qualcomm/emac/emac.c
+@@ -684,7 +684,8 @@ static int emac_probe(struct platform_de
+ 	/* Initialize queues */
+ 	emac_mac_rx_tx_ring_init_all(pdev, adpt);
+ 
+-	netif_napi_add(netdev, &adpt->rx_q.napi, emac_napi_rtx);
++	netif_napi_add(netdev, &adpt->rx_q.napi, emac_napi_rtx,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	ret = register_netdev(netdev);
+ 	if (ret) {
+--- a/drivers/net/ethernet/rdc/r6040.c
++++ b/drivers/net/ethernet/rdc/r6040.c
+@@ -1127,7 +1127,7 @@ static int r6040_init_one(struct pci_dev
+ 	dev->ethtool_ops = &netdev_ethtool_ops;
+ 	dev->watchdog_timeo = TX_TIMEOUT;
+ 
+-	netif_napi_add(dev, &lp->napi, r6040_poll);
++	netif_napi_add(dev, &lp->napi, r6040_poll, 64);
+ 
+ 	lp->mii_bus = mdiobus_alloc();
+ 	if (!lp->mii_bus) {
+--- a/drivers/net/ethernet/realtek/8139too.c
++++ b/drivers/net/ethernet/realtek/8139too.c
+@@ -1002,7 +1002,7 @@ static int rtl8139_init_one(struct pci_d
+ 	dev->netdev_ops = &rtl8139_netdev_ops;
+ 	dev->ethtool_ops = &rtl8139_ethtool_ops;
+ 	dev->watchdog_timeo = TX_TIMEOUT;
+-	netif_napi_add(dev, &tp->napi, rtl8139_poll);
++	netif_napi_add(dev, &tp->napi, rtl8139_poll, 64);
+ 
+ 	/* note: the hardware is not capable of sg/csum/highdma, however
+ 	 * through the use of skb_copy_and_csum_dev we enable these
+--- a/drivers/net/ethernet/realtek/r8169_main.c
++++ b/drivers/net/ethernet/realtek/r8169_main.c
+@@ -5240,7 +5240,7 @@ static int rtl_init_one(struct pci_dev *
+ 
+ 	dev->ethtool_ops = &rtl8169_ethtool_ops;
+ 
+-	netif_napi_add(dev, &tp->napi, rtl8169_poll);
++	netif_napi_add(dev, &tp->napi, rtl8169_poll, NAPI_POLL_WEIGHT);
+ 
+ 	dev->hw_features = NETIF_F_IP_CSUM | NETIF_F_RXCSUM |
+ 			   NETIF_F_HW_VLAN_CTAG_TX | NETIF_F_HW_VLAN_CTAG_RX;
+--- a/drivers/net/ethernet/renesas/ravb_main.c
++++ b/drivers/net/ethernet/renesas/ravb_main.c
+@@ -2841,9 +2841,9 @@ static int ravb_probe(struct platform_de
+ 		goto out_dma_free;
+ 	}
+ 
+-	netif_napi_add(ndev, &priv->napi[RAVB_BE], ravb_poll);
++	netif_napi_add(ndev, &priv->napi[RAVB_BE], ravb_poll, 64);
+ 	if (info->nc_queues)
+-		netif_napi_add(ndev, &priv->napi[RAVB_NC], ravb_poll);
++		netif_napi_add(ndev, &priv->napi[RAVB_NC], ravb_poll, 64);
+ 
+ 	/* Network device register */
+ 	error = register_netdev(ndev);
+--- a/drivers/net/ethernet/renesas/sh_eth.c
++++ b/drivers/net/ethernet/renesas/sh_eth.c
+@@ -3368,7 +3368,7 @@ static int sh_eth_drv_probe(struct platf
+ 		goto out_release;
+ 	}
+ 
+-	netif_napi_add(ndev, &mdp->napi, sh_eth_poll);
++	netif_napi_add(ndev, &mdp->napi, sh_eth_poll, 64);
+ 
+ 	/* network device register */
+ 	ret = register_netdev(ndev);
+--- a/drivers/net/ethernet/rocker/rocker_main.c
++++ b/drivers/net/ethernet/rocker/rocker_main.c
+@@ -2574,7 +2574,8 @@ static int rocker_probe_port(struct rock
+ 	dev->netdev_ops = &rocker_port_netdev_ops;
+ 	dev->ethtool_ops = &rocker_port_ethtool_ops;
+ 	netif_napi_add_tx(dev, &rocker_port->napi_tx, rocker_port_poll_tx);
+-	netif_napi_add(dev, &rocker_port->napi_rx, rocker_port_poll_rx);
++	netif_napi_add(dev, &rocker_port->napi_rx, rocker_port_poll_rx,
++		       NAPI_POLL_WEIGHT);
+ 	rocker_carrier_init(rocker_port);
+ 
+ 	dev->features |= NETIF_F_NETNS_LOCAL | NETIF_F_SG;
+--- a/drivers/net/ethernet/samsung/sxgbe/sxgbe_main.c
++++ b/drivers/net/ethernet/samsung/sxgbe/sxgbe_main.c
+@@ -2143,7 +2143,7 @@ struct sxgbe_priv_data *sxgbe_drv_probe(
+ 		pr_info("Enable RX Mitigation via HW Watchdog Timer\n");
+ 	}
+ 
+-	netif_napi_add(ndev, &priv->napi, sxgbe_poll);
++	netif_napi_add(ndev, &priv->napi, sxgbe_poll, 64);
+ 
+ 	spin_lock_init(&priv->stats_lock);
+ 
+--- a/drivers/net/ethernet/sfc/ef100_rep.c
++++ b/drivers/net/ethernet/sfc/ef100_rep.c
+@@ -43,7 +43,8 @@ static int efx_ef100_rep_open(struct net
+ {
+ 	struct efx_rep *efv = netdev_priv(net_dev);
+ 
+-	netif_napi_add(net_dev, &efv->napi, efx_ef100_rep_poll);
++	netif_napi_add(net_dev, &efv->napi, efx_ef100_rep_poll,
++		       NAPI_POLL_WEIGHT);
+ 	napi_enable(&efv->napi);
+ 	return 0;
+ }
+--- a/drivers/net/ethernet/sfc/efx_channels.c
++++ b/drivers/net/ethernet/sfc/efx_channels.c
+@@ -1313,7 +1313,7 @@ void efx_init_napi_channel(struct efx_ch
+ 	struct efx_nic *efx = channel->efx;
+ 
+ 	channel->napi_dev = efx->net_dev;
+-	netif_napi_add(channel->napi_dev, &channel->napi_str, efx_poll);
++	netif_napi_add(channel->napi_dev, &channel->napi_str, efx_poll, 64);
+ }
+ 
+ void efx_init_napi(struct efx_nic *efx)
+--- a/drivers/net/ethernet/sfc/falcon/efx.c
++++ b/drivers/net/ethernet/sfc/falcon/efx.c
+@@ -2012,7 +2012,7 @@ static void ef4_init_napi_channel(struct
+ 	struct ef4_nic *efx = channel->efx;
+ 
+ 	channel->napi_dev = efx->net_dev;
+-	netif_napi_add(channel->napi_dev, &channel->napi_str, ef4_poll);
++	netif_napi_add(channel->napi_dev, &channel->napi_str, ef4_poll, 64);
+ }
+ 
+ static void ef4_init_napi(struct ef4_nic *efx)
+--- a/drivers/net/ethernet/sfc/siena/efx_channels.c
++++ b/drivers/net/ethernet/sfc/siena/efx_channels.c
+@@ -1317,7 +1317,7 @@ static void efx_init_napi_channel(struct
+ 	struct efx_nic *efx = channel->efx;
+ 
+ 	channel->napi_dev = efx->net_dev;
+-	netif_napi_add(channel->napi_dev, &channel->napi_str, efx_poll);
++	netif_napi_add(channel->napi_dev, &channel->napi_str, efx_poll, 64);
+ }
+ 
+ void efx_siena_init_napi(struct efx_nic *efx)
+--- a/drivers/net/ethernet/smsc/epic100.c
++++ b/drivers/net/ethernet/smsc/epic100.c
+@@ -482,7 +482,7 @@ static int epic_init_one(struct pci_dev
+ 	dev->netdev_ops = &epic_netdev_ops;
+ 	dev->ethtool_ops = &netdev_ethtool_ops;
+ 	dev->watchdog_timeo = TX_TIMEOUT;
+-	netif_napi_add(dev, &ep->napi, epic_poll);
++	netif_napi_add(dev, &ep->napi, epic_poll, 64);
+ 
+ 	ret = register_netdev(dev);
+ 	if (ret < 0)
+--- a/drivers/net/ethernet/smsc/smsc9420.c
++++ b/drivers/net/ethernet/smsc/smsc9420.c
+@@ -1585,7 +1585,7 @@ smsc9420_probe(struct pci_dev *pdev, con
+ 	dev->netdev_ops = &smsc9420_netdev_ops;
+ 	dev->ethtool_ops = &smsc9420_ethtool_ops;
+ 
+-	netif_napi_add(dev, &pd->napi, smsc9420_rx_poll);
++	netif_napi_add(dev, &pd->napi, smsc9420_rx_poll, NAPI_POLL_WEIGHT);
+ 
+ 	result = register_netdev(dev);
+ 	if (result) {
+--- a/drivers/net/ethernet/socionext/netsec.c
++++ b/drivers/net/ethernet/socionext/netsec.c
+@@ -2093,7 +2093,7 @@ static int netsec_probe(struct platform_
+ 	dev_info(&pdev->dev, "hardware revision %d.%d\n",
+ 		 hw_ver >> 16, hw_ver & 0xffff);
+ 
+-	netif_napi_add(ndev, &priv->napi, netsec_napi_poll);
++	netif_napi_add(ndev, &priv->napi, netsec_napi_poll, NAPI_POLL_WEIGHT);
+ 
+ 	ndev->netdev_ops = &netsec_netdev_ops;
+ 	ndev->ethtool_ops = &netsec_ethtool_ops;
+--- a/drivers/net/ethernet/socionext/sni_ave.c
++++ b/drivers/net/ethernet/socionext/sni_ave.c
+@@ -1687,7 +1687,8 @@ static int ave_probe(struct platform_dev
+ 		 pdev->name, pdev->id);
+ 
+ 	/* Register as a NAPI supported driver */
+-	netif_napi_add(ndev, &priv->napi_rx, ave_napi_poll_rx);
++	netif_napi_add(ndev, &priv->napi_rx, ave_napi_poll_rx,
++		       NAPI_POLL_WEIGHT);
+ 	netif_napi_add_tx(ndev, &priv->napi_tx, ave_napi_poll_tx);
+ 
+ 	platform_set_drvdata(pdev, ndev);
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -6887,7 +6887,8 @@ static void stmmac_napi_add(struct net_d
+ 		spin_lock_init(&ch->lock);
+ 
+ 		if (queue < priv->plat->rx_queues_to_use) {
+-			netif_napi_add(dev, &ch->rx_napi, stmmac_napi_poll_rx);
++			netif_napi_add(dev, &ch->rx_napi, stmmac_napi_poll_rx,
++				       NAPI_POLL_WEIGHT);
+ 		}
+ 		if (queue < priv->plat->tx_queues_to_use) {
+ 			netif_napi_add_tx(dev, &ch->tx_napi,
+@@ -6896,7 +6897,8 @@ static void stmmac_napi_add(struct net_d
+ 		if (queue < priv->plat->rx_queues_to_use &&
+ 		    queue < priv->plat->tx_queues_to_use) {
+ 			netif_napi_add(dev, &ch->rxtx_napi,
+-				       stmmac_napi_poll_rxtx);
++				       stmmac_napi_poll_rxtx,
++				       NAPI_POLL_WEIGHT);
+ 		}
+ 	}
+ }
+--- a/drivers/net/ethernet/sun/cassini.c
++++ b/drivers/net/ethernet/sun/cassini.c
+@@ -5050,7 +5050,7 @@ static int cas_init_one(struct pci_dev *
+ 	dev->watchdog_timeo = CAS_TX_TIMEOUT;
+ 
+ #ifdef USE_NAPI
+-	netif_napi_add(dev, &cp->napi, cas_poll);
++	netif_napi_add(dev, &cp->napi, cas_poll, 64);
+ #endif
+ 	dev->irq = pdev->irq;
+ 	dev->dma = 0;
+--- a/drivers/net/ethernet/sun/ldmvsw.c
++++ b/drivers/net/ethernet/sun/ldmvsw.c
+@@ -354,7 +354,8 @@ static int vsw_port_probe(struct vio_dev
+ 
+ 	dev_set_drvdata(&vdev->dev, port);
+ 
+-	netif_napi_add(dev, &port->napi, sunvnet_poll_common);
++	netif_napi_add(dev, &port->napi, sunvnet_poll_common,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	spin_lock_irqsave(&vp->lock, flags);
+ 	list_add_rcu(&port->list, &vp->port_list);
+--- a/drivers/net/ethernet/sun/niu.c
++++ b/drivers/net/ethernet/sun/niu.c
+@@ -9115,7 +9115,7 @@ static int niu_ldg_init(struct niu *np)
+ 	for (i = 0; i < np->num_ldg; i++) {
+ 		struct niu_ldg *lp = &np->ldg[i];
+ 
+-		netif_napi_add(np->dev, &lp->napi, niu_poll);
++		netif_napi_add(np->dev, &lp->napi, niu_poll, 64);
+ 
+ 		lp->np = np;
+ 		lp->ldg_num = ldg_num_map[i];
+--- a/drivers/net/ethernet/sun/sungem.c
++++ b/drivers/net/ethernet/sun/sungem.c
+@@ -2980,7 +2980,7 @@ static int gem_init_one(struct pci_dev *
+ 		goto err_out_free_consistent;
+ 
+ 	dev->netdev_ops = &gem_netdev_ops;
+-	netif_napi_add(dev, &gp->napi, gem_poll);
++	netif_napi_add(dev, &gp->napi, gem_poll, 64);
+ 	dev->ethtool_ops = &gem_ethtool_ops;
+ 	dev->watchdog_timeo = 5 * HZ;
+ 	dev->dma = 0;
+--- a/drivers/net/ethernet/sun/sunvnet.c
++++ b/drivers/net/ethernet/sun/sunvnet.c
+@@ -467,7 +467,8 @@ static int vnet_port_probe(struct vio_de
+ 	if (err)
+ 		goto err_out_free_port;
+ 
+-	netif_napi_add(port->vp->dev, &port->napi, sunvnet_poll_common);
++	netif_napi_add(port->vp->dev, &port->napi, sunvnet_poll_common,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	INIT_HLIST_NODE(&port->hash);
+ 	INIT_LIST_HEAD(&port->list);
+--- a/drivers/net/ethernet/sunplus/spl2sw_driver.c
++++ b/drivers/net/ethernet/sunplus/spl2sw_driver.c
+@@ -493,7 +493,7 @@ static int spl2sw_probe(struct platform_
+ 	}
+ 
+ 	/* Add and enable napi. */
+-	netif_napi_add(ndev, &comm->rx_napi, spl2sw_rx_poll);
++	netif_napi_add(ndev, &comm->rx_napi, spl2sw_rx_poll, NAPI_POLL_WEIGHT);
+ 	napi_enable(&comm->rx_napi);
+ 	netif_napi_add_tx(ndev, &comm->tx_napi, spl2sw_tx_poll);
+ 	napi_enable(&comm->tx_napi);
+--- a/drivers/net/ethernet/synopsys/dwc-xlgmac-net.c
++++ b/drivers/net/ethernet/synopsys/dwc-xlgmac-net.c
+@@ -419,14 +419,15 @@ static void xlgmac_napi_enable(struct xl
+ 		for (i = 0; i < pdata->channel_count; i++, channel++) {
+ 			if (add)
+ 				netif_napi_add(pdata->netdev, &channel->napi,
+-					       xlgmac_one_poll);
++					       xlgmac_one_poll,
++					       NAPI_POLL_WEIGHT);
+ 
+ 			napi_enable(&channel->napi);
+ 		}
+ 	} else {
+ 		if (add)
+ 			netif_napi_add(pdata->netdev, &pdata->napi,
+-				       xlgmac_all_poll);
++				       xlgmac_all_poll, NAPI_POLL_WEIGHT);
+ 
+ 		napi_enable(&pdata->napi);
+ 	}
+--- a/drivers/net/ethernet/tehuti/tehuti.c
++++ b/drivers/net/ethernet/tehuti/tehuti.c
+@@ -1994,7 +1994,7 @@ bdx_probe(struct pci_dev *pdev, const st
+ 		priv->nic = nic;
+ 		priv->msg_enable = BDX_DEF_MSG_ENABLE;
+ 
+-		netif_napi_add(ndev, &priv->napi, bdx_poll);
++		netif_napi_add(ndev, &priv->napi, bdx_poll, 64);
+ 
+ 		if ((readl(nic->regs + FPGA_VER) & 0xFFF) == 308) {
+ 			DBG("HW statistics not supported\n");
+--- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
++++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+@@ -2044,7 +2044,7 @@ static int am65_cpsw_nuss_init_ndevs(str
+ 	}
+ 
+ 	netif_napi_add(common->dma_ndev, &common->napi_rx,
+-		       am65_cpsw_nuss_rx_poll);
++		       am65_cpsw_nuss_rx_poll, NAPI_POLL_WEIGHT);
+ 
+ 	return ret;
+ }
+--- a/drivers/net/ethernet/ti/cpmac.c
++++ b/drivers/net/ethernet/ti/cpmac.c
+@@ -1109,7 +1109,7 @@ static int cpmac_probe(struct platform_d
+ 	dev->netdev_ops = &cpmac_netdev_ops;
+ 	dev->ethtool_ops = &cpmac_ethtool_ops;
+ 
+-	netif_napi_add(dev, &priv->napi, cpmac_poll);
++	netif_napi_add(dev, &priv->napi, cpmac_poll, 64);
+ 
+ 	spin_lock_init(&priv->lock);
+ 	spin_lock_init(&priv->rx_lock);
+--- a/drivers/net/ethernet/ti/cpsw.c
++++ b/drivers/net/ethernet/ti/cpsw.c
+@@ -1637,7 +1637,8 @@ static int cpsw_probe(struct platform_de
+ 	ndev->netdev_ops = &cpsw_netdev_ops;
+ 	ndev->ethtool_ops = &cpsw_ethtool_ops;
+ 	netif_napi_add(ndev, &cpsw->napi_rx,
+-		       cpsw->quirk_irq ? cpsw_rx_poll : cpsw_rx_mq_poll);
++		       cpsw->quirk_irq ? cpsw_rx_poll : cpsw_rx_mq_poll,
++		       NAPI_POLL_WEIGHT);
+ 	netif_napi_add_tx(ndev, &cpsw->napi_tx,
+ 			  cpsw->quirk_irq ? cpsw_tx_poll : cpsw_tx_mq_poll);
+ 
+--- a/drivers/net/ethernet/ti/cpsw_new.c
++++ b/drivers/net/ethernet/ti/cpsw_new.c
+@@ -1416,7 +1416,9 @@ static int cpsw_create_ports(struct cpsw
+ 			 * accordingly.
+ 			 */
+ 			netif_napi_add(ndev, &cpsw->napi_rx,
+-				       cpsw->quirk_irq ? cpsw_rx_poll : cpsw_rx_mq_poll);
++				       cpsw->quirk_irq ?
++				       cpsw_rx_poll : cpsw_rx_mq_poll,
++				       NAPI_POLL_WEIGHT);
+ 			netif_napi_add_tx(ndev, &cpsw->napi_tx,
+ 					  cpsw->quirk_irq ?
+ 					  cpsw_tx_poll : cpsw_tx_mq_poll);
+--- a/drivers/net/ethernet/ti/davinci_emac.c
++++ b/drivers/net/ethernet/ti/davinci_emac.c
+@@ -1948,7 +1948,7 @@ static int davinci_emac_probe(struct pla
+ 
+ 	ndev->netdev_ops = &emac_netdev_ops;
+ 	ndev->ethtool_ops = &ethtool_ops;
+-	netif_napi_add(ndev, &priv->napi, emac_poll);
++	netif_napi_add(ndev, &priv->napi, emac_poll, NAPI_POLL_WEIGHT);
+ 
+ 	pm_runtime_enable(&pdev->dev);
+ 	rc = pm_runtime_resume_and_get(&pdev->dev);
+--- a/drivers/net/ethernet/ti/netcp_core.c
++++ b/drivers/net/ethernet/ti/netcp_core.c
+@@ -2095,7 +2095,7 @@ static int netcp_create_interface(struct
+ 	}
+ 
+ 	/* NAPI register */
+-	netif_napi_add(ndev, &netcp->rx_napi, netcp_rx_poll);
++	netif_napi_add(ndev, &netcp->rx_napi, netcp_rx_poll, NAPI_POLL_WEIGHT);
+ 	netif_napi_add_tx(ndev, &netcp->tx_napi, netcp_tx_poll);
+ 
+ 	/* Register the network device */
+--- a/drivers/net/ethernet/toshiba/ps3_gelic_net.c
++++ b/drivers/net/ethernet/toshiba/ps3_gelic_net.c
+@@ -1441,7 +1441,7 @@ static void gelic_ether_setup_netdev_ops
+ {
+ 	netdev->watchdog_timeo = GELIC_NET_WATCHDOG_TIMEOUT;
+ 	/* NAPI */
+-	netif_napi_add(netdev, napi, gelic_net_poll);
++	netif_napi_add(netdev, napi, gelic_net_poll, NAPI_POLL_WEIGHT);
+ 	netdev->ethtool_ops = &gelic_ether_ethtool_ops;
+ 	netdev->netdev_ops = &gelic_netdevice_ops;
+ }
+--- a/drivers/net/ethernet/toshiba/spider_net.c
++++ b/drivers/net/ethernet/toshiba/spider_net.c
+@@ -2270,7 +2270,8 @@ spider_net_setup_netdev(struct spider_ne
+ 	card->aneg_count = 0;
+ 	timer_setup(&card->aneg_timer, spider_net_link_phy, 0);
+ 
+-	netif_napi_add(netdev, &card->napi, spider_net_poll);
++	netif_napi_add(netdev, &card->napi,
++		       spider_net_poll, NAPI_POLL_WEIGHT);
+ 
+ 	spider_net_setup_netdev_ops(netdev);
+ 
+--- a/drivers/net/ethernet/tundra/tsi108_eth.c
++++ b/drivers/net/ethernet/tundra/tsi108_eth.c
+@@ -1585,7 +1585,7 @@ tsi108_init_one(struct platform_device *
+ 	data->phy_type = einfo->phy_type;
+ 	data->irq_num = einfo->irq_num;
+ 	data->id = pdev->id;
+-	netif_napi_add(dev, &data->napi, tsi108_poll);
++	netif_napi_add(dev, &data->napi, tsi108_poll, 64);
+ 	dev->netdev_ops = &tsi108_netdev_ops;
+ 	dev->ethtool_ops = &tsi108_ethtool_ops;
+ 
+--- a/drivers/net/ethernet/via/via-rhine.c
++++ b/drivers/net/ethernet/via/via-rhine.c
+@@ -965,7 +965,7 @@ static int rhine_init_one_common(struct
+ 	dev->ethtool_ops = &netdev_ethtool_ops;
+ 	dev->watchdog_timeo = TX_TIMEOUT;
+ 
+-	netif_napi_add(dev, &rp->napi, rhine_napipoll);
++	netif_napi_add(dev, &rp->napi, rhine_napipoll, 64);
+ 
+ 	if (rp->quirks & rqRhineI)
+ 		dev->features |= NETIF_F_SG|NETIF_F_HW_CSUM;
+--- a/drivers/net/ethernet/via/via-velocity.c
++++ b/drivers/net/ethernet/via/via-velocity.c
+@@ -2846,7 +2846,7 @@ static int velocity_probe(struct device
+ 
+ 	netdev->netdev_ops = &velocity_netdev_ops;
+ 	netdev->ethtool_ops = &velocity_ethtool_ops;
+-	netif_napi_add(netdev, &vptr->napi, velocity_poll);
++	netif_napi_add(netdev, &vptr->napi, velocity_poll, NAPI_POLL_WEIGHT);
+ 
+ 	netdev->hw_features = NETIF_F_IP_CSUM | NETIF_F_SG |
+ 			   NETIF_F_HW_VLAN_CTAG_TX;
+--- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
++++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
+@@ -1879,8 +1879,8 @@ static int axienet_probe(struct platform
+ 	u64_stats_init(&lp->rx_stat_sync);
+ 	u64_stats_init(&lp->tx_stat_sync);
+ 
+-	netif_napi_add(ndev, &lp->napi_rx, axienet_rx_poll);
+-	netif_napi_add(ndev, &lp->napi_tx, axienet_tx_poll);
++	netif_napi_add(ndev, &lp->napi_rx, axienet_rx_poll, NAPI_POLL_WEIGHT);
++	netif_napi_add(ndev, &lp->napi_tx, axienet_tx_poll, NAPI_POLL_WEIGHT);
+ 
+ 	lp->axi_clk = devm_clk_get_optional(&pdev->dev, "s_axi_lite_clk");
+ 	if (!lp->axi_clk) {
+--- a/drivers/net/fjes/fjes_main.c
++++ b/drivers/net/fjes/fjes_main.c
+@@ -1057,7 +1057,7 @@ static int fjes_sw_init(struct fjes_adap
+ {
+ 	struct net_device *netdev = adapter->netdev;
+ 
+-	netif_napi_add(netdev, &adapter->napi, fjes_poll);
++	netif_napi_add(netdev, &adapter->napi, fjes_poll, 64);
+ 
+ 	return 0;
+ }
+--- a/drivers/net/hyperv/netvsc.c
++++ b/drivers/net/hyperv/netvsc.c
+@@ -1779,7 +1779,8 @@ struct netvsc_device *netvsc_device_add(
+ 	}
+ 
+ 	/* Enable NAPI handler before init callbacks */
+-	netif_napi_add(ndev, &net_device->chan_table[0].napi, netvsc_poll);
++	netif_napi_add(ndev, &net_device->chan_table[0].napi,
++		       netvsc_poll, NAPI_POLL_WEIGHT);
+ 
+ 	/* Open the channel */
+ 	device->channel->next_request_id_callback = vmbus_next_request_id;
+--- a/drivers/net/hyperv/rndis_filter.c
++++ b/drivers/net/hyperv/rndis_filter.c
+@@ -1575,7 +1575,7 @@ struct netvsc_device *rndis_filter_devic
+ 
+ 	for (i = 1; i < net_device->num_chn; i++)
+ 		netif_napi_add(net, &net_device->chan_table[i].napi,
+-			       netvsc_poll);
++			       netvsc_poll, NAPI_POLL_WEIGHT);
+ 
+ 	return net_device;
+ 
+--- a/drivers/net/ipa/gsi.c
++++ b/drivers/net/ipa/gsi.c
+@@ -1607,7 +1607,7 @@ static int gsi_channel_setup_one(struct
+ 				  gsi_channel_poll);
+ 	else
+ 		netif_napi_add(&gsi->dummy_dev, &channel->napi,
+-			       gsi_channel_poll);
++			       gsi_channel_poll, NAPI_POLL_WEIGHT);
+ 
+ 	return 0;
+ 
+--- a/drivers/net/thunderbolt.c
++++ b/drivers/net/thunderbolt.c
+@@ -1282,7 +1282,7 @@ static int tbnet_probe(struct tb_service
+ 	dev->features = dev->hw_features | NETIF_F_HIGHDMA;
+ 	dev->hard_header_len += sizeof(struct thunderbolt_ip_frame_header);
+ 
+-	netif_napi_add(dev, &net->napi, tbnet_poll);
++	netif_napi_add(dev, &net->napi, tbnet_poll, NAPI_POLL_WEIGHT);
+ 
+ 	/* MTU range: 68 - 65522 */
+ 	dev->min_mtu = ETH_MIN_MTU;
+--- a/drivers/net/usb/lan78xx.c
++++ b/drivers/net/usb/lan78xx.c
+@@ -4374,7 +4374,7 @@ static int lan78xx_probe(struct usb_inte
+ 
+ 	netif_set_tso_max_size(netdev, LAN78XX_TSO_SIZE(dev));
+ 
+-	netif_napi_add(netdev, &dev->napi, lan78xx_poll);
++	netif_napi_add(netdev, &dev->napi, lan78xx_poll, NAPI_POLL_WEIGHT);
+ 
+ 	INIT_DELAYED_WORK(&dev->wq, lan78xx_delayedwork);
+ 	init_usb_anchor(&dev->deferred);
+--- a/drivers/net/veth.c
++++ b/drivers/net/veth.c
+@@ -1070,7 +1070,7 @@ static int veth_enable_xdp_range(struct
+ 		struct veth_rq *rq = &priv->rq[i];
+ 
+ 		if (!napi_already_on)
+-			netif_napi_add(dev, &rq->xdp_napi, veth_poll);
++			netif_napi_add(dev, &rq->xdp_napi, veth_poll, NAPI_POLL_WEIGHT);
+ 		err = xdp_rxq_info_reg(&rq->xdp_rxq, dev, i, rq->xdp_napi.napi_id);
+ 		if (err < 0)
+ 			goto err_rxq_reg;
+@@ -1184,7 +1184,7 @@ static int veth_napi_enable_range(struct
+ 	for (i = start; i < end; i++) {
+ 		struct veth_rq *rq = &priv->rq[i];
+ 
+-		netif_napi_add(dev, &rq->xdp_napi, veth_poll);
++		netif_napi_add(dev, &rq->xdp_napi, veth_poll, NAPI_POLL_WEIGHT);
+ 	}
+ 
+ 	err = __veth_napi_enable_range(dev, start, end);
+--- a/drivers/net/vmxnet3/vmxnet3_drv.c
++++ b/drivers/net/vmxnet3/vmxnet3_drv.c
+@@ -3882,11 +3882,11 @@ vmxnet3_probe_device(struct pci_dev *pde
+ 		for (i = 0; i < adapter->num_rx_queues; i++) {
+ 			netif_napi_add(adapter->netdev,
+ 				       &adapter->rx_queue[i].napi,
+-				       vmxnet3_poll_rx_only);
++				       vmxnet3_poll_rx_only, 64);
+ 		}
+ 	} else {
+ 		netif_napi_add(adapter->netdev, &adapter->rx_queue[0].napi,
+-			       vmxnet3_poll);
++			       vmxnet3_poll, 64);
+ 	}
+ 
+ 	netif_set_real_num_tx_queues(adapter->netdev, adapter->num_tx_queues);
+--- a/drivers/net/wireguard/peer.c
++++ b/drivers/net/wireguard/peer.c
+@@ -54,7 +54,8 @@ struct wg_peer *wg_peer_create(struct wg
+ 	skb_queue_head_init(&peer->staged_packet_queue);
+ 	wg_noise_reset_last_sent_handshake(&peer->last_sent_handshake);
+ 	set_bit(NAPI_STATE_NO_BUSY_POLL, &peer->napi.state);
+-	netif_napi_add(wg->dev, &peer->napi, wg_packet_rx_poll);
++	netif_napi_add(wg->dev, &peer->napi, wg_packet_rx_poll,
++		       NAPI_POLL_WEIGHT);
+ 	napi_enable(&peer->napi);
+ 	list_add_tail(&peer->peer_list, &wg->peer_list);
+ 	INIT_LIST_HEAD(&peer->allowedips_list);
+--- a/drivers/net/wireless/ath/ath10k/pci.c
++++ b/drivers/net/wireless/ath/ath10k/pci.c
+@@ -3215,7 +3215,8 @@ static void ath10k_pci_free_irq(struct a
+ 
+ void ath10k_pci_init_napi(struct ath10k *ar)
+ {
+-	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_pci_napi_poll);
++	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_pci_napi_poll,
++		       NAPI_POLL_WEIGHT);
+ }
+ 
+ static int ath10k_pci_init_irq(struct ath10k *ar)
+--- a/drivers/net/wireless/ath/ath10k/sdio.c
++++ b/drivers/net/wireless/ath/ath10k/sdio.c
+@@ -2531,7 +2531,8 @@ static int ath10k_sdio_probe(struct sdio
+ 		return -ENOMEM;
+ 	}
+ 
+-	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_sdio_napi_poll);
++	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_sdio_napi_poll,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	ath10k_dbg(ar, ATH10K_DBG_BOOT,
+ 		   "sdio new func %d vendor 0x%x device 0x%x block 0x%x/0x%x\n",
+--- a/drivers/net/wireless/ath/ath10k/snoc.c
++++ b/drivers/net/wireless/ath/ath10k/snoc.c
+@@ -1242,7 +1242,8 @@ static int ath10k_snoc_napi_poll(struct
+ 
+ static void ath10k_snoc_init_napi(struct ath10k *ar)
+ {
+-	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_snoc_napi_poll);
++	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_snoc_napi_poll,
++		       NAPI_POLL_WEIGHT);
+ }
+ 
+ static int ath10k_snoc_request_irq(struct ath10k *ar)
+--- a/drivers/net/wireless/ath/ath10k/usb.c
++++ b/drivers/net/wireless/ath/ath10k/usb.c
+@@ -1014,7 +1014,8 @@ static int ath10k_usb_probe(struct usb_i
+ 		return -ENOMEM;
+ 	}
+ 
+-	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_usb_napi_poll);
++	netif_napi_add(&ar->napi_dev, &ar->napi, ath10k_usb_napi_poll,
++		       NAPI_POLL_WEIGHT);
+ 
+ 	usb_get_dev(dev);
+ 	vendor_id = le16_to_cpu(dev->descriptor.idVendor);
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -545,7 +545,7 @@ static int ath11k_ahb_config_ext_irq(str
+ 		irq_grp->grp_id = i;
+ 		init_dummy_netdev(&irq_grp->napi_ndev);
+ 		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
+-			       ath11k_ahb_ext_grp_napi_poll);
++			       ath11k_ahb_ext_grp_napi_poll, NAPI_POLL_WEIGHT);
+ 
+ 		for (j = 0; j < ATH11K_EXT_IRQ_NUM_MAX; j++) {
+ 			if (ab->hw_params.ring_mask->tx[i] & BIT(j)) {
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -563,7 +563,7 @@ static int ath11k_pcic_ext_irq_config(st
+ 		irq_grp->grp_id = i;
+ 		init_dummy_netdev(&irq_grp->napi_ndev);
+ 		netif_napi_add(&irq_grp->napi_ndev, &irq_grp->napi,
+-			       ath11k_pcic_ext_grp_napi_poll);
++			       ath11k_pcic_ext_grp_napi_poll, NAPI_POLL_WEIGHT);
+ 
+ 		if (ab->hw_params.ring_mask->tx[i] ||
+ 		    ab->hw_params.ring_mask->rx[i] ||
+--- a/drivers/net/wireless/ath/wil6210/netdev.c
++++ b/drivers/net/wireless/ath/wil6210/netdev.c
+@@ -456,12 +456,14 @@ int wil_if_add(struct wil6210_priv *wil)
+ 	init_dummy_netdev(&wil->napi_ndev);
+ 	if (wil->use_enhanced_dma_hw) {
+ 		netif_napi_add(&wil->napi_ndev, &wil->napi_rx,
+-			       wil6210_netdev_poll_rx_edma);
++			       wil6210_netdev_poll_rx_edma,
++			       NAPI_POLL_WEIGHT);
+ 		netif_napi_add_tx(&wil->napi_ndev,
+ 				  &wil->napi_tx, wil6210_netdev_poll_tx_edma);
+ 	} else {
+ 		netif_napi_add(&wil->napi_ndev, &wil->napi_rx,
+-			       wil6210_netdev_poll_rx);
++			       wil6210_netdev_poll_rx,
++			       NAPI_POLL_WEIGHT);
+ 		netif_napi_add_tx(&wil->napi_ndev,
+ 				  &wil->napi_tx, wil6210_netdev_poll_tx);
+ 	}
+--- a/drivers/net/wireless/intel/iwlwifi/pcie/rx.c
++++ b/drivers/net/wireless/intel/iwlwifi/pcie/rx.c
+@@ -1110,7 +1110,7 @@ static int _iwl_pcie_rx_init(struct iwl_
+ 				poll = iwl_pcie_napi_poll_msix;
+ 
+ 			netif_napi_add(&trans_pcie->napi_dev, &rxq->napi,
+-				       poll);
++				       poll, NAPI_POLL_WEIGHT);
+ 			napi_enable(&rxq->napi);
+ 		}
+ 
+--- a/drivers/net/wireless/mediatek/mt76/dma.c
++++ b/drivers/net/wireless/mediatek/mt76/dma.c
+@@ -758,7 +758,7 @@ mt76_dma_init(struct mt76_dev *dev,
+ 	dev->napi_dev.threaded = 1;
+ 
+ 	mt76_for_each_q_rx(dev, i) {
+-		netif_napi_add(&dev->napi_dev, &dev->napi[i], poll);
++		netif_napi_add(&dev->napi_dev, &dev->napi[i], poll, 64);
+ 		mt76_dma_rx_fill(dev, &dev->q_rx[i]);
+ 		napi_enable(&dev->napi[i]);
+ 	}
+--- a/drivers/net/wireless/realtek/rtw88/pci.c
++++ b/drivers/net/wireless/realtek/rtw88/pci.c
+@@ -1717,7 +1717,8 @@ static void rtw_pci_napi_init(struct rtw
+ 	struct rtw_pci *rtwpci = (struct rtw_pci *)rtwdev->priv;
+ 
+ 	init_dummy_netdev(&rtwpci->netdev);
+-	netif_napi_add(&rtwpci->netdev, &rtwpci->napi, rtw_pci_napi_poll);
++	netif_napi_add(&rtwpci->netdev, &rtwpci->napi, rtw_pci_napi_poll,
++		       NAPI_POLL_WEIGHT);
+ }
+ 
+ static void rtw_pci_napi_deinit(struct rtw_dev *rtwdev)
+--- a/drivers/net/wireless/realtek/rtw89/core.c
++++ b/drivers/net/wireless/realtek/rtw89/core.c
+@@ -1805,7 +1805,7 @@ void rtw89_core_napi_init(struct rtw89_d
+ {
+ 	init_dummy_netdev(&rtwdev->netdev);
+ 	netif_napi_add(&rtwdev->netdev, &rtwdev->napi,
+-		       rtwdev->hci.ops->napi_poll);
++		       rtwdev->hci.ops->napi_poll, NAPI_POLL_WEIGHT);
+ }
+ EXPORT_SYMBOL(rtw89_core_napi_init);
+ 
+--- a/drivers/net/xen-netback/interface.c
++++ b/drivers/net/xen-netback/interface.c
+@@ -723,7 +723,8 @@ int xenvif_connect_data(struct xenvif_qu
+ 	init_waitqueue_head(&queue->dealloc_wq);
+ 	atomic_set(&queue->inflight_packets, 0);
+ 
+-	netif_napi_add(queue->vif->dev, &queue->napi, xenvif_poll);
++	netif_napi_add(queue->vif->dev, &queue->napi, xenvif_poll,
++			NAPI_POLL_WEIGHT);
+ 
+ 	queue->stalled = true;
+ 
+--- a/drivers/net/xen-netfront.c
++++ b/drivers/net/xen-netfront.c
+@@ -2224,7 +2224,8 @@ static int xennet_create_queues(struct n
+ 			return ret;
+ 		}
+ 
+-		netif_napi_add(queue->info->netdev, &queue->napi, xennet_poll);
++		netif_napi_add(queue->info->netdev, &queue->napi,
++			       xennet_poll, 64);
+ 		if (netif_running(info->netdev))
+ 			napi_enable(&queue->napi);
+ 	}
+--- a/drivers/s390/net/qeth_l2_main.c
++++ b/drivers/s390/net/qeth_l2_main.c
+@@ -1133,7 +1133,7 @@ static int qeth_l2_setup_netdev(struct q
+ 				       PAGE_SIZE * (QDIO_MAX_ELEMENTS_PER_BUFFER - 1));
+ 	}
+ 
+-	netif_napi_add(card->dev, &card->napi, qeth_poll);
++	netif_napi_add(card->dev, &card->napi, qeth_poll, NAPI_POLL_WEIGHT);
+ 	return register_netdev(card->dev);
+ }
+ 
+--- a/drivers/s390/net/qeth_l3_main.c
++++ b/drivers/s390/net/qeth_l3_main.c
+@@ -1910,7 +1910,7 @@ static int qeth_l3_setup_netdev(struct q
+ 		netif_set_tso_max_size(card->dev,
+ 				       PAGE_SIZE * (QETH_MAX_BUFFER_ELEMENTS(card) - 1));
+ 
+-	netif_napi_add(card->dev, &card->napi, qeth_poll);
++	netif_napi_add(card->dev, &card->napi, qeth_poll, NAPI_POLL_WEIGHT);
+ 	return register_netdev(card->dev);
+ }
+ 
+--- a/drivers/staging/qlge/qlge_main.c
++++ b/drivers/staging/qlge/qlge_main.c
+@@ -3041,8 +3041,8 @@ static int qlge_start_rx_ring(struct qlg
+ 		/* Inbound completion handling rx_rings run in
+ 		 * separate NAPI contexts.
+ 		 */
+-		netif_napi_add(qdev->ndev, &rx_ring->napi,
+-			       qlge_napi_poll_msix);
++		netif_napi_add_weight(qdev->ndev, &rx_ring->napi,
++				      qlge_napi_poll_msix, 64);
+ 		cqicb->irq_delay = cpu_to_le16(qdev->rx_coalesce_usecs);
+ 		cqicb->pkt_delay = cpu_to_le16(qdev->rx_max_coalesced_frames);
+ 	} else {
+--- a/include/linux/netdevice.h
++++ b/include/linux/netdevice.h
+@@ -2556,15 +2556,16 @@ void netif_napi_add_weight(struct net_de
+  * @dev:  network device
+  * @napi: NAPI context
+  * @poll: polling function
++ * @weight: default weight
+  *
+  * netif_napi_add() must be used to initialize a NAPI context prior to calling
+  * *any* of the other NAPI-related functions.
+  */
+ static inline void
+ netif_napi_add(struct net_device *dev, struct napi_struct *napi,
+-	       int (*poll)(struct napi_struct *, int))
++	       int (*poll)(struct napi_struct *, int), int weight)
+ {
+-	netif_napi_add_weight(dev, napi, poll, NAPI_POLL_WEIGHT);
++	netif_napi_add_weight(dev, napi, poll, weight);
+ }
+ 
+ static inline void
+--- a/net/core/gro_cells.c
++++ b/net/core/gro_cells.c
+@@ -81,7 +81,8 @@ int gro_cells_init(struct gro_cells *gce
+ 
+ 		set_bit(NAPI_STATE_NO_BUSY_POLL, &cell->napi.state);
+ 
+-		netif_napi_add(dev, &cell->napi, gro_cell_poll);
++		netif_napi_add(dev, &cell->napi, gro_cell_poll,
++			       NAPI_POLL_WEIGHT);
+ 		napi_enable(&cell->napi);
+ 	}
+ 	return 0;
