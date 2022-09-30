@@ -66,7 +66,7 @@
  #if IS_ENABLED(CONFIG_MPLS_ROUTING)
  	struct mpls_dev __rcu	*mpls_ptr;
  #endif
-@@ -2575,6 +2577,8 @@ netif_napi_add_tx_weight(struct net_devi
+@@ -2574,6 +2576,8 @@ netif_napi_add_tx_weight(struct net_devi
  	netif_napi_add_weight(dev, napi, poll, weight);
  }
  
