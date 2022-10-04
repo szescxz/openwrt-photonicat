@@ -697,7 +697,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  }
 --- a/drivers/net/ethernet/engleder/tsnep_main.c
 +++ b/drivers/net/ethernet/engleder/tsnep_main.c
-@@ -899,7 +899,7 @@ static int tsnep_netdev_open(struct net_
+@@ -996,7 +996,7 @@ static int tsnep_netdev_open(struct net_
  
  	for (i = 0; i < adapter->num_queues; i++) {
  		netif_napi_add(adapter->netdev, &adapter->queue[i].napi,
@@ -791,7 +791,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  		for (j = 0; j < v_tx_rings; j++) {
 --- a/drivers/net/ethernet/freescale/fec_main.c
 +++ b/drivers/net/ethernet/freescale/fec_main.c
-@@ -3608,7 +3608,7 @@ static int fec_enet_init(struct net_devi
+@@ -3651,7 +3651,7 @@ static int fec_enet_init(struct net_devi
  	ndev->ethtool_ops = &fec_enet_ethtool_ops;
  
  	writel(FEC_RX_DISABLED_IMASK, fep->hwp + FEC_IMASK);
@@ -1184,7 +1184,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  }
 --- a/drivers/net/ethernet/marvell/octeontx2/nic/otx2_pf.c
 +++ b/drivers/net/ethernet/marvell/octeontx2/nic/otx2_pf.c
-@@ -1661,7 +1661,8 @@ int otx2_open(struct net_device *netdev)
+@@ -1671,7 +1671,8 @@ int otx2_open(struct net_device *netdev)
  		cq_poll->dev = (void *)pf;
  		cq_poll->dim.mode = DIM_CQ_PERIOD_MODE_START_FROM_CQE;
  		INIT_WORK(&cq_poll->dim.work, otx2_dim_work);
@@ -1289,7 +1289,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	if (unlikely(err))
 --- a/drivers/net/ethernet/mellanox/mlx5/core/en_main.c
 +++ b/drivers/net/ethernet/mellanox/mlx5/core/en_main.c
-@@ -2288,7 +2288,7 @@ static int mlx5e_open_channel(struct mlx
+@@ -2429,7 +2429,7 @@ static int mlx5e_open_channel(struct mlx
  	c->aff_mask = irq_get_effective_affinity_mask(irq);
  	c->lag_port = mlx5e_enumerate_lag_port(priv->mdev, ix);
  
@@ -1570,7 +1570,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	 * through the use of skb_copy_and_csum_dev we enable these
 --- a/drivers/net/ethernet/realtek/r8169_main.c
 +++ b/drivers/net/ethernet/realtek/r8169_main.c
-@@ -5240,7 +5240,7 @@ static int rtl_init_one(struct pci_dev *
+@@ -5244,7 +5244,7 @@ static int rtl_init_one(struct pci_dev *
  
  	dev->ethtool_ops = &rtl8169_ethtool_ops;
  
