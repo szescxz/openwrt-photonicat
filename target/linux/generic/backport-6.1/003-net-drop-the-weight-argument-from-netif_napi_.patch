@@ -2286,7 +2286,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	} else {
 --- a/include/linux/netdevice.h
 +++ b/include/linux/netdevice.h
-@@ -2556,15 +2556,16 @@ void netif_napi_add_weight(struct net_de
+@@ -2554,15 +2554,16 @@ void netif_napi_add_weight(struct net_de
   * @dev:  network device
   * @napi: NAPI context
   * @poll: polling function
