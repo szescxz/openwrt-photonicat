@@ -5,10 +5,10 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
-PKG_VERSION:=2021.07
+PKG_VERSION:=2022.10
 PKG_RELEASE:=$(AUTORELEASE)
 
-PKG_HASH:=312b7eeae44581d1362c3a3f02c28d806647756c82ba8c72241c7cdbe68ba77e
+PKG_HASH:=50b4482a505bc281ba8470c399a3c26e145e29b23500bc35c50debd7fa46bdf8
 
 PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
@@ -32,7 +32,6 @@ define U-Boot/roc-cc-rk3328
   DEPENDS:=+PACKAGE_u-boot-roc-cc-rk3328:arm-trusted-firmware-rockchip
   PKG_BUILD_DEPENDS:=arm-trusted-firmware-rockchip
   ATF:=rk3328_bl31.elf
-  OF_PLATDATA:=$(1)
 endef
 
 define U-Boot/nanopi-r2s-rk3328
@@ -82,16 +81,6 @@ UBOOT_MAKE_FLAGS += \
 
 define Build/Configure
 	$(call Build/Configure/U-Boot)
-
-ifneq ($(OF_PLATDATA),)
-	mkdir -p $(PKG_BUILD_DIR)/tpl/dts
-	mkdir -p $(PKG_BUILD_DIR)/include/generated
-
-	$(CP) $(PKG_BUILD_DIR)/of-platdata/$(OF_PLATDATA)/dt-plat.c $(PKG_BUILD_DIR)/tpl/dts/dt-plat.c
-	$(CP) $(PKG_BUILD_DIR)/of-platdata/$(OF_PLATDATA)/dt-structs-gen.h $(PKG_BUILD_DIR)/include/generated/dt-structs-gen.h
-	$(CP) $(PKG_BUILD_DIR)/of-platdata/$(OF_PLATDATA)/dt-decl.h $(PKG_BUILD_DIR)/include/generated/dt-decl.h
-endif
-
 	$(SED) 's#CONFIG_MKIMAGE_DTC_PATH=.*#CONFIG_MKIMAGE_DTC_PATH="$(PKG_BUILD_DIR)/scripts/dtc/dtc"#g' $(PKG_BUILD_DIR)/.config
 endef
 
