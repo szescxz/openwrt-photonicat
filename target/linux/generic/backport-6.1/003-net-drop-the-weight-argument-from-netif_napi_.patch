@@ -1989,7 +1989,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  }
 --- a/drivers/net/hyperv/netvsc.c
 +++ b/drivers/net/hyperv/netvsc.c
-@@ -1779,7 +1779,8 @@ struct netvsc_device *netvsc_device_add(
+@@ -1783,7 +1783,8 @@ struct netvsc_device *netvsc_device_add(
  	}
  
  	/* Enable NAPI handler before init callbacks */
@@ -2193,7 +2193,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  
 --- a/drivers/net/wireless/mediatek/mt76/dma.c
 +++ b/drivers/net/wireless/mediatek/mt76/dma.c
-@@ -758,7 +758,7 @@ mt76_dma_init(struct mt76_dev *dev,
+@@ -755,7 +755,7 @@ mt76_dma_init(struct mt76_dev *dev,
  	dev->napi_dev.threaded = 1;
  
  	mt76_for_each_q_rx(dev, i) {
