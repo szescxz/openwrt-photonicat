@@ -1,0 +1,96 @@
+name: Build bcm2711 6.0
+on: [push]
+
+jobs:
+    build:
+        name: Prepare and build bcm2711 images
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup Ubuntu
+              run: |
+                sudo apt update
+                sudo apt install build-essential ccache ecj fastjar file g++ gawk \
+                gettext git java-propose-classpath libelf-dev libncurses5-dev \
+                libncursesw5-dev libssl-dev python2.7-dev python3 unzip wget \
+                python3-setuptools python3-dev rsync subversion \
+                swig time xsltproc zlib1g-dev
+
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Update and install feeds
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+                cd feeds/luci
+                wget https://patch-diff.githubusercontent.com/raw/openwrt/luci/pull/5918.patch
+                wget https://github.com/mj22226/luci/commit/777019144e7e3f9645ea19190eb900ba09e502ba.patch
+                git apply 777019144e7e3f9645ea19190eb900ba09e502ba.patch
+                git apply 5918.patch
+                cd -
+                sed -i "70s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "83s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "209s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "462s/TARGET_bcm27xx_bcm2709/TARGET_bcm27xx_bcm2711/" feeds/packages/utils/collectd/Makefile
+
+            - name: Generate config for bcm2711 6.0
+              run: |
+                cp .github/workflows/config.buildinfo .config
+                make defconfig
+
+            - name: Download linux next custom kernel
+              run: |
+                mkdir dl
+                wget https://github.com/mj22226/linux/archive/refs/tags/6.0-rc9.tar.gz -O dl/linux-6.0-rc9.tar.gz
+
+            - name: Download package sources
+              run: make download V=s
+
+            - name: Build tools
+              run: |
+                make tools/install -j$(nproc) V=s || \
+                make tools/install V=s
+
+            - name: Build toolchain
+              run: |
+                make toolchain/install -j$(nproc) V=s || \
+                make toolchain/install V=s
+
+            - name: Build target images
+              run: |
+                make -j$(nproc) V=s 'IGNORE_ERRORS=n m' || \
+                make V=s 'IGNORE_ERRORS=n m'
+
+            - name: TAR output
+              run: tar -cvf bcm27xx-images.tar bin/targets/bcm27xx/bcm2711
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                name: bcm27xx-images
+                path: bcm27xx-images.tar
+
+    release:
+          name: Make a release
+          runs-on: ubuntu-latest
+          needs: build
+
+          steps:
+            - name: Download the image artifacts
+              uses: actions/download-artifact@v2
+              with:
+                name: bcm27xx-images
+
+            - name: Extract the image artifacts
+              run: tar xf bcm27xx-images.tar
+
+            - name: Create a release
+              uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                prerelease: true
+                title: "BCM2711 v6.0 Images"
+                automatic_release_tag: "bcm2711-6.0"
+                files: bin/targets/bcm27xx/bcm2711/*
