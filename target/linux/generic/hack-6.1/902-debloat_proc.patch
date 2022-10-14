@@ -330,7 +330,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/net/core/sock.c
 +++ b/net/core/sock.c
-@@ -4059,6 +4059,8 @@ static __net_initdata struct pernet_oper
+@@ -4061,6 +4061,8 @@ static __net_initdata struct pernet_oper
  
  static int __init proto_init(void)
  {
