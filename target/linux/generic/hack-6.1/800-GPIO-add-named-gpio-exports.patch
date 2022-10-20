@@ -90,7 +90,7 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +#endif
 --- a/include/asm-generic/gpio.h
 +++ b/include/asm-generic/gpio.h
-@@ -125,6 +125,12 @@ static inline int gpio_export(unsigned g
+@@ -103,6 +103,12 @@ static inline int gpio_export(unsigned g
  	return gpiod_export(gpio_to_desc(gpio), direction_may_change);
  }
  

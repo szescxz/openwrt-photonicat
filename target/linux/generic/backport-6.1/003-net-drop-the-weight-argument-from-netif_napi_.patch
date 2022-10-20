@@ -639,7 +639,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  
 --- a/drivers/net/ethernet/cisco/enic/enic_main.c
 +++ b/drivers/net/ethernet/cisco/enic/enic_main.c
-@@ -2633,17 +2633,16 @@ static int enic_dev_init(struct enic *en
+@@ -2632,17 +2632,16 @@ static int enic_dev_init(struct enic *en
  
  	switch (vnic_dev_get_intr_mode(enic->vdev)) {
  	default:
@@ -741,7 +741,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	priv->res = request_mem_region(res->start, resource_size(res),
 --- a/drivers/net/ethernet/freescale/dpaa/dpaa_eth.c
 +++ b/drivers/net/ethernet/freescale/dpaa/dpaa_eth.c
-@@ -3183,7 +3183,8 @@ static int dpaa_napi_add(struct net_devi
+@@ -3145,7 +3145,8 @@ static int dpaa_napi_add(struct net_devi
  	for_each_possible_cpu(cpu) {
  		percpu_priv = per_cpu_ptr(priv->percpu_priv, cpu);
  
@@ -791,7 +791,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  		for (j = 0; j < v_tx_rings; j++) {
 --- a/drivers/net/ethernet/freescale/fec_main.c
 +++ b/drivers/net/ethernet/freescale/fec_main.c
-@@ -3651,7 +3651,7 @@ static int fec_enet_init(struct net_devi
+@@ -3594,7 +3594,7 @@ static int fec_enet_init(struct net_devi
  	ndev->ethtool_ops = &fec_enet_ethtool_ops;
  
  	writel(FEC_RX_DISABLED_IMASK, fep->hwp + FEC_IMASK);
@@ -959,7 +959,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	interface->q_vector[v_idx] = q_vector;
 --- a/drivers/net/ethernet/intel/i40e/i40e_main.c
 +++ b/drivers/net/ethernet/intel/i40e/i40e_main.c
-@@ -11941,7 +11941,8 @@ static int i40e_vsi_alloc_q_vector(struc
+@@ -11934,7 +11934,8 @@ static int i40e_vsi_alloc_q_vector(struc
  	cpumask_copy(&q_vector->affinity_mask, cpu_possible_mask);
  
  	if (vsi->netdev)
@@ -1229,7 +1229,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	if (err) {
 --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
 +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -4166,8 +4166,10 @@ static int mtk_probe(struct platform_dev
+@@ -4170,8 +4170,10 @@ static int mtk_probe(struct platform_dev
  	 * for NAPI to work
  	 */
  	init_dummy_netdev(&eth->dummy_dev);
@@ -1444,7 +1444,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  
  	qcq->flags |= IONIC_QCQ_F_INITED;
  
-@@ -3162,7 +3165,8 @@ static int ionic_lif_adminq_init(struct
+@@ -3166,7 +3169,8 @@ static int ionic_lif_adminq_init(struct
  	dev_dbg(dev, "adminq->hw_type %d\n", q->hw_type);
  	dev_dbg(dev, "adminq->hw_index %d\n", q->hw_index);
  
@@ -1719,7 +1719,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	platform_set_drvdata(pdev, ndev);
 --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -6887,7 +6887,8 @@ static void stmmac_napi_add(struct net_d
+@@ -6888,7 +6888,8 @@ static void stmmac_napi_add(struct net_d
  		spin_lock_init(&ch->lock);
  
  		if (queue < priv->plat->rx_queues_to_use) {
@@ -1729,7 +1729,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  		}
  		if (queue < priv->plat->tx_queues_to_use) {
  			netif_napi_add_tx(dev, &ch->tx_napi,
-@@ -6896,7 +6897,8 @@ static void stmmac_napi_add(struct net_d
+@@ -6897,7 +6898,8 @@ static void stmmac_napi_add(struct net_d
  		if (queue < priv->plat->rx_queues_to_use &&
  		    queue < priv->plat->tx_queues_to_use) {
  			netif_napi_add(dev, &ch->rxtx_napi,
@@ -2001,7 +2001,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	device->channel->next_request_id_callback = vmbus_next_request_id;
 --- a/drivers/net/hyperv/rndis_filter.c
 +++ b/drivers/net/hyperv/rndis_filter.c
-@@ -1575,7 +1575,7 @@ struct netvsc_device *rndis_filter_devic
+@@ -1577,7 +1577,7 @@ struct netvsc_device *rndis_filter_devic
  
  	for (i = 1; i < net_device->num_chn; i++)
  		netif_napi_add(net, &net_device->chan_table[i].napi,
@@ -2216,7 +2216,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  static void rtw_pci_napi_deinit(struct rtw_dev *rtwdev)
 --- a/drivers/net/wireless/realtek/rtw89/core.c
 +++ b/drivers/net/wireless/realtek/rtw89/core.c
-@@ -1805,7 +1805,7 @@ void rtw89_core_napi_init(struct rtw89_d
+@@ -1808,7 +1808,7 @@ void rtw89_core_napi_init(struct rtw89_d
  {
  	init_dummy_netdev(&rtwdev->netdev);
  	netif_napi_add(&rtwdev->netdev, &rtwdev->napi,
