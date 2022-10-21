@@ -1178,7 +1178,7 @@ define KernelPackage/nft-offload
   SUBMENU:=$(NF_MENU)
   TITLE:=Netfilter nf_tables routing/NAT offload support
   DEPENDS:=@IPV6 +kmod-nf-flow +kmod-nft-nat \
-	+kmod-nft-offload-ipv4 +kmod-nft-offload-ipv6
+	+(LINUX_5_10||LINUX_5_15):kmod-nft-offload-ipv4 +(LINUX_5_10||LINUX_5_15):kmod-nft-offload-ipv6
   KCONFIG:= \
 	CONFIG_NF_FLOW_TABLE_INET \
 	CONFIG_NFT_FLOW_OFFLOAD
