@@ -1,0 +1,64 @@
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pno.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pno.c
+@@ -177,7 +177,7 @@ static int brcmf_pno_set_random(struct b
+ 	memcpy(pfn_mac.mac, mac_addr, ETH_ALEN);
+ 	for (i = 0; i < ETH_ALEN; i++) {
+ 		pfn_mac.mac[i] &= mac_mask[i];
+-		pfn_mac.mac[i] |= get_random_int() & ~(mac_mask[i]);
++		pfn_mac.mac[i] |= get_random_u32() & ~(mac_mask[i]);
+ 	}
+ 	/* Clear multi bit */
+ 	pfn_mac.mac[0] &= 0xFE;
+--- a/drivers/net/wireless/marvell/mwifiex/cfg80211.c
++++ b/drivers/net/wireless/marvell/mwifiex/cfg80211.c
+@@ -250,7 +250,7 @@ mwifiex_cfg80211_mgmt_tx(struct wiphy *w
+ 	tx_info->pkt_len = pkt_len;
+ 
+ 	mwifiex_form_mgmt_frame(skb, buf, len);
+-	*cookie = prandom_u32() | 1;
++	*cookie = get_random_u32() | 1;
+ 
+ 	if (ieee80211_is_action(mgmt->frame_control))
+ 		skb = mwifiex_clone_skb_for_tx_status(priv,
+@@ -314,7 +314,7 @@ mwifiex_cfg80211_remain_on_channel(struc
+ 					 duration);
+ 
+ 	if (!ret) {
+-		*cookie = prandom_u32() | 1;
++		*cookie = get_random_u32() | 1;
+ 		priv->roc_cfg.cookie = *cookie;
+ 		priv->roc_cfg.chan = *chan;
+ 
+--- a/drivers/net/wireless/microchip/wilc1000/cfg80211.c
++++ b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+@@ -1130,7 +1130,7 @@ static int mgmt_tx(struct wiphy *wiphy,
+ 	const u8 *vendor_ie;
+ 	int ret = 0;
+ 
+-	*cookie = prandom_u32();
++	*cookie = get_random_u32();
+ 	priv->tx_cookie = *cookie;
+ 	mgmt = (const struct ieee80211_mgmt *)buf;
+ 
+--- a/drivers/net/wireless/quantenna/qtnfmac/cfg80211.c
++++ b/drivers/net/wireless/quantenna/qtnfmac/cfg80211.c
+@@ -448,7 +448,7 @@ qtnf_mgmt_tx(struct wiphy *wiphy, struct
+ {
+ 	struct qtnf_vif *vif = qtnf_netdev_get_priv(wdev->netdev);
+ 	const struct ieee80211_mgmt *mgmt_frame = (void *)params->buf;
+-	u32 short_cookie = prandom_u32();
++	u32 short_cookie = get_random_u32();
+ 	u16 flags = 0;
+ 	u16 freq;
+ 
+--- a/drivers/net/wireless/ti/wlcore/main.c
++++ b/drivers/net/wireless/ti/wlcore/main.c
+@@ -6169,7 +6169,7 @@ static int wl1271_register_hw(struct wl1
+ 			wl1271_warning("Fuse mac address is zero. using random mac");
+ 			/* Use TI oui and a random nic */
+ 			oui_addr = WLCORE_TI_OUI_ADDRESS;
+-			nic_addr = get_random_int();
++			nic_addr = get_random_u32();
+ 		} else {
+ 			oui_addr = wl->fuse_oui_addr;
+ 			/* fuse has the BD_ADDR, the WLAN addresses are the next two */
