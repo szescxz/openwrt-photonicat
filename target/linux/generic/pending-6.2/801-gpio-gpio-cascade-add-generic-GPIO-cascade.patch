@@ -70,7 +70,7 @@ v1 -> v2:
 
 --- a/drivers/gpio/Kconfig
 +++ b/drivers/gpio/Kconfig
-@@ -1703,4 +1703,19 @@ config GPIO_SIM
+@@ -1720,4 +1720,19 @@ config GPIO_SIM
  
  endmenu
  

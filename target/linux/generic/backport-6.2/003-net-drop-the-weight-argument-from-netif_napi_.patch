@@ -444,7 +444,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  	if (err) {
 --- a/drivers/net/ethernet/broadcom/bnx2.c
 +++ b/drivers/net/ethernet/broadcom/bnx2.c
-@@ -8522,7 +8522,7 @@ bnx2_init_napi(struct bnx2 *bp)
+@@ -8523,7 +8523,7 @@ bnx2_init_napi(struct bnx2 *bp)
  		else
  			poll = bnx2_poll_msix;
  
@@ -1324,7 +1324,7 @@ This reverts commit b48b89f9c189d24eb5e2b4a0ac067da5a24ee86d.
  			  DMAC_CMD_RX_SWR_(rx->channel_number));
 --- a/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
 +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
-@@ -787,7 +787,8 @@ void lan966x_fdma_netdev_init(struct lan
+@@ -769,7 +769,8 @@ void lan966x_fdma_netdev_init(struct lan
  		return;
  
  	lan966x->fdma_ndev = dev;
