@@ -63,7 +63,7 @@ Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
  	depends on ZYNQMP_FIRMWARE || COMPILE_TEST
 --- a/drivers/crypto/Makefile
 +++ b/drivers/crypto/Makefile
-@@ -35,7 +35,7 @@ obj-$(CONFIG_CRYPTO_DEV_PPC4XX) += amcc/
+@@ -36,7 +36,7 @@ obj-$(CONFIG_CRYPTO_DEV_PPC4XX) += amcc/
  obj-$(CONFIG_CRYPTO_DEV_QAT) += qat/
  obj-$(CONFIG_CRYPTO_DEV_QCE) += qce/
  obj-$(CONFIG_CRYPTO_DEV_QCOM_RNG) += qcom-rng.o
