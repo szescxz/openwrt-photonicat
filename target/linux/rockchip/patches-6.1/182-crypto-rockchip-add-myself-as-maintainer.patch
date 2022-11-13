@@ -14,7 +14,7 @@ Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -17770,6 +17770,13 @@ F:	Documentation/ABI/*/sysfs-driver-hid-
+@@ -17767,6 +17767,13 @@ F:	Documentation/ABI/*/sysfs-driver-hid-
  F:	drivers/hid/hid-roccat*
  F:	include/linux/hid-roccat*
  
