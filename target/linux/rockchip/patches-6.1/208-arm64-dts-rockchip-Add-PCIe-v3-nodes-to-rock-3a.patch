@@ -53,7 +53,7 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  	vcc3v3_pcie: vcc3v3-pcie-regulator {
  		compatible = "regulator-fixed";
  		enable-active-high;
-@@ -545,6 +576,19 @@
+@@ -544,6 +575,19 @@
  	vpcie3v3-supply = <&vcc3v3_pcie>;
  	status = "okay";
  };

@@ -35,7 +35,7 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  	vcc12v_dcin: vcc12v-dcin-regulator {
  		compatible = "regulator-fixed";
  		regulator-name = "vcc12v_dcin";
-@@ -654,6 +665,26 @@
+@@ -653,6 +664,26 @@
  			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
  		};
  	};
@@ -62,7 +62,7 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  };
  
  &pmu_io_domains {
-@@ -698,12 +729,50 @@
+@@ -697,12 +728,50 @@
  	status = "okay";
  };
  
