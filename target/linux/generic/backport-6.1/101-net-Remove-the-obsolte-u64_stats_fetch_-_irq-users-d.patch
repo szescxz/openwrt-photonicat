@@ -800,7 +800,7 @@ Signed-off-by: Jakub Kicinski <kuba@kernel.org>
  /**
 --- a/drivers/net/ethernet/intel/igb/igb_ethtool.c
 +++ b/drivers/net/ethernet/intel/igb/igb_ethtool.c
-@@ -2311,15 +2311,15 @@ static void igb_get_ethtool_stats(struct
+@@ -2313,15 +2313,15 @@ static void igb_get_ethtool_stats(struct
  
  		ring = adapter->tx_ring[j];
  		do {
@@ -820,7 +820,7 @@ Signed-off-by: Jakub Kicinski <kuba@kernel.org>
  		data[i+2] += restart2;
  
  		i += IGB_TX_QUEUE_STATS_LEN;
-@@ -2327,13 +2327,13 @@ static void igb_get_ethtool_stats(struct
+@@ -2329,13 +2329,13 @@ static void igb_get_ethtool_stats(struct
  	for (j = 0; j < adapter->num_rx_queues; j++) {
  		ring = adapter->rx_ring[j];
  		do {
