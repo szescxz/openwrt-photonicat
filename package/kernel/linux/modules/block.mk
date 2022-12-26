@@ -193,7 +193,7 @@ $(eval $(call KernelPackage,block2mtd))
 define KernelPackage/dax
   SUBMENU:=$(BLOCK_MENU)
   TITLE:=DAX: direct access to differentiated memory
-  KCONFIG:=CONFIG_DAX
+  KCONFIG:=CONFIG_DAX=y
   FILES:=$(LINUX_DIR)/drivers/dax/dax.ko
 endef
 

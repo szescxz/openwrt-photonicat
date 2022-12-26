@@ -57,7 +57,8 @@ define KernelPackage/bluetooth
 	$(LINUX_DIR)/drivers/bluetooth/hci_uart.ko \
 	$(LINUX_DIR)/drivers/bluetooth/btusb.ko \
 	$(LINUX_DIR)/drivers/bluetooth/btintel.ko \
-	$(LINUX_DIR)/drivers/bluetooth/btrtl.ko
+	$(LINUX_DIR)/drivers/bluetooth/btrtl.ko \
+	$(LINUX_DIR)/drivers/bluetooth/btmtk.ko
   AUTOLOAD:=$(call AutoProbe,bluetooth rfcomm bnep hidp hci_uart btusb)
 endef
 
@@ -1212,7 +1213,8 @@ $(eval $(call KernelPackage,keys-encrypted))
 define KernelPackage/keys-trusted
   SUBMENU:=$(OTHER_MENU)
   TITLE:=TPM trusted keys on kernel keyring
-  DEPENDS:=@KERNEL_KEYS +kmod-crypto-hash +kmod-crypto-hmac +kmod-crypto-sha1 +kmod-tpm
+  DEPENDS:=@KERNEL_KEYS +kmod-crypto-hash +kmod-crypto-hmac +kmod-crypto-sha1 +kmod-tpm \
+             +kmod-asn1-decoder +kmod-asn1-encoder +kmod-oid-registry
   KCONFIG:=CONFIG_TRUSTED_KEYS
   FILES:= $(LINUX_DIR)/security/keys/trusted-keys/trusted.ko
   AUTOLOAD:=$(call AutoLoad,01,trusted-keys,1)
@@ -1320,7 +1322,9 @@ define KernelPackage/mhi-bus
   DEPENDS:=@LINUX_5_15
   KCONFIG:=CONFIG_MHI_BUS \
            CONFIG_MHI_BUS_DEBUG=y
-  FILES:=$(LINUX_DIR)/drivers/bus/mhi/core/mhi.ko
+  FILES:= \
+  $(LINUX_DIR)/drivers/bus/mhi/core/mhi.ko \
+  $(LINUX_DIR)/drivers/bus/mhi/host/mhi.ko
   AUTOLOAD:=$(call AutoProbe,mhi)
 endef
 
@@ -1333,9 +1337,11 @@ $(eval $(call KernelPackage,mhi-bus))
 define KernelPackage/mhi-pci-generic
   SUBMENU:=$(OTHER_MENU)
   TITLE:=MHI PCI controller driver
-  DEPENDS:=@LINUX_5_15 +kmod-mhi-bus
+  DEPENDS:=@!LINUX_5_10 +kmod-mhi-bus
   KCONFIG:=CONFIG_MHI_BUS_PCI_GENERIC
-  FILES:=$(LINUX_DIR)/drivers/bus/mhi/mhi_pci_generic.ko
+  FILES:= \
+  $(LINUX_DIR)/drivers/bus/mhi/mhi_pci_generic.ko \
+  $(LINUX_DIR)/drivers/bus/mhi/host/mhi_pci_generic.ko
   AUTOLOAD:=$(call AutoProbe,mhi_pci_generic)
 endef
 
