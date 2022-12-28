@@ -1,0 +1,68 @@
+From 7ef26caf64e36fe5e3e5459ce514e9e13cee1642 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 19 Oct 2022 13:33:10 +0100
+Subject: [PATCH 460/546] configs: Add and enable CONFIG_LRU_GEN
+
+---
+ arch/arm/configs/bcm2709_defconfig   | 2 ++
+ arch/arm/configs/bcm2711_defconfig   | 2 ++
+ arch/arm/configs/bcmrpi_defconfig    | 2 ++
+ arch/arm64/configs/bcm2711_defconfig | 2 ++
+ arch/arm64/configs/bcmrpi3_defconfig | 2 ++
+ 5 files changed, 10 insertions(+)
+
+--- a/arch/arm/configs/bcm2709_defconfig
++++ b/arch/arm/configs/bcm2709_defconfig
+@@ -68,6 +68,8 @@ CONFIG_ZSWAP=y
+ CONFIG_Z3FOLD=m
+ # CONFIG_COMPAT_BRK is not set
+ CONFIG_CMA=y
++CONFIG_LRU_GEN=y
++CONFIG_LRU_GEN_ENABLED=y
+ CONFIG_NET=y
+ CONFIG_PACKET=y
+ CONFIG_UNIX=y
+--- a/arch/arm/configs/bcm2711_defconfig
++++ b/arch/arm/configs/bcm2711_defconfig
+@@ -69,6 +69,8 @@ CONFIG_ZSWAP=y
+ CONFIG_Z3FOLD=m
+ # CONFIG_COMPAT_BRK is not set
+ CONFIG_CMA=y
++CONFIG_LRU_GEN=y
++CONFIG_LRU_GEN_ENABLED=y
+ CONFIG_NET=y
+ CONFIG_PACKET=y
+ CONFIG_UNIX=y
+--- a/arch/arm/configs/bcmrpi_defconfig
++++ b/arch/arm/configs/bcmrpi_defconfig
+@@ -63,6 +63,8 @@ CONFIG_ZSWAP=y
+ CONFIG_Z3FOLD=m
+ # CONFIG_COMPAT_BRK is not set
+ CONFIG_CMA=y
++CONFIG_LRU_GEN=y
++CONFIG_LRU_GEN_ENABLED=y
+ CONFIG_NET=y
+ CONFIG_PACKET=y
+ CONFIG_UNIX=y
+--- a/arch/arm64/configs/bcm2711_defconfig
++++ b/arch/arm64/configs/bcm2711_defconfig
+@@ -72,6 +72,8 @@ CONFIG_ZSWAP=y
+ CONFIG_Z3FOLD=m
+ # CONFIG_COMPAT_BRK is not set
+ CONFIG_CMA=y
++CONFIG_LRU_GEN=y
++CONFIG_LRU_GEN_ENABLED=y
+ CONFIG_NET=y
+ CONFIG_PACKET=y
+ CONFIG_UNIX=y
+--- a/arch/arm64/configs/bcmrpi3_defconfig
++++ b/arch/arm64/configs/bcmrpi3_defconfig
+@@ -71,6 +71,8 @@ CONFIG_ZSWAP=y
+ CONFIG_Z3FOLD=m
+ # CONFIG_COMPAT_BRK is not set
+ CONFIG_CMA=y
++CONFIG_LRU_GEN=y
++CONFIG_LRU_GEN_ENABLED=y
+ CONFIG_NET=y
+ CONFIG_PACKET=y
+ CONFIG_UNIX=y

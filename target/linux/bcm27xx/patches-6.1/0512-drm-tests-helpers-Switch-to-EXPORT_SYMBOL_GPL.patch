@@ -1,0 +1,27 @@
+From bd0c166769906612d6b7933dc7327c301c7b9726 Mon Sep 17 00:00:00 2001
+From: Maxime Ripard <maxime@cerno.tech>
+Date: Thu, 1 Dec 2022 14:59:07 +0100
+Subject: [PATCH 512/546] drm/tests: helpers: Switch to EXPORT_SYMBOL_GPL
+
+drm_kunit_device_init() among other things will allocate a device and
+wrap around root_device_register. This function is exported with
+EXPORT_SYMBOL_GPL, so we can't really change the license.
+
+Fixes: 199557fab925 ("drm/tests: helpers: Add missing export")
+Suggested-by: Javier Martinez Canillas <javierm@redhat.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ drivers/gpu/drm/tests/drm_kunit_helpers.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/gpu/drm/tests/drm_kunit_helpers.c
++++ b/drivers/gpu/drm/tests/drm_kunit_helpers.c
+@@ -82,7 +82,7 @@ struct drm_device *drm_kunit_device_init
+ 
+ 	return drm;
+ }
+-EXPORT_SYMBOL(drm_kunit_device_init);
++EXPORT_SYMBOL_GPL(drm_kunit_device_init);
+ 
+ MODULE_AUTHOR("Maxime Ripard <maxime@cerno.tech>");
+ MODULE_LICENSE("GPL");

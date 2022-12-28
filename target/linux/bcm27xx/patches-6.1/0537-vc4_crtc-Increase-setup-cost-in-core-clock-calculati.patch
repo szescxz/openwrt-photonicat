@@ -1,0 +1,34 @@
+From 08d013970a85d57beb4d00ab033d59ed7f481765 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Thu, 15 Dec 2022 11:38:59 +0000
+Subject: [PATCH 537/546] vc4_crtc: Increase setup cost in core clock
+ calculation to handle extreme reduced blanking
+
+See: https://github.com/raspberrypi/linux/issues/4446
+
+The formula that determines the core clock requirement based on pixel clock and blanking
+has been determined experimentally to minimise the clock while supporting all modes we've seen.
+
+A new reduced blanking mode (4kp60 at 533MHz rather than the standard 594MHz) has been seen
+that doesn't produce a high enough clock and results in "flip_done timed out" error.
+
+Increase the setup cost in the formula to make this work.
+The result is a reduced blanking mode increases by up to 7MHz while leaving the standard timing
+mode untouched
+
+Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+---
+ drivers/gpu/drm/vc4/vc4_crtc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/gpu/drm/vc4/vc4_crtc.c
++++ b/drivers/gpu/drm/vc4/vc4_crtc.c
+@@ -739,7 +739,7 @@ int vc4_crtc_atomic_check(struct drm_crt
+ 		struct vc4_encoder *vc4_encoder = to_vc4_encoder(encoder);
+ 
+ 		if (vc4_encoder->type == VC4_ENCODER_TYPE_HDMI0) {
+-			vc4_state->hvs_load = max(mode->clock * mode->hdisplay / mode->htotal + 1000,
++			vc4_state->hvs_load = max(mode->clock * mode->hdisplay / mode->htotal + 8000,
+ 						  mode->clock * 9 / 10) * 1000;
+ 		} else {
+ 			vc4_state->hvs_load = mode->clock * 1000;

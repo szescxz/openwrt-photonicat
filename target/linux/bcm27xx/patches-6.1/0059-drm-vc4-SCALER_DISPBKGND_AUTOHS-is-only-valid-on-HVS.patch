@@ -1,0 +1,69 @@
+From be94d898e99e9f180b080422a123bfd2f7e6b79a Mon Sep 17 00:00:00 2001
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Thu, 11 Aug 2022 15:49:16 +0100
+Subject: [PATCH 059/546] drm/vc4: SCALER_DISPBKGND_AUTOHS is only valid on
+ HVS4
+
+The bit used for SCALER_DISPBKGND_AUTOHS in SCALER_DISPBKGNDX
+has been repurposed on HVS5 to configure whether a display can
+win back-to-back arbitration wins for the COB.
+
+This is not desirable, therefore only select this bit on HVS4,
+and explicitly clear it on HVS5.
+
+Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+---
+ drivers/gpu/drm/vc4/vc4_hvs.c  | 10 ++++++----
+ drivers/gpu/drm/vc4/vc4_regs.h |  1 +
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+--- a/drivers/gpu/drm/vc4/vc4_hvs.c
++++ b/drivers/gpu/drm/vc4/vc4_hvs.c
+@@ -523,23 +523,26 @@ static int vc4_hvs_init_channel(struct v
+ 	 * mode.
+ 	 */
+ 	dispctrl = SCALER_DISPCTRLX_ENABLE;
++	dispbkgndx = HVS_READ(SCALER_DISPBKGNDX(chan));
+ 
+-	if (!vc4->is_vc5)
++	if (!vc4->is_vc5) {
+ 		dispctrl |= VC4_SET_FIELD(mode->hdisplay,
+ 					  SCALER_DISPCTRLX_WIDTH) |
+ 			    VC4_SET_FIELD(mode->vdisplay,
+ 					  SCALER_DISPCTRLX_HEIGHT) |
+ 			    (oneshot ? SCALER_DISPCTRLX_ONESHOT : 0);
+-	else
++		dispbkgndx |= SCALER_DISPBKGND_AUTOHS;
++	} else {
+ 		dispctrl |= VC4_SET_FIELD(mode->hdisplay,
+ 					  SCALER5_DISPCTRLX_WIDTH) |
+ 			    VC4_SET_FIELD(mode->vdisplay,
+ 					  SCALER5_DISPCTRLX_HEIGHT) |
+ 			    (oneshot ? SCALER5_DISPCTRLX_ONESHOT : 0);
++		dispbkgndx &= ~SCALER5_DISPBKGND_BCK2BCK;
++	}
+ 
+ 	HVS_WRITE(SCALER_DISPCTRLX(chan), dispctrl);
+ 
+-	dispbkgndx = HVS_READ(SCALER_DISPBKGNDX(chan));
+ 	dispbkgndx &= ~SCALER_DISPBKGND_GAMMA;
+ 	dispbkgndx &= ~SCALER_DISPBKGND_INTERLACE;
+ 
+@@ -548,7 +551,6 @@ static int vc4_hvs_init_channel(struct v
+ 		dispbkgndx |= SCALER_DISPBKGND_GAMMA;
+ 
+ 	HVS_WRITE(SCALER_DISPBKGNDX(chan), dispbkgndx |
+-		  SCALER_DISPBKGND_AUTOHS |
+ 		  (interlace ? SCALER_DISPBKGND_INTERLACE : 0));
+ 
+ 	/* Reload the LUT, since the SRAMs would have been disabled if
+--- a/drivers/gpu/drm/vc4/vc4_regs.h
++++ b/drivers/gpu/drm/vc4/vc4_regs.h
+@@ -366,6 +366,7 @@
+ 
+ #define SCALER_DISPBKGND0                       0x00000044
+ # define SCALER_DISPBKGND_AUTOHS		BIT(31)
++# define SCALER5_DISPBKGND_BCK2BCK		BIT(31)
+ # define SCALER_DISPBKGND_INTERLACE		BIT(30)
+ # define SCALER_DISPBKGND_GAMMA			BIT(29)
+ # define SCALER_DISPBKGND_TESTMODE_MASK		VC4_MASK(28, 25)
