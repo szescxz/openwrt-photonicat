@@ -1,0 +1,91 @@
+name: Build BPI-R3
+on: [push]
+
+jobs:
+    build:
+        name: Build BPI-R3 docker images
+        runs-on: ubuntu-latest
+
+        steps:
+
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Update and install feeds
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+                cd feeds/luci
+                wget https://gist.githubusercontent.com/mj22226/3888ce030740e7cccbadce571e874913/raw/76e8c2917ddc90499f976f4a0ca2eed01a95efd3/5918.patch
+                wget https://github.com/mj22226/luci/commit/777019144e7e3f9645ea19190eb900ba09e502ba.patch
+                wget https://gist.githubusercontent.com/mj22226/f6db007367a22a31f9cb1c109a032b45/raw/be368c4f1605f652a001d81548c3a3e14adf6cb7/luci-app-diskman.patch
+                wget https://gist.githubusercontent.com/mj22226/1cf92f842cf5f80974f77c0bf7fa0486/raw/2e72a15cc6bf0820801463291e4db6c4412b06a0/04-luci-app-vpnbypass.patch
+                git apply 777019144e7e3f9645ea19190eb900ba09e502ba.patch
+                git apply 5918.patch
+                git apply luci-app-diskman.patch
+                git apply 04-luci-app-vpnbypass.patch
+                cd -
+                cd feeds/packages
+                wget https://gist.githubusercontent.com/mj22226/93e01778cbca4eb6623c09dce001f41a/raw/1b1503451ce7f214e443719c513b4d2cb3ea375a/01-vpnbypass.patch
+                git apply 01-vpnbypass.patch
+                cd -
+                sed -i '16d' feeds/luci/collections/luci/Makefile
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a -f
+
+            - name: Generate BPI-R3 docker config
+              run: |
+                cp .github/workflows/config.buildinfo .config
+                make defconfig
+
+            - name: Download local key
+              run: |
+                wget https://gist.githubusercontent.com/mj22226/8fe3f95119c0ea42794f8241042b60d5/raw/1e0cb3155a8df2fd36a18629f08c51d3c90ecff9/0001-local-key.patch
+                git apply 0001-local-key.patch
+
+            - name: Download package sources
+              run: make download V=s
+
+            - name: Build tools
+              run: |
+                make tools/install -j$(nproc) V=s || \
+                make tools/install V=s
+            - name: Build toolchain
+              run: |
+                make toolchain/install -j$(nproc) V=s || \
+                make toolchain/install V=s
+            - name: Build target images
+              run: |
+                make -j$(nproc) V=s 'IGNORE_ERRORS=n m' || \
+                make V=s 'IGNORE_ERRORS=n m'
+            - name: TAR output
+              run: tar -cvf mediatek_filogic-images.tar bin/targets/mediatek/filogic
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                name: mediatek_filogic-images
+                path: mediatek_filogic-images.tar
+
+    release:
+          name: Make a release
+          runs-on: ubuntu-latest
+          needs: build
+
+          steps:
+            - name: Download artifacts
+              uses: actions/download-artifact@v3
+              with:
+                name: mediatek_filogic-images
+
+            - name: Extract the image artifacts
+              run: tar xf mediatek_filogic-images.tar
+
+            - name: Create a release
+              uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                prerelease: true
+                title: "BPI-R3 docker images"
+                automatic_release_tag: "bpi-r3"
+                files: bin/targets/mediatek/filogic/*
