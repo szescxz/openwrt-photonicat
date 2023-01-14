@@ -13,7 +13,7 @@ Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
 +++ b/drivers/pci/pcie/aspm_ext.c
 @@ -322,6 +322,10 @@ void pcie_aspm_ext_l1ss_enable(struct pc
  	ret = rockchip_pcie_bus_aspm_enable_rc_ep(child, parent, false);
-
+ 
  	if (enable) {
 +		/* LRT enable bits loss after wifi off, enable it after power on */
 +		if (parent->ltr_path)
