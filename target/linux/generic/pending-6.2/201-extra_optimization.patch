@@ -31,7 +31,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/init/Kconfig
 +++ b/init/Kconfig
-@@ -1406,6 +1406,20 @@ config CC_OPTIMIZE_FOR_PERFORMANCE
+@@ -1410,6 +1410,20 @@ config CC_OPTIMIZE_FOR_PERFORMANCE
  	  with the "-O2" compiler flag for best performance and most
  	  helpful compile-time warnings.
  
