@@ -1,6 +1,6 @@
 --- a/init/Kconfig
 +++ b/init/Kconfig
-@@ -1395,16 +1395,6 @@ config BOOT_CONFIG_EMBED_FILE
+@@ -1399,16 +1399,6 @@ config BOOT_CONFIG_EMBED_FILE
  	  This bootconfig will be used if there is no initrd or no other
  	  bootconfig in the initrd.
  
