@@ -1,0 +1,103 @@
+name: Build rockchip docker images
+on: [push]
+
+jobs:
+    build:
+        name: Prepare and build rockchip docker images
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup Ubuntu
+              run: |
+                sudo apt update
+                sudo apt install build-essential ccache ecj fastjar file g++ gawk \
+                gettext git java-propose-classpath libelf-dev libncurses5-dev \
+                libncursesw5-dev libssl-dev python2.7-dev python3 unzip wget \
+                python3-setuptools python3-dev rsync subversion \
+                swig time xsltproc zlib1g-dev
+
+
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Update and install feeds
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+                cd feeds/luci
+                wget https://gist.githubusercontent.com/mj22226/3888ce030740e7cccbadce571e874913/raw/76e8c2917ddc90499f976f4a0ca2eed01a95efd3/5918.patch
+                wget https://patch-diff.githubusercontent.com/raw/openwrt/luci/pull/6104.patch
+                wget https://gist.githubusercontent.com/mj22226/f6db007367a22a31f9cb1c109a032b45/raw/be368c4f1605f652a001d81548c3a3e14adf6cb7/luci-app-diskman.patch
+                git apply 6104.patch
+                git apply 5918.patch
+                git apply luci-app-diskman.patch
+                cd -
+                sed -i "70s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "83s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "193s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "209s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "13s/'1'/'0'/" feeds/packages/utils/dockerd/files/etc/config/dockerd
+                sed -i '16d' feeds/luci/collections/luci/Makefile
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a -f
+
+            - name: Generate docker config
+              run: |
+                cp .github/workflows/config.buildinfo .config
+                make defconfig
+
+            - name: Download local key
+              run: |
+                wget https://gist.githubusercontent.com/mj22226/8fe3f95119c0ea42794f8241042b60d5/raw/1e0cb3155a8df2fd36a18629f08c51d3c90ecff9/0001-local-key.patch
+                git apply 0001-local-key.patch
+
+            - name: Download package sources
+              run: make download V=s
+
+
+            - name: Build tools
+              run: |
+                make tools/install -j$(nproc) V=s || \
+                make tools/install V=s
+
+            - name: Build toolchain
+              run: |
+                make toolchain/install -j$(nproc) V=s || \
+                make toolchain/install V=s
+
+            - name: Build target images
+              run: |
+                make -j$(nproc) V=s 'IGNORE_ERRORS=n m' || \
+                make V=s 'IGNORE_ERRORS=n m'
+
+            - name: TAR output
+              run: tar -cvf rockchip-images.tar bin/targets/rockchip/armv8
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                name: rockchip-images
+                path: rockchip-images.tar
+
+    release:
+          name: Make a release
+          runs-on: ubuntu-latest
+          needs: build
+
+          steps:
+            - name: Download the image artifacts
+              uses: actions/download-artifact@v3
+              with:
+                name: rockchip-images
+
+            - name: Extract the image artifacts
+              run: tar xf rockchip-images.tar
+
+            - name: Create a release
+              uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                prerelease: true
+                title: "Rockchip Docker Images"
+                automatic_release_tag: "rockchip-docker"
+                files: bin/targets/rockchip/armv8/*
