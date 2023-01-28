@@ -1,0 +1,71 @@
+name: Build rockchip-6.1
+on: [push]
+
+jobs:
+    build:
+        name: Prepare and build rockchip-6.1 images
+        runs-on: self-hosted
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: build
+              run: |
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a
+                cd feeds/luci
+                wget https://gist.githubusercontent.com/mj22226/3888ce030740e7cccbadce571e874913/raw/76e8c2917ddc90499f976f4a0ca2eed01a95efd3/5918.patch
+                wget https://patch-diff.githubusercontent.com/raw/openwrt/luci/pull/6104.patch
+                wget https://gist.githubusercontent.com/mj22226/f6db007367a22a31f9cb1c109a032b45/raw/be368c4f1605f652a001d81548c3a3e14adf6cb7/luci-app-diskman.patch
+                git apply 6104.patch
+                git apply 5918.patch
+                git apply luci-app-diskman.patch
+                cd -
+                sed -i "70s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "83s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "193s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "209s/'0'/'1'/" feeds/luci/applications/luci-app-statistics/root/etc/config/luci_statistics
+                sed -i "13s/'1'/'0'/" feeds/packages/utils/dockerd/files/etc/config/dockerd
+                sed -i '16d' feeds/luci/collections/luci/Makefile
+                ./scripts/feeds update -a
+                ./scripts/feeds install -a -f
+                cp .github/workflows/config.buildinfo .config
+                make defconfig
+                wget https://gist.githubusercontent.com/mj22226/8fe3f95119c0ea42794f8241042b60d5/raw/1e0cb3155a8df2fd36a18629f08c51d3c90ecff9/0001-local-key.patch
+                git apply 0001-local-key.patch
+                rm 0001-local-key.patch
+                make download -j55
+                make tools/install -j$(nproc)
+                make toolchain/install -j$(nproc)
+                make -j$(nproc) 'IGNORE_ERRORS=n m'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
