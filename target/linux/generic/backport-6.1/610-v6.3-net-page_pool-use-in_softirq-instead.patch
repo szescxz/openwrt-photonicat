@@ -48,9 +48,9 @@ Signed-off-by: Qingfang DENG <qingfang.deng@siflower.com.cn>
 @@ -570,7 +570,7 @@ __page_pool_put_page(struct page_pool *p
  			page_pool_dma_sync_for_device(pool, page,
  						      dma_sync_size);
-
+ 
 -		if (allow_direct && in_serving_softirq() &&
 +		if (allow_direct && in_softirq() &&
  		    page_pool_recycle_in_cache(page, pool))
  			return NULL;
-
+ 
