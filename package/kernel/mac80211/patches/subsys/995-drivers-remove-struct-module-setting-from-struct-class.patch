@@ -1,0 +1,66 @@
+From 10a03c36b7dd7759788ebc613091d313b60f93e0 Mon Sep 17 00:00:00 2001
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Date: Mon, 13 Mar 2023 19:18:33 +0100
+Subject: [PATCH] drivers: remove struct module * setting from struct class
+
+There is no need to manually set the owner of a struct class, as the
+registering function does it automatically, so remove all of the
+explicit settings from various drivers that did so as it is unneeded.
+
+This allows us to remove this pointer entirely from this structure going
+forward.
+
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+Link: https://lore.kernel.org/r/20230313181843.1207845-2-gregkh@linuxfoundation.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ arch/mips/kernel/vpe-mt.c                    | 1 -
+ drivers/base/core.c                          | 1 -
+ drivers/base/devcoredump.c                   | 1 -
+ drivers/block/pktcdvd.c                      | 1 -
+ drivers/block/zram/zram_drv.c                | 1 -
+ drivers/gpio/gpiolib-sysfs.c                 | 2 --
+ drivers/hwmon/hwmon.c                        | 1 -
+ drivers/isdn/mISDN/core.c                    | 1 -
+ drivers/media/pci/ddbridge/ddbridge-core.c   | 1 -
+ drivers/mfd/cros_ec_dev.c                    | 1 -
+ drivers/misc/enclosure.c                     | 1 -
+ drivers/mtd/mtdcore.c                        | 1 -
+ drivers/mtd/ubi/build.c                      | 1 -
+ drivers/mux/core.c                           | 1 -
+ drivers/net/ipvlan/ipvtap.c                  | 1 -
+ drivers/net/macvtap.c                        | 1 -
+ drivers/nvme/host/fc.c                       | 1 -
+ drivers/platform/chrome/wilco_ec/event.c     | 1 -
+ drivers/platform/chrome/wilco_ec/telemetry.c | 1 -
+ drivers/platform/x86/intel/pmt/class.c       | 1 -
+ drivers/platform/x86/intel_scu_ipc.c         | 1 -
+ drivers/ptp/ptp_ocp.c                        | 1 -
+ drivers/pwm/sysfs.c                          | 1 -
+ drivers/rapidio/rio-driver.c                 | 1 -
+ drivers/scsi/sd.c                            | 1 -
+ drivers/soc/qcom/rmtfs_mem.c                 | 1 -
+ drivers/spi/spi.c                            | 2 --
+ drivers/staging/fieldbus/dev_core.c          | 1 -
+ drivers/staging/greybus/loopback.c           | 1 -
+ drivers/staging/greybus/vibrator.c           | 1 -
+ drivers/usb/typec/class.c                    | 1 -
+ drivers/usb/typec/mux.c                      | 1 -
+ drivers/usb/typec/pd.c                       | 1 -
+ drivers/usb/typec/retimer.c                  | 1 -
+ drivers/watchdog/watchdog_dev.c              | 1 -
+ fs/ksmbd/server.c                            | 1 -
+ net/wireless/sysfs.c                         | 1 -
+ 37 files changed, 39 deletions(-)
+
+
+--- a/net/wireless/sysfs.c
++++ b/net/wireless/sysfs.c
+@@ -174,7 +174,6 @@ static const void *wiphy_namespace(struc
+ 
+ struct class ieee80211_class = {
+ 	.name = "ieee80211",
+-	.owner = THIS_MODULE,
+ 	.dev_release = wiphy_dev_release,
+ 	.dev_groups = ieee80211_groups,
+ 	.pm = WIPHY_PM_OPS,
