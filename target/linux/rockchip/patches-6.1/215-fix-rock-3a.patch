@@ -10,7 +10,7 @@ Subject: [PATCH] fix rock 3a
 --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
 @@ -13,8 +13,8 @@
-
+ 
  	aliases {
  		ethernet0 = &gmac1;
 -		mmc0 = &sdmmc0;
@@ -18,12 +18,12 @@ Subject: [PATCH] fix rock 3a
 +		mmc0 = &sdhci;
 +		mmc1 = &sdmmc0;
  	};
-
+ 
  	chosen: chosen {
 @@ -60,13 +60,55 @@
  		};
  	};
-
+ 
 -	vcc12v_dcin: vcc12v-dcin {
 +	sdio_pwrseq: sdio-pwrseq {
 +		compatible = "mmc-pwrseq-simple";
@@ -42,7 +42,7 @@ Subject: [PATCH] fix rock 3a
  		regulator-always-on;
  		regulator-boot-on;
  	};
-
+ 
 +	pcie30_avdd0v9: pcie30-avdd0v9-regulator {
 +		compatible = "regulator-fixed";
 +		regulator-name = "pcie30_avdd0v9";
@@ -80,7 +80,7 @@ Subject: [PATCH] fix rock 3a
 @@ -79,7 +121,7 @@
  		vin-supply = <&vcc5v0_sys>;
  	};
-
+ 
 -	vcc3v3_sys: vcc3v3-sys {
 +	vcc3v3_sys: vcc3v3-sys-regulator {
  		compatible = "regulator-fixed";
@@ -89,7 +89,7 @@ Subject: [PATCH] fix rock 3a
 @@ -89,7 +131,7 @@
  		vin-supply = <&vcc12v_dcin>;
  	};
-
+ 
 -	vcc5v0_sys: vcc5v0-sys {
 +	vcc5v0_sys: vcc5v0-sys-regulator {
  		compatible = "regulator-fixed";
@@ -98,7 +98,7 @@ Subject: [PATCH] fix rock 3a
 @@ -99,7 +141,7 @@
  		vin-supply = <&vcc12v_dcin>;
  	};
-
+ 
 -	vcc5v0_usb: vcc5v0-usb {
 +	vcc5v0_usb: vcc5v0-usb-regulator {
  		compatible = "regulator-fixed";
@@ -107,7 +107,7 @@ Subject: [PATCH] fix rock 3a
 @@ -109,7 +151,7 @@
  		vin-supply = <&vcc12v_dcin>;
  	};
-
+ 
 -	vcc5v0_usb_host: vcc5v0-usb-host {
 +	vcc5v0_usb_host: vcc5v0-usb-host-regulator {
  		compatible = "regulator-fixed";
@@ -116,7 +116,7 @@ Subject: [PATCH] fix rock 3a
 @@ -144,7 +186,7 @@
  		vin-supply = <&vcc5v0_usb>;
  	};
-
+ 
 -	vcc_cam: vcc-cam {
 +	vcc_cam: vcc-cam-regulator {
  		compatible = "regulator-fixed";
@@ -125,14 +125,14 @@ Subject: [PATCH] fix rock 3a
 @@ -160,7 +202,7 @@
  		};
  	};
-
+ 
 -	vcc_mipi: vcc-mipi {
 +	vcc_mipi: vcc-mipi-regulator {
  		compatible = "regulator-fixed";
  		enable-active-high;
  		gpio = <&gpio3 RK_PC0 GPIO_ACTIVE_HIGH>;
 @@ -207,17 +249,25 @@
-
+ 
  &gmac1 {
  	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
 -	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
@@ -159,7 +159,7 @@ Subject: [PATCH] fix rock 3a
 +
  	status = "okay";
  };
-
+ 
 @@ -229,6 +279,8 @@
  &hdmi {
  	avdd-0v9-supply = <&vdda0v9_image>;
@@ -168,15 +168,15 @@ Subject: [PATCH] fix rock 3a
 +	pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm1_cec>;
  	status = "okay";
  };
-
+ 
 @@ -361,6 +413,7 @@
-
+ 
  			vdda0v9_image: LDO_REG1 {
  				regulator-name = "vdda0v9_image";
 +				regulator-always-on;
  				regulator-min-microvolt = <900000>;
  				regulator-max-microvolt = <900000>;
-
+ 
 @@ -397,6 +450,7 @@
  			vccio_acodec: LDO_REG4 {
  				regulator-name = "vccio_acodec";
@@ -184,27 +184,27 @@ Subject: [PATCH] fix rock 3a
 +				regulator-boot-on;
  				regulator-min-microvolt = <3300000>;
  				regulator-max-microvolt = <3300000>;
-
+ 
 @@ -455,6 +509,7 @@
-
+ 
  			vcca1v8_image: LDO_REG9 {
  				regulator-name = "vcca1v8_image";
 +				regulator-always-on;
  				regulator-min-microvolt = <1800000>;
  				regulator-max-microvolt = <1800000>;
-
+ 
 @@ -475,6 +530,7 @@
-
+ 
  			vcc3v3_sd: SWITCH_REG2 {
  				regulator-name = "vcc3v3_sd";
 +				regulator-always-on;
-
+ 
  				regulator-state-mem {
  					regulator-off-in-suspend;
 @@ -527,15 +583,15 @@
  	status = "okay";
  };
-
+ 
 +&i2s2_2ch {
 +	rockchip,trcm-sync-tx-only;
 +	status = "okay";
@@ -221,11 +221,11 @@ Subject: [PATCH] fix rock 3a
 -		reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_LOW>;
  	};
  };
-
+ 
 @@ -547,6 +603,19 @@
  	status = "okay";
  };
-
+ 
 +&pcie30phy {
 +	phy-supply = <&vcc3v3_pi6c_03>;
 +	status = "okay";
@@ -267,12 +267,12 @@ Subject: [PATCH] fix rock 3a
 +		};
 +	};
  };
-
+ 
  &pmu_io_domains {
 @@ -650,12 +739,49 @@
  	status = "okay";
  };
-
+ 
 +&sdmmc2 {
 +	bus-width = <4>;
 +	disable-wp;
@@ -294,7 +294,7 @@ Subject: [PATCH] fix rock 3a
  	rockchip,hw-tshut-polarity = <0>;
  	status = "okay";
  };
-
+ 
 +&uart1 {
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
@@ -321,10 +321,10 @@ Subject: [PATCH] fix rock 3a
  };
 @@ -669,7 +795,7 @@
  };
-
+ 
  &usb_host0_xhci {
 -	extcon = <&usb2phy0>;
 +	dr_mode = "host";
  	status = "okay";
  };
-
+ 
