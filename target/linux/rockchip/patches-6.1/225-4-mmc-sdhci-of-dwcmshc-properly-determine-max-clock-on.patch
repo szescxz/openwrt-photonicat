@@ -30,7 +30,7 @@ Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
 @@ -126,6 +126,13 @@ static unsigned int dwcmshc_get_max_cloc
  		return pltfm_host->clock;
  }
-
+ 
 +static unsigned int rk35xx_get_max_clock(struct sdhci_host *host)
 +{
 +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);

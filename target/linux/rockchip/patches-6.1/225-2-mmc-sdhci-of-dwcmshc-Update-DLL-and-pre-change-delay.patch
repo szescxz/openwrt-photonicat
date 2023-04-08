@@ -35,7 +35,7 @@ Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
  #define DLL_CMDOUT_EN_SRC_CLK_NEG	BIT(29)
 @@ -234,9 +236,12 @@ static void dwcmshc_rk3568_set_clock(str
  	sdhci_writel(host, extra, reg);
-
+ 
  	if (clock <= 52000000) {
 -		/* Disable DLL and reset both of sample and drive clock */
 -		sdhci_writel(host, 0, DWCMSHC_EMMC_DLL_CTRL);
@@ -51,10 +51,10 @@ Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
  		/*
 @@ -279,7 +284,7 @@ static void dwcmshc_rk3568_set_clock(str
  	}
-
+ 
  	extra = 0x1 << 16 | /* tune clock stop en */
 -		0x2 << 17 | /* pre-change delay */
 +		0x3 << 17 | /* pre-change delay */
  		0x3 << 19;  /* post-change delay */
  	sdhci_writel(host, extra, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_ATCTRL);
-
+ 

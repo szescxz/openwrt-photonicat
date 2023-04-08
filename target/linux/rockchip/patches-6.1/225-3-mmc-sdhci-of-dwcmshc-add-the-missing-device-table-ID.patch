@@ -23,5 +23,5 @@ Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
  };
 +MODULE_DEVICE_TABLE(acpi, sdhci_dwcmshc_acpi_ids);
  #endif
-
+ 
  static int dwcmshc_probe(struct platform_device *pdev)
