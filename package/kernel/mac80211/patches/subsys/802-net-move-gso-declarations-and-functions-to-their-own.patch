@@ -1,0 +1,27 @@
+From ed9e7cbe8f86c9eb84c5d20e469e50e8dd73f049 Mon Sep 17 00:00:00 2001
+From: Eric Dumazet <edumazet@google.com>
+Date: Thu, 8 Jun 2023 19:17:37 +0000
+Subject: [PATCH] net: move gso declarations and functions to their own files
+
+Move declarations into include/net/gso.h and code into net/core/gso.c
+
+Signed-off-by: Eric Dumazet <edumazet@google.com>
+Cc: Stanislav Fomichev <sdf@google.com>
+Reviewed-by: Simon Horman <simon.horman@corigine.com>
+Reviewed-by: David Ahern <dsahern@kernel.org>
+Link: https://lore.kernel.org/r/20230608191738.3947077-1-edumazet@google.com
+Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+---
+ net/mac80211/tx.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/net/mac80211/tx.c
++++ b/net/mac80211/tx.c
+@@ -26,6 +26,7 @@
+ #include <net/codel_impl.h>
+ #include <asm/unaligned.h>
+ #include <net/fq_impl.h>
++#include <net/gso.h>
+ 
+ #include "ieee80211_i.h"
+ #include "driver-ops.h"
