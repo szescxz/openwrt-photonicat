@@ -68,7 +68,7 @@
   * @dev:  network device
 --- a/include/net/cfg802154.h
 +++ b/include/net/cfg802154.h
-@@ -481,7 +481,6 @@ struct wpan_dev {
+@@ -482,7 +482,6 @@ struct wpan_dev {
  
  #define to_phy(_dev)	container_of(_dev, struct wpan_phy, dev)
  
@@ -76,7 +76,7 @@
  static inline int
  wpan_dev_hard_header(struct sk_buff *skb, struct net_device *dev,
  		     const struct ieee802154_addr *daddr,
-@@ -492,7 +491,6 @@ wpan_dev_hard_header(struct sk_buff *skb
+@@ -493,7 +492,6 @@ wpan_dev_hard_header(struct sk_buff *skb
  
  	return wpan_dev->header_ops->create(skb, dev, daddr, saddr, len);
  }
