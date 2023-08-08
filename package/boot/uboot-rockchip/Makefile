@@ -5,10 +5,10 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
-PKG_VERSION:=2023.07-rc3
+PKG_VERSION:=2023.10-rc2
 PKG_RELEASE:=1
 
-PKG_HASH:=42ec083674bd30fa4c16e78c3f5f453c08d9f737595a77b5dda595ac3a09d82f
+PKG_HASH:=b7f54b2bab765abd09ebae3bd0edeb77f2f2af1c4ccf6c286d37b01d97cb6be7
 
 PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
@@ -118,8 +118,6 @@ define U-Boot/nanopi-r5c-rk3568
     friendlyelec_nanopi-r5c
   DEPENDS:=+PACKAGE_u-boot-nanopi-r5c-rk3568:arm-trusted-firmware-rockchip
   PKG_BUILD_DEPENDS:=arm-trusted-firmware-rockchip
-  DEVICE_DTS := rk3568-nanopi-r5s.dts
-  UBOOT_CONFIG:= nanopi-r5s-rk3568
   ATF:=rk3568_bl31.elf
   DDR_3568:=$(1)
 endef
@@ -142,7 +140,6 @@ define U-Boot/rock-3a-rk3568
     radxa_rock-3a
   DEPENDS:=+PACKAGE_u-boot-rock-3a-rk3568:arm-trusted-firmware-rockchip
   PKG_BUILD_DEPENDS:=arm-trusted-firmware-rockchip
-  UBOOT_CONFIG:= nanopi-r5s-rk3568
   ATF:=rk3568_bl31.elf
   DDR_3568:=$(1)
 endef
