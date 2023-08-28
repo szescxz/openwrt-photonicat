@@ -1,0 +1,68 @@
+From 0ef5b71158fb5b766c4767d55823f9eba9d61576 Mon Sep 17 00:00:00 2001
+From: Marty Jones <mj8263788@gmail.com>
+Date: Sun, 20 Aug 2023 02:42:49 -0400
+Subject: [PATCH 97/98] rockchip: rk3588 sync with v6.6
+
+---
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi  | 4 ++--
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+@@ -268,8 +268,6 @@
+ 
+ 	pcie2x1l0: pcie@fe170000 {
+ 		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+ 		bus-range = <0x20 0x2f>;
+ 		clocks = <&cru ACLK_PCIE_1L0_MSTR>, <&cru ACLK_PCIE_1L0_SLV>,
+ 			 <&cru ACLK_PCIE_1L0_DBI>, <&cru PCLK_PCIE_1L0>,
+@@ -306,6 +304,8 @@
+ 		reg-names = "dbi", "apb", "config";
+ 		resets = <&cru SRST_PCIE2_POWER_UP>, <&cru SRST_P_PCIE2>;
+ 		reset-names = "pwr", "pipe";
++		#address-cells = <3>;
++		#size-cells = <2>;
+ 		status = "disabled";
+ 
+ 		pcie2x1l0_intc: legacy-interrupt-controller {
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+@@ -1838,8 +1838,6 @@
+ 
+ 	pcie2x1l1: pcie@fe180000 {
+ 		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+ 		bus-range = <0x30 0x3f>;
+ 		clocks = <&cru ACLK_PCIE_1L1_MSTR>, <&cru ACLK_PCIE_1L1_SLV>,
+ 			 <&cru ACLK_PCIE_1L1_DBI>, <&cru PCLK_PCIE_1L1>,
+@@ -1876,6 +1874,8 @@
+ 		reg-names = "dbi", "apb", "config";
+ 		resets = <&cru SRST_PCIE3_POWER_UP>, <&cru SRST_P_PCIE3>;
+ 		reset-names = "pwr", "pipe";
++		#address-cells = <3>;
++		#size-cells = <2>;
+ 		status = "disabled";
+ 
+ 		pcie2x1l1_intc: legacy-interrupt-controller {
+@@ -1889,8 +1889,6 @@
+ 
+ 	pcie2x1l2: pcie@fe190000 {
+ 		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+ 		bus-range = <0x40 0x4f>;
+ 		clocks = <&cru ACLK_PCIE_1L2_MSTR>, <&cru ACLK_PCIE_1L2_SLV>,
+ 			 <&cru ACLK_PCIE_1L2_DBI>, <&cru PCLK_PCIE_1L2>,
+@@ -1927,6 +1925,8 @@
+ 		reg-names = "dbi", "apb", "config";
+ 		resets = <&cru SRST_PCIE4_POWER_UP>, <&cru SRST_P_PCIE4>;
+ 		reset-names = "pwr", "pipe";
++		#address-cells = <3>;
++		#size-cells = <2>;
+ 		status = "disabled";
+ 
+ 		pcie2x1l2_intc: legacy-interrupt-controller {
