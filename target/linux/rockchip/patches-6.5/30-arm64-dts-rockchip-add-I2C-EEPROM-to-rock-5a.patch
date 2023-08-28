@@ -1,0 +1,33 @@
+From 61cc657b275c5a5bd3ac4a9fd3bb1fa1687f5ef2 Mon Sep 17 00:00:00 2001
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Mon, 10 Jul 2023 18:52:24 +0200
+Subject: [PATCH 30/98] arm64: dts: rockchip: add I2C EEPROM to rock-5a
+
+Add the I2C EEPROM to the Rock 5A DT.
+
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Link: https://lore.kernel.org/r/20230710165228.105983-10-sebastian.reichel@collabora.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -163,6 +163,16 @@
+ 	};
+ };
+ 
++&i2c2 {
++	status = "okay";
++
++	eeprom: eeprom@50 {
++		compatible = "belling,bl24c16a", "atmel,24c16";
++		reg = <0x50>;
++		pagesize = <16>;
++	};
++};
++
+ &i2c7 {
+ 	status = "okay";
+ 
