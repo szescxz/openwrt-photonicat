@@ -104,7 +104,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	depends on PERF_EVENTS || TRACING || CFI_CLANG
 --- a/kernel/module/main.c
 +++ b/kernel/module/main.c
-@@ -2067,9 +2067,11 @@ static void module_augment_kernel_taints
+@@ -2075,9 +2075,11 @@ static void module_augment_kernel_taints
  
  static int check_modinfo(struct module *mod, struct load_info *info, int flags)
  {
@@ -117,7 +117,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (flags & MODULE_INIT_IGNORE_VERMAGIC)
  		modmagic = NULL;
  
-@@ -2083,6 +2085,7 @@ static int check_modinfo(struct module *
+@@ -2091,6 +2093,7 @@ static int check_modinfo(struct module *
  		       info->name, modmagic, vermagic);
  		return -ENOEXEC;
  	}
