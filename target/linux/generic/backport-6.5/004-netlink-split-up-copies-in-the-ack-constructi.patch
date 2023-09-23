@@ -42,7 +42,7 @@ This reverts commit 738136a0e3757a8534df3ad97d6ff6d7f429f6c1.
   * @cb: netlink callback
 --- a/net/netlink/af_netlink.c
 +++ b/net/netlink/af_netlink.c
-@@ -2484,24 +2484,19 @@ void netlink_ack(struct sk_buff *in_skb,
+@@ -2454,24 +2454,19 @@ void netlink_ack(struct sk_buff *in_skb,
  		flags |= NLM_F_ACK_TLVS;
  
  	skb = nlmsg_new(payload + tlvlen, GFP_KERNEL);
@@ -76,7 +76,7 @@ This reverts commit 738136a0e3757a8534df3ad97d6ff6d7f429f6c1.
  
  	if (tlvlen)
  		netlink_ack_tlv_fill(in_skb, skb, nlh, err, extack);
-@@ -2509,14 +2504,6 @@ void netlink_ack(struct sk_buff *in_skb,
+@@ -2479,14 +2474,6 @@ void netlink_ack(struct sk_buff *in_skb,
  	nlmsg_end(skb, rep);
  
  	nlmsg_unicast(in_skb->sk, skb, NETLINK_CB(in_skb).portid);
