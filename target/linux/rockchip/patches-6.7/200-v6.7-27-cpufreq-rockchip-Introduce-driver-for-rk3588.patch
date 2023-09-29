@@ -53,7 +53,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  obj-$(CONFIG_ARM_SA1110_CPUFREQ)	+= sa1110-cpufreq.o
 --- a/drivers/cpufreq/cpufreq-dt-platdev.c
 +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -167,6 +167,8 @@ static const struct of_device_id blockli
+@@ -168,6 +168,8 @@ static const struct of_device_id blockli
  	{ .compatible = "qcom,sm8450", },
  	{ .compatible = "qcom,sm8550", },
  
