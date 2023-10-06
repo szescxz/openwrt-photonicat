@@ -37,7 +37,7 @@ This reverts commit bffcc6882a1bb2be8c9420184966f4c2c822078e.
  }
  
  static unsigned int drbd_al_extents_max(struct drbd_backing_dev *bdev)
-@@ -4277,7 +4276,7 @@ static void device_to_info(struct device
+@@ -4276,7 +4275,7 @@ static void device_to_info(struct device
  int drbd_adm_new_minor(struct sk_buff *skb, struct genl_info *info)
  {
  	struct drbd_config_context adm_ctx;
