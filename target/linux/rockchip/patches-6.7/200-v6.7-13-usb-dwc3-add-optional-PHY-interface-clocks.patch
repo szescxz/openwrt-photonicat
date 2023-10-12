@@ -75,7 +75,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
   * @reset: reset control
   * @regs: base address for our registers
   * @regs_size: address space size
-@@ -1165,6 +1167,8 @@ struct dwc3 {
+@@ -1167,6 +1169,8 @@ struct dwc3 {
  	struct clk		*bus_clk;
  	struct clk		*ref_clk;
  	struct clk		*susp_clk;

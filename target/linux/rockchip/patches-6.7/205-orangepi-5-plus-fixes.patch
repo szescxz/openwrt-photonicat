@@ -1,0 +1,64 @@
+--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+@@ -13,8 +13,8 @@
+ #include "rk3588.dtsi"
+ 
+ / {
+-	model = "Xunlong Orange Pi 5 Plus";
+-	compatible = "xunlong,orangepi-5-plus", "rockchip,rk3588";
++	model = "RK3588 OPi 5 Plus";
++	compatible = "rockchip,rk3588-orangepi-5-plus", "rockchip,rk3588";
+ 
+ 	aliases {
+ 		mmc0 = &sdhci;
+@@ -73,16 +73,24 @@
+ 		pinctrl-0 = <&ir_receiver_pin>;
+ 	};
+ 
+-	gpio-leds {
++	gpio_leds: leds {
+ 		compatible = "gpio-leds";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&blue_led_pin>;
++		pinctrl-0 =<&leds_rgb>;
++		status = "okay";
+ 
+-		led {
+-			color = <LED_COLOR_ID_BLUE>;
+-			function = LED_FUNCTION_INDICATOR;
+-			function-enumerator = <1>;
++		blue_led@1 {
+ 			gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_HIGH>;
++			label = "blue_led";
++			linux,default-trigger = "heartbeat";
++			linux,default-trigger-delay-ms = <0>;
++		};
++
++		green_led@2 {
++			gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_HIGH>;
++			label = "green_led";
++			linux,default-trigger = "heartbeat";
++			linux,default-trigger-delay-ms = <0>;
+ 		};
+ 	};
+ 
+@@ -363,6 +371,7 @@
+ &pcie2x1l1 {
+ 	reset-gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_HIGH>;
+ 	vpcie3v3-supply = <&vcc3v3_pcie_eth>;
++	rockchip,init-delay-ms = <100>;
+ 	status = "okay";
+ };
+ 
+@@ -391,8 +400,9 @@
+ 	};
+ 
+ 	leds {
+-		blue_led_pin: blue-led {
+-			rockchip,pins = <3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;
++		leds_rgb: leds-rgb {
++		        rockchip,pins = <3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
++					<3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>;
+ 		};
+ 	};
+ 

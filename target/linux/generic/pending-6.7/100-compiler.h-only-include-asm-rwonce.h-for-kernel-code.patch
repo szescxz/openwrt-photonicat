@@ -20,7 +20,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #endif /* __KERNEL__ */
  
  /*
-@@ -240,6 +242,4 @@ static inline void *offset_to_ptr(const
+@@ -248,6 +250,4 @@ static inline void *offset_to_ptr(const
   */
  #define prevent_tail_call_optimization()	mb()
  

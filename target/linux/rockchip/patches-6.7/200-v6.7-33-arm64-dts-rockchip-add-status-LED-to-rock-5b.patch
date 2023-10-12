@@ -40,7 +40,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  	fan: pwm-fan {
  		compatible = "pwm-fan";
  		cooling-levels = <0 95 145 195 255>;
-@@ -312,6 +326,12 @@
+@@ -297,6 +311,12 @@
  		};
  	};
  
