@@ -316,7 +316,7 @@ foreach my $mirror (@ARGV) {
 }
 
 push @mirrors, 'https://gitlab.com/mj8263788/u-boot/-/archive/2023.10.1/';
-push @mirrors, 'https://github.com/mj22226/linux/archive/refs/tags/v6.7-rc20231012/';
+push @mirrors, 'https://github.com/mj22226/linux/archive/refs/tags/v6.7-rc20231020/';
 push @mirrors, 'https://sources.cdn.openwrt.org';
 push @mirrors, 'https://sources.openwrt.org';
 push @mirrors, 'https://mirror2.openwrt.org/sources';

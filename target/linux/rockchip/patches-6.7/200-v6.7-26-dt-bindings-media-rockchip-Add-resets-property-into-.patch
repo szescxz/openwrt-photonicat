@@ -15,9 +15,9 @@ Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
 
 --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
 +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-@@ -68,6 +68,9 @@ properties:
-   iommus:
-     maxItems: 1
+@@ -75,6 +75,9 @@ properties:
+       - description: APB reset line
+       - description: APB bus interface unit reset line
  
 +  resets:
 +    maxItems: 4

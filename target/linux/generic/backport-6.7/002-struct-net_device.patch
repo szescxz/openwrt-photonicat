@@ -1,6 +1,6 @@
 --- a/include/linux/netdevice.h
 +++ b/include/linux/netdevice.h
-@@ -578,8 +578,8 @@ static inline bool napi_if_scheduled_mar
+@@ -598,8 +598,8 @@ static inline bool napi_if_scheduled_mar
  {
  	unsigned long val, new;
  
@@ -10,7 +10,7 @@
  		if (val & NAPIF_STATE_DISABLE)
  			return true;
  
-@@ -587,7 +587,7 @@ static inline bool napi_if_scheduled_mar
+@@ -607,7 +607,7 @@ static inline bool napi_if_scheduled_mar
  			return false;
  
  		new = val | NAPIF_STATE_MISSED;
@@ -19,7 +19,7 @@
  
  	return true;
  }
-@@ -1902,6 +1902,7 @@ enum netdev_ml_priv_type {
+@@ -1918,6 +1918,7 @@ enum netdev_ml_priv_type {
   *	@tipc_ptr:	TIPC specific data
   *	@atalk_ptr:	AppleTalk link
   *	@ip_ptr:	IPv4 specific data
@@ -27,7 +27,7 @@
   *	@ip6_ptr:	IPv6 specific data
   *	@ax25_ptr:	AX.25 specific data
   *	@ieee80211_ptr:	IEEE 802.11 specific data, assign before registering
-@@ -2197,8 +2198,6 @@ struct net_device {
+@@ -2213,8 +2214,6 @@ struct net_device {
  
  	/* Protocol-specific pointers */
  
@@ -36,7 +36,7 @@
  #if IS_ENABLED(CONFIG_VLAN_8021Q)
  	struct vlan_info __rcu	*vlan_info;
  #endif
-@@ -2211,15 +2210,16 @@ struct net_device {
+@@ -2227,15 +2226,16 @@ struct net_device {
  #if IS_ENABLED(CONFIG_ATALK)
  	void 			*atalk_ptr;
  #endif
@@ -57,7 +57,7 @@
  #if IS_ENABLED(CONFIG_MPLS_ROUTING)
  	struct mpls_dev __rcu	*mpls_ptr;
  #endif
-@@ -2653,6 +2653,8 @@ netif_napi_add_tx_weight(struct net_devi
+@@ -2669,6 +2669,8 @@ netif_napi_add_tx_weight(struct net_devi
  	netif_napi_add_weight(dev, napi, poll, weight);
  }
  

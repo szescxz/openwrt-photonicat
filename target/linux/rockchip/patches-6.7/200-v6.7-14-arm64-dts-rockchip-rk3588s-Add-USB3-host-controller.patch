@@ -16,8 +16,8 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
 --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -443,6 +443,27 @@
- 		status = "disabled";
+@@ -448,6 +448,27 @@
+ 		reg = <0x0 0xfd58a000 0x0 0x10000>;
  	};
  
 +	usb_host2_xhci: usb@fcd00000 {

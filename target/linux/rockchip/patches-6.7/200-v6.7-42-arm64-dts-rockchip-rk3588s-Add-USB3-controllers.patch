@@ -90,7 +90,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  	usb_host0_xhci: usb@fc000000 {
  		compatible = "rockchip,rk3588-dwc3", "snps,dwc3";
  		reg = <0x0 0xfc000000 0x0 0x400000>;
-@@ -928,6 +960,36 @@
+@@ -933,6 +965,36 @@
  		status = "disabled";
  	};
  

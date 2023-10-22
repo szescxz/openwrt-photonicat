@@ -118,7 +118,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  	};
  };
  
-@@ -737,6 +807,14 @@
+@@ -743,6 +813,14 @@
  	status = "okay";
  };
  
@@ -133,7 +133,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  &u2phy1 {
  	status = "okay";
  };
-@@ -772,6 +850,33 @@
+@@ -778,6 +856,33 @@
  	status = "okay";
  };
  
@@ -167,7 +167,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  &usb_host0_ehci {
  	status = "okay";
  };
-@@ -780,6 +885,20 @@
+@@ -786,6 +891,20 @@
  	status = "okay";
  };
  

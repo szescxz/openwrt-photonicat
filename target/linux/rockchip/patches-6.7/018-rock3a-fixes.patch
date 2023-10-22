@@ -9,7 +9,7 @@ Subject: [PATCH 18/95] rock3a fixes
 
 --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -32,13 +32,6 @@
+@@ -33,13 +33,6 @@
  		};
  	};
  
@@ -23,7 +23,7 @@ Subject: [PATCH 18/95] rock3a fixes
  	leds {
  		compatible = "gpio-leds";
  
-@@ -256,18 +249,25 @@
+@@ -257,18 +250,25 @@
  
  &gmac1 {
  	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
@@ -54,7 +54,7 @@ Subject: [PATCH 18/95] rock3a fixes
  	status = "okay";
  };
  
-@@ -410,6 +410,7 @@
+@@ -411,6 +411,7 @@
  
  			vdda0v9_image: LDO_REG1 {
  				regulator-name = "vdda0v9_image";
@@ -62,7 +62,7 @@ Subject: [PATCH 18/95] rock3a fixes
  				regulator-min-microvolt = <900000>;
  				regulator-max-microvolt = <900000>;
  
-@@ -446,6 +447,7 @@
+@@ -447,6 +448,7 @@
  			vccio_acodec: LDO_REG4 {
  				regulator-name = "vccio_acodec";
  				regulator-always-on;
@@ -70,7 +70,7 @@ Subject: [PATCH 18/95] rock3a fixes
  				regulator-min-microvolt = <3300000>;
  				regulator-max-microvolt = <3300000>;
  
-@@ -504,6 +506,7 @@
+@@ -505,6 +507,7 @@
  
  			vcca1v8_image: LDO_REG9 {
  				regulator-name = "vcca1v8_image";
@@ -78,7 +78,7 @@ Subject: [PATCH 18/95] rock3a fixes
  				regulator-min-microvolt = <1800000>;
  				regulator-max-microvolt = <1800000>;
  
-@@ -524,6 +527,7 @@
+@@ -525,6 +528,7 @@
  
  			vcc3v3_sd: SWITCH_REG2 {
  				regulator-name = "vcc3v3_sd";
@@ -86,7 +86,7 @@ Subject: [PATCH 18/95] rock3a fixes
  
  				regulator-state-mem {
  					regulator-off-in-suspend;
-@@ -585,11 +589,6 @@
+@@ -586,11 +590,6 @@
  	rgmii_phy1: ethernet-phy@0 {
  		compatible = "ethernet-phy-ieee802.3-c22";
  		reg = <0x0>;
@@ -98,7 +98,7 @@ Subject: [PATCH 18/95] rock3a fixes
  	};
  };
  
-@@ -793,7 +792,7 @@
+@@ -797,7 +796,7 @@
  };
  
  &usb_host0_xhci {

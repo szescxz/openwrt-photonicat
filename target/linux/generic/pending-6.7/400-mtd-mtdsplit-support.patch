@@ -205,7 +205,7 @@
  		mtd_add_partition_attrs(child);
  
  		/* Look for subpartitions */
-@@ -439,31 +583,6 @@ err_del_partitions:
+@@ -443,31 +587,6 @@ err_del_partitions:
  	return ret;
  }
  

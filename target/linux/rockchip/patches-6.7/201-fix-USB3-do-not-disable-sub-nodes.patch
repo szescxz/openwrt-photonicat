@@ -28,7 +28,7 @@ Subject: [PATCH 84/95] fix USB3: do not disable sub-nodes
  		};
  	};
  
-@@ -986,7 +985,6 @@
+@@ -991,7 +990,6 @@
  			snps,dis-del-phy-power-chg-quirk;
  			snps,dis-tx-ipgap-linecheck-quirk;
  			snps,dis_rxdet_inp3_quirk;
