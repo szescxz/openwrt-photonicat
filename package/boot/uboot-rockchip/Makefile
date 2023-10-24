@@ -5,10 +5,10 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
-PKG_VERSION:=2023.10-rc3
+PKG_VERSION:=2024.01-rc10
 PKG_RELEASE:=1
 
-PKG_HASH:=4c29d64e764060b49e7658f0cf9f86911d0b2bc081f13980a19b99cc89584ba0
+PKG_HASH:=f262c6fa1e209c5f3ffe9e13b0b713cae75c02ee296249147eb86d5ba300ae37
 
 PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
@@ -47,15 +47,6 @@ endef
 
 # RK3399 boards
 
-define U-Boot/nanopi-r4s-1g-rk3399
-  BUILD_SUBTARGET:=armv8
-  NAME:=NanoPi R4S 1G
-  BUILD_DEVICES:= \
-    friendlyarm_nanopi-r4s-1g
-  DEPENDS:=+PACKAGE_u-boot-nanopi-r4s-1g-rk3399:arm-trusted-firmware-rockchip
-  PKG_BUILD_DEPENDS:=arm-trusted-firmware-rockchip
-  ATF:=rk3399_bl31.elf
-endef
 
 define U-Boot/rock-pi-4-rk3399
   BUILD_SUBTARGET:=armv8
@@ -196,7 +187,6 @@ UBOOT_TARGETS := \
   nanopi-r5s-rk3568 \
   quartz64-a-rk3566 \
   rock-3a-rk3568 \
-  nanopi-r4s-1g-rk3399 \
   rock-pi-4-rk3399 \
   rockpro64-rk3399 \
   nanopi-r2s-rk3328 \
