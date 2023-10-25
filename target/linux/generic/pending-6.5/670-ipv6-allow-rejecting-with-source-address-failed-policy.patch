@@ -66,7 +66,7 @@ Signed-off-by: Jonas Gorski <jogo@openwrt.org>
  static void rt_fibinfo_free(struct rtable __rcu **rtp)
 --- a/net/ipv4/fib_trie.c
 +++ b/net/ipv4/fib_trie.c
-@@ -2779,6 +2779,7 @@ static const char *const rtn_type_names[
+@@ -2783,6 +2783,7 @@ static const char *const rtn_type_names[
  	[RTN_THROW] = "THROW",
  	[RTN_NAT] = "NAT",
  	[RTN_XRESOLVE] = "XRESOLVE",
@@ -125,7 +125,7 @@ Signed-off-by: Jonas Gorski <jogo@openwrt.org>
  
 +static const struct rt6_info ip6_policy_failed_entry_template = {
 +	.dst = {
-+
++		.__rcuref	= RCUREF_INIT(1),
 +		.__use		= 1,
 +		.obsolete	= DST_OBSOLETE_FORCE_CHK,
 +		.error		= -EACCES,
@@ -223,7 +223,7 @@ Signed-off-by: Jonas Gorski <jogo@openwrt.org>
 +	net->ipv6.ip6_policy_failed_entry->dst.ops = &net->ipv6.ip6_dst_ops;
 +	dst_init_metrics(&net->ipv6.ip6_policy_failed_entry->dst,
 +			 ip6_template_metrics, true);
-+
++	INIT_LIST_HEAD(&net->ipv6.ip6_policy_failed_entry->dst.rt_uncached);
 +
  	net->ipv6.ip6_blk_hole_entry = kmemdup(&ip6_blk_hole_entry_template,
  					       sizeof(*net->ipv6.ip6_blk_hole_entry),
