@@ -16,7 +16,7 @@ Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
 --- a/drivers/crypto/Kconfig
 +++ b/drivers/crypto/Kconfig
-@@ -609,6 +609,8 @@ config CRYPTO_DEV_QCOM_RNG
+@@ -610,6 +610,8 @@ config CRYPTO_DEV_QCOM_RNG
  	  To compile this driver as a module, choose M here. The
  	  module will be called qcom-rng. If unsure, say N.
  
@@ -25,7 +25,7 @@ Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
  config CRYPTO_DEV_VMX
  	bool "Support for VMX cryptographic acceleration instructions"
  	depends on PPC64 && VSX
-@@ -629,36 +631,6 @@ config CRYPTO_DEV_IMGTEC_HASH
+@@ -630,36 +632,6 @@ config CRYPTO_DEV_IMGTEC_HASH
  	  hardware hash accelerator. Supporting MD5/SHA1/SHA224/SHA256
  	  hashing algorithms.
  

@@ -78,7 +78,7 @@ This reverts commit bffcc6882a1bb2be8c9420184966f4c2c822078e.
  #define GENL_SET_ERR_MSG_FMT(info, msg, args...) \
 --- a/net/netlink/genetlink.c
 +++ b/net/netlink/genetlink.c
-@@ -957,6 +957,7 @@ static int genl_family_rcv_msg_doit(cons
+@@ -958,6 +958,7 @@ static int genl_family_rcv_msg_doit(cons
  	info.family = family;
  	info.nlhdr = nlh;
  	info.genlhdr = nlmsg_data(nlh);
