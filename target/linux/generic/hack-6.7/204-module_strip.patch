@@ -88,7 +88,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/kernel/module/Kconfig
 +++ b/kernel/module/Kconfig
-@@ -375,6 +375,13 @@ config UNUSED_KSYMS_WHITELIST
+@@ -390,6 +390,13 @@ config UNUSED_KSYMS_WHITELIST
  	  one per line. The path can be absolute, or relative to the kernel
  	  source tree.
  
