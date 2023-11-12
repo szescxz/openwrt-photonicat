@@ -1,8 +1,8 @@
-From 5db5dc0aaa9800c196066c76078947d941ee45ad Mon Sep 17 00:00:00 2001
+From 4d8370b9220eff464a906de9ad1387f0ad59aa2f Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 19 Jan 2023 19:51:49 +0000
-Subject: [PATCH] dtoverlay: Update vc4-kms-dpi-generic for changed
- mediabus formats
+Subject: [PATCH] dtoverlay: Update vc4-kms-dpi-generic for changed mediabus
+ formats
 
 Several of the media bus formats aren't merged upstream yet,
 therefore the values change when upstream does introduce

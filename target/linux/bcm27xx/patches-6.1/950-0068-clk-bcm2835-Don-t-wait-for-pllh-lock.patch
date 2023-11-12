@@ -1,4 +1,4 @@
-From da8b166a070e74a575d376c951f863ff069b7db4 Mon Sep 17 00:00:00 2001
+From 9c849cd78ee9d78443303af3b55cc3fc6318f31f Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Wed, 23 Jan 2019 16:11:50 +0000
 Subject: [PATCH] clk-bcm2835: Don't wait for pllh lock

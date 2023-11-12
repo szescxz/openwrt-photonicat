@@ -1,4 +1,4 @@
-From 20bdf59afc9d613744e22c4c12f531dc22554f10 Mon Sep 17 00:00:00 2001
+From bfc44b471187b71767c9feab18b71ab5548f5052 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.com>
 Date: Wed, 18 Jan 2023 16:37:01 +0000
 Subject: [PATCH] overlays: i2c-sensor: Use TABs for indentation

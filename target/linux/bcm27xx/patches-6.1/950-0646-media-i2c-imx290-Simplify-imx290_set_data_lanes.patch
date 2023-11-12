@@ -1,4 +1,4 @@
-From 1551a08118c8e468b3afe0dd5ae0cfa47b7518e1 Mon Sep 17 00:00:00 2001
+From 9bedfcde963973493bca5330452f2d39a271b8c2 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:53 +0100
 Subject: [PATCH] media: i2c: imx290: Simplify imx290_set_data_lanes()

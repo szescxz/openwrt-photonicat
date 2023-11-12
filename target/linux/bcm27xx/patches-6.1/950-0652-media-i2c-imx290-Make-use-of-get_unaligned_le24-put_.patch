@@ -1,4 +1,4 @@
-From e6a7be26a288f293847b92fe6333bb981eb74ba3 Mon Sep 17 00:00:00 2001
+From 51f9841d472da5604c12df9ca7eb0166b23537f4 Mon Sep 17 00:00:00 2001
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Date: Fri, 10 Feb 2023 00:12:05 +0200
 Subject: [PATCH] media: i2c: imx290: Make use of get_unaligned_le24(),

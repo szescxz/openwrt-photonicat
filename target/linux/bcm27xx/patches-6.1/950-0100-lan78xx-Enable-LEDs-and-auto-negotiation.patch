@@ -1,4 +1,4 @@
-From 06d4e2950cc7dd561975ec6888af14aefc7332d4 Mon Sep 17 00:00:00 2001
+From 3d918f796cd3832b4473c3d66e5c1285978ae7e1 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Tue, 17 Oct 2017 15:04:29 +0100
 Subject: [PATCH] lan78xx: Enable LEDs and auto-negotiation

@@ -1,4 +1,4 @@
-From e4b3776e69f480246c1eaa448fbd13db3568e08d Mon Sep 17 00:00:00 2001
+From dfdd1db51e019b0960ce337e10ef854ac317282d Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Wed, 15 Jun 2016 16:48:41 +0100
 Subject: [PATCH] rtc: Add SPI alias for pcf2123 driver

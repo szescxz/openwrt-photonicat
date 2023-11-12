@@ -1,8 +1,8 @@
-From f46108f6b967602e60505ae0198709467668dc83 Mon Sep 17 00:00:00 2001
+From 6d1997e2d0b2975875dd8d8d828245aefdbb1af7 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:21 +0300
-Subject: [PATCH] media: i2c: imx290: Factor out format retrieval to
- separate function
+Subject: [PATCH] media: i2c: imx290: Factor out format retrieval to separate
+ function
 
 Upstream commit b25537efeea9
 

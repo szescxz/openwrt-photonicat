@@ -1,8 +1,7 @@
-From 62813ba7cbf8c2df7af04036a297175fc0457626 Mon Sep 17 00:00:00 2001
+From 34b66f9e18412ee70ff12b1030df625d7adf5a51 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Fri, 1 Apr 2022 17:10:37 +0100
-Subject: [PATCH] drm/atomic: If margins are updated, update all
- planes.
+Subject: [PATCH] drm/atomic: If margins are updated, update all planes.
 
 Margins may be implemented by scaling the planes, but as there
 is no way of intercepting the set_property for a standard property,

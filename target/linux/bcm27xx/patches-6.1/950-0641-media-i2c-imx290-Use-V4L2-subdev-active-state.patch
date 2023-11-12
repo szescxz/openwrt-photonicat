@@ -1,4 +1,4 @@
-From 94caa6139edcfebd8934f362f562eac56b85b610 Mon Sep 17 00:00:00 2001
+From 3dff94a54cec4206277130f28cfe9bdd782a7c1f Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 17 Oct 2022 12:44:27 +0200
 Subject: [PATCH] media: i2c: imx290: Use V4L2 subdev active state

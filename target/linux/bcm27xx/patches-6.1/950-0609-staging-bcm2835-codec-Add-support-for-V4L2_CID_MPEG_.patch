@@ -1,4 +1,4 @@
-From f096c11828df983c5581bb96e8b238543652c008 Mon Sep 17 00:00:00 2001
+From f8219977f576654a5f188a8660ffaed598023320 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Tue, 14 Mar 2023 16:49:46 +0000
 Subject: [PATCH] staging: bcm2835-codec: Add support for

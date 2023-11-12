@@ -1,8 +1,8 @@
-From a78f785e776c674f8151a53243245890040be5e6 Mon Sep 17 00:00:00 2001
+From 81aa5e20631f04931daa04fb04f8fb9dcaf865fb Mon Sep 17 00:00:00 2001
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 Date: Fri, 17 Feb 2023 10:52:20 +0100
-Subject: [PATCH] media: dt-bindings: media: i2c: Add imx327 version to
- IMX327 bindings
+Subject: [PATCH] media: dt-bindings: media: i2c: Add imx327 version to IMX327
+ bindings
 
 Should be upstream commit 783ecfe5556a
 

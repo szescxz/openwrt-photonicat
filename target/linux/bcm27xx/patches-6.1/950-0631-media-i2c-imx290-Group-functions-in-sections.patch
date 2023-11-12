@@ -1,4 +1,4 @@
-From c4977346ac1a7e1a9175146e2fc20feca2f96703 Mon Sep 17 00:00:00 2001
+From dd85fa416c14eb60e2012545ff98b7104ea1ce41 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:38 +0100
 Subject: [PATCH] media: i2c: imx290: Group functions in sections

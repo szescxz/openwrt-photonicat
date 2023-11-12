@@ -1,4 +1,4 @@
-From 2c9a29b01ad8a5b9489f4713f12acf52e42b89cb Mon Sep 17 00:00:00 2001
+From 1d12fe5468a3e6995dfb4664eb51e5e0dbc3c18a Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Tue, 28 Mar 2023 14:49:41 +0100
 Subject: [PATCH] dtbindings: Reset imx290.txt to upstream

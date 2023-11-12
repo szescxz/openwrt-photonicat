@@ -1,8 +1,8 @@
-From d0f282c0afb570a286d6b8438ec0041ca2d2d6db Mon Sep 17 00:00:00 2001
+From 92af36eb36f3f241c6e024fa85aca1cd2d089f36 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:44 +0100
-Subject: [PATCH] media: i2c: imx290: Factor out black level setting to
- a function
+Subject: [PATCH] media: i2c: imx290: Factor out black level setting to a
+ function
 
 Upstream commit ee4ce8936693
 

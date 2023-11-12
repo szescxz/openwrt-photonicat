@@ -1,4 +1,4 @@
-From 9a6be4f7454aea16db1289664cf4dc5c31fe3a58 Mon Sep 17 00:00:00 2001
+From 06e0ba66373d40aa76f1a927b8228b66ecac07d4 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.org>
 Date: Thu, 24 Jan 2019 15:09:28 +0000
 Subject: [PATCH] clk: clk-bcm2835: Use %zd when printing size_t

@@ -1,4 +1,4 @@
-From c1461dc7f90c1789418e493df0fb866ebe74151a Mon Sep 17 00:00:00 2001
+From 73aca24fd06744d68019d29a98b98ae6a16417d8 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:10 +0300
 Subject: [PATCH] media: i2c: imx290: Specify HMAX values in decimal

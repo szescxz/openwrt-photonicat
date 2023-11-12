@@ -1,8 +1,8 @@
-From dabc8fbdb2e159d27b5f02ac428fa5788c2c4c2a Mon Sep 17 00:00:00 2001
+From 75f54e3341ac80fc7d9a25b70f18fd0c1f586fb0 Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Mon, 14 Mar 2022 17:56:10 +0000
-Subject: [PATCH] vc4/drm: vc4_plane: Keep fractional source coords
- inside state
+Subject: [PATCH] vc4/drm: vc4_plane: Keep fractional source coords inside
+ state
 
 Signed-off-by: Dom Cobley <popcornmix@gmail.com>
 ---

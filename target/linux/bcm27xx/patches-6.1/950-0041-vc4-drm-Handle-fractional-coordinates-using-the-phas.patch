@@ -1,8 +1,7 @@
-From 1f344e8eb017093573ddccd939b2dc5d930569dc Mon Sep 17 00:00:00 2001
+From 530def8213913d0726bd2084b9f868af6b4dfabd Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Fri, 9 Apr 2021 15:00:40 +0100
-Subject: [PATCH] vc4/drm: Handle fractional coordinates using the
- phase field
+Subject: [PATCH] vc4/drm: Handle fractional coordinates using the phase field
 
 Signed-off-by: Dom Cobley <popcornmix@gmail.com>
 ---

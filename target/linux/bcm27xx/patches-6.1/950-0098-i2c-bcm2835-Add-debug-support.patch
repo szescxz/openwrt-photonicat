@@ -1,4 +1,4 @@
-From 1e5524c80d2ff685951224ba3989b38dc4c80fa1 Mon Sep 17 00:00:00 2001
+From dc5fcaa7e000dfff11f2ac4e37a84a44d15d69f6 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
 Date: Tue, 1 Nov 2016 15:15:41 +0100
 Subject: [PATCH] i2c: bcm2835: Add debug support

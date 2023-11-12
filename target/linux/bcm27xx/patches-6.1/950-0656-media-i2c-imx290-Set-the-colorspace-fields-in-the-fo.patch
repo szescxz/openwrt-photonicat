@@ -1,8 +1,7 @@
-From afa7161b9e5d42ca8efc5cf08e88f9dfc58b786c Mon Sep 17 00:00:00 2001
+From 0e3c74aa189d568dfabfcd3ea95c666d2c0b5139 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Feb 2023 00:29:52 +0200
-Subject: [PATCH] media: i2c: imx290: Set the colorspace fields in the
- format
+Subject: [PATCH] media: i2c: imx290: Set the colorspace fields in the format
 
 Should be upstream commit 7843b2eb081b
 

@@ -1,4 +1,4 @@
-From b426d39ea63f239cc7778c9e0c4ff703c10cb65a Mon Sep 17 00:00:00 2001
+From 3f58295a84a9a9eb5c6aa06e7c0c93fe9959afe9 Mon Sep 17 00:00:00 2001
 From: Dan Pasanen <dan.pasanen@gmail.com>
 Date: Thu, 21 Sep 2017 09:55:42 -0500
 Subject: [PATCH] arm: partially revert

@@ -1,8 +1,7 @@
-From b583024119e8ea35f7a6d2d8b143c0eb390afa70 Mon Sep 17 00:00:00 2001
+From 9d5169f533e9da2b3aac09b3c4e7cc35afa9d8bf Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Fri, 1 Apr 2022 11:31:38 +0100
-Subject: [PATCH] drm/vc4: Force trigger of dlist update on margins
- change
+Subject: [PATCH] drm/vc4: Force trigger of dlist update on margins change
 
 When the margins are changed, the dlist needs to be regenerated
 with the changed updated dest regions for each of the planes.

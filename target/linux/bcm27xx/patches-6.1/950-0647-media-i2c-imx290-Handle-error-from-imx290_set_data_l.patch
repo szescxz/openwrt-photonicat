@@ -1,8 +1,7 @@
-From 705b61d95a10db07cf60f6087e543c826fa53c28 Mon Sep 17 00:00:00 2001
+From efd24d0fc593cbf222a940f9bf1fa6d31c8e44b1 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:54 +0100
-Subject: [PATCH] media: i2c: imx290: Handle error from
- imx290_set_data_lanes()
+Subject: [PATCH] media: i2c: imx290: Handle error from imx290_set_data_lanes()
 
 Upstream commit 05ef7ec49d6b
 

@@ -1,8 +1,8 @@
-From 53bfa82420b36fb13c8efac38b7a334ea5e71a3c Mon Sep 17 00:00:00 2001
+From 18ddb8b79eb66ada990b3f91e5d56b4451c37e62 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:17 +0300
-Subject: [PATCH] media: i2c: imx290: Split control initialization to
- separate function
+Subject: [PATCH] media: i2c: imx290: Split control initialization to separate
+ function
 
 Upstream commit 72c87b7ad560.
 

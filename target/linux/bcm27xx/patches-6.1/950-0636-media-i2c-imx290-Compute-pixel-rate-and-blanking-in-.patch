@@ -1,8 +1,8 @@
-From 317b043056ef595bf7d4af2c807946afb405c117 Mon Sep 17 00:00:00 2001
+From e059710a101517c80bd5782092d6f9ca93f83e32 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:43 +0100
-Subject: [PATCH] media: i2c: imx290: Compute pixel rate and blanking
- in one place
+Subject: [PATCH] media: i2c: imx290: Compute pixel rate and blanking in one
+ place
 
 Upstream commit 693b5cb598cc
 

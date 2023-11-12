@@ -1,8 +1,8 @@
-From 2551dd11f3c6f1633f7aa9ec2c68b1c9831b3559 Mon Sep 17 00:00:00 2001
+From 4c5c0fa5ae4aeee2ca588935960aa48e666dafda Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Dec 2021 15:33:43 +0000
-Subject: [PATCH] drm/tc358762: Set the pre_enable_upstream_first flag
- to configure DSI host
+Subject: [PATCH] drm/tc358762: Set the pre_enable_upstream_first flag to
+ configure DSI host
 
 TC358762 wants the DSI host to be prepared before it is powered up, so
 set the flag to request that the upstream bridges have their

@@ -1,4 +1,4 @@
-From 648c906a27d3713f589717f4be36583fc64f2ba1 Mon Sep 17 00:00:00 2001
+From 5811c0719511310ea778259dc83dffd1ee0e3e1c Mon Sep 17 00:00:00 2001
 From: Steve Glendinning <steve.glendinning@smsc.com>
 Date: Thu, 19 Feb 2015 18:47:12 +0000
 Subject: [PATCH] smsx95xx: fix crimes against truesize

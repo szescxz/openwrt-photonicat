@@ -1,8 +1,7 @@
-From dcef754861ddd47e88f722abefc768410f1a17d1 Mon Sep 17 00:00:00 2001
+From 3a1fbb698cc8c3878bc0f4670ffa9694628be14f Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Feb 2023 00:30:01 +0200
-Subject: [PATCH] media: i2c: imx290: Add support for 74.25MHz external
- clock
+Subject: [PATCH] media: i2c: imx290: Add support for 74.25MHz external clock
 
 Should be upstream commit b8b86dfe1aee
 

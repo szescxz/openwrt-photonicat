@@ -1,8 +1,8 @@
-From 30f0c2f0da952655da949c2af36bf53138092ba5 Mon Sep 17 00:00:00 2001
+From 4f34c62b2e8672806287e789f126780cf7ecc93b Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Mon, 6 Jun 2022 14:53:56 +0100
-Subject: [PATCH] drm: vc4: Add comments for which HVS_PIXEL_ORDER_xxx
- defines apply
+Subject: [PATCH] drm: vc4: Add comments for which HVS_PIXEL_ORDER_xxx defines
+ apply
 
 The HVS_PIXEL_ORDER_xxx defines apply to specific HVS_PIXEL_FORMAT_xxx
 modes, so add comments to make this obvious.

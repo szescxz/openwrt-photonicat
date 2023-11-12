@@ -1,4 +1,4 @@
-From db4cb2248e9d98cc513300964c3ecdc80b8bc364 Mon Sep 17 00:00:00 2001
+From 0ced8286b5b6e49895dcaf4e25de2aef1df8073c Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Fri, 3 Jun 2022 16:57:04 +0100
 Subject: [PATCH] drm: vc4: Add 3:3:2 and 4:4:4:4 RGB/RGBX/RGBA formats

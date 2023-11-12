@@ -1,8 +1,7 @@
-From 50b181819224c717a468ced24ec7106e87b02dcd Mon Sep 17 00:00:00 2001
+From 0c388c5b5f28128f6709b138918b8ab266131988 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Tue, 28 Mar 2023 15:16:57 +0100
-Subject: [PATCH] dtoverlays: Update compatible strings for
- imx290/327/462
+Subject: [PATCH] dtoverlays: Update compatible strings for imx290/327/462
 
 Now upstream have accepted patches adding a mono version of
 IMX290, and IMX327, update the compatible strings in the overlays

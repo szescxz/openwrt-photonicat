@@ -1,4 +1,4 @@
-From 5003200e5b6e1485515fe18aa5031769930e465e Mon Sep 17 00:00:00 2001
+From 83f26bc92af85d4fddeebf82282c61598861a6cb Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Feb 2023 00:29:54 +0200
 Subject: [PATCH] media: i2c: imx290: Fix the pixel rate at 148.5Mpix/s

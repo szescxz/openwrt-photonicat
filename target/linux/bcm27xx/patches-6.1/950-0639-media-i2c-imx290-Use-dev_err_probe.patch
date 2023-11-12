@@ -1,4 +1,4 @@
-From 5589814e868f5becefdb44d28c07cb39cbb7e9bd Mon Sep 17 00:00:00 2001
+From ffd67348513f80f4a162a58b621e607ac90a3557 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:46 +0100
 Subject: [PATCH] media: i2c: imx290: Use dev_err_probe()

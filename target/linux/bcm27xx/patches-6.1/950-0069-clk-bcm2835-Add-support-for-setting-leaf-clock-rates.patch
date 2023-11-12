@@ -1,8 +1,8 @@
-From 704690d968a5f1cde04d15ad6c2b8410d7933461 Mon Sep 17 00:00:00 2001
+From c5a0182a6aec56695354cfe10bb5536a6a38c5f3 Mon Sep 17 00:00:00 2001
 From: Eric Anholt <eric@anholt.net>
 Date: Thu, 2 May 2019 15:11:05 -0700
-Subject: [PATCH] clk: bcm2835: Add support for setting leaf clock
- rates while running.
+Subject: [PATCH] clk: bcm2835: Add support for setting leaf clock rates while
+ running.
 
 As long as you wait for !BUSY, you can do glitch-free updates of clock
 rate while the clock is running.

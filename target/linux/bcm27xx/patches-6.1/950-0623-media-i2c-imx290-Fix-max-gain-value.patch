@@ -1,4 +1,4 @@
-From cf16974cd2daa3ae3fa3faf7c12c8b2d44828950 Mon Sep 17 00:00:00 2001
+From d0024cc9b1a63eafca9553cfe44fe282c20da94a Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:16 +0300
 Subject: [PATCH] media: i2c: imx290: Fix max gain value

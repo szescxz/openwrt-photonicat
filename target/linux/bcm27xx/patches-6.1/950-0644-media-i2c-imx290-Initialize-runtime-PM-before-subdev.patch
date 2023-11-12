@@ -1,8 +1,7 @@
-From 42d779016414396fe047ef41af6bc8297f3cd6a4 Mon Sep 17 00:00:00 2001
+From c9c5e31f9f4e348ccd4a4b28e8310cda193fbb19 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:51 +0100
-Subject: [PATCH] media: i2c: imx290: Initialize runtime PM before
- subdev
+Subject: [PATCH] media: i2c: imx290: Initialize runtime PM before subdev
 
 Upstream commit 02852c01f654
 

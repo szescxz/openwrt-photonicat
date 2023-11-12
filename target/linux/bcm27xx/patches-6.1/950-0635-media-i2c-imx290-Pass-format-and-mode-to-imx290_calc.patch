@@ -1,4 +1,4 @@
-From 58cb4180d3da2c3c096427ff77b967f217bd2f8d Mon Sep 17 00:00:00 2001
+From b91273eee4d7598942366ebc55cd17957210c0ab Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:42 +0100
 Subject: [PATCH] media: i2c: imx290: Pass format and mode to

@@ -1,8 +1,7 @@
-From f463515fa1c3d34eeff708d3c015d357049b4df1 Mon Sep 17 00:00:00 2001
+From 09646601407a4a73a86eb0f7eb6f4ef8a02df37e Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:52 +0100
-Subject: [PATCH] media: i2c: imx290: Configure data lanes at start
- time
+Subject: [PATCH] media: i2c: imx290: Configure data lanes at start time
 
 Upstream commit 7d399658f7c6
 

@@ -1,8 +1,7 @@
-From 421e9f60f24504de605c7bc4ba98e51b73b2aa6d Mon Sep 17 00:00:00 2001
+From a425582e7cc318586474b79fbafeafff54c55a84 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Feb 2023 00:29:58 +0200
-Subject: [PATCH] media: i2c: imx290: Convert V4L2_CID_VBLANK to
- read/write
+Subject: [PATCH] media: i2c: imx290: Convert V4L2_CID_VBLANK to read/write
 
 Should be upstream commit 97792a11021b
 

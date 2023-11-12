@@ -1,8 +1,7 @@
-From b0c1da315623496404b3a0203c51ae7fc9d3ed88 Mon Sep 17 00:00:00 2001
+From c0ef0339d77fc9f5919ac06b9b961289f5c865cc Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.com>
 Date: Mon, 7 Mar 2022 16:18:55 +0000
-Subject: [PATCH] Revert "net: bcmgenet: Request APD, DLL disable and
- IDDQ-SR"
+Subject: [PATCH] Revert "net: bcmgenet: Request APD, DLL disable and IDDQ-SR"
 
 This reverts commit c3a4c69360ab43560f212eed326c9d8bde35b14c, which
 broke rebooting when network booting.

@@ -1,4 +1,4 @@
-From 4afc11ae3b786ad8425435b70ab0285fbf951b05 Mon Sep 17 00:00:00 2001
+From 8711ae08b26de1a18a07367ee48aeefc05a6d90e Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:45 +0100
 Subject: [PATCH] media: i2c: imx290: Factor out DT parsing to separate

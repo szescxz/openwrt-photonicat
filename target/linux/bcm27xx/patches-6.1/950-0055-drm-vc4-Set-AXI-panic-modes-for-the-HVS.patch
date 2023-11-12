@@ -1,4 +1,4 @@
-From b6b9915ad0b9c70c3b7edc45dfca2fdcfd4ba5cb Mon Sep 17 00:00:00 2001
+From 87fed1718f9ce64127dea253c37a9f13ec987ee0 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 11 Aug 2022 13:59:34 +0100
 Subject: [PATCH] drm/vc4: Set AXI panic modes for the HVS

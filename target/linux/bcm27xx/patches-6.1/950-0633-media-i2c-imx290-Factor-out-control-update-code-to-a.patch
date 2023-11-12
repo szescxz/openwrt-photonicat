@@ -1,8 +1,8 @@
-From d28f7567b1043aec24558bd72dc10983db25f25c Mon Sep 17 00:00:00 2001
+From b8aa1f8a870422dcae1d9efd130a433b2b609a72 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:40 +0100
-Subject: [PATCH] media: i2c: imx290: Factor out control update code to
- a function
+Subject: [PATCH] media: i2c: imx290: Factor out control update code to a
+ function
 
 Upstream commit a7941da37c43
 

@@ -1,8 +1,8 @@
-From e229805297bd5ff53b5fc63d08c5f37c2404c2d6 Mon Sep 17 00:00:00 2001
+From aae9a991d857f49d28bd4b102bf2d41a9b941c21 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Mon, 6 Jun 2022 12:23:28 +0100
-Subject: [PATCH] drm: vc4: Omit pixel_order from the hvs_format for
- hvs5 only formats
+Subject: [PATCH] drm: vc4: Omit pixel_order from the hvs_format for hvs5 only
+ formats
 
 pixel_order is used for the earlier versions of the HVS, so is
 redundant on the 10:10:10:2 and 10bit YUV formats that are only

@@ -1,8 +1,8 @@
-From bb459b1433e79fa048f6a904e90393f9f26ea52a Mon Sep 17 00:00:00 2001
+From ca8dea5baa04cec877c666b69024b2211df5548f Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:39 +0100
-Subject: [PATCH] media: i2c: imx290: Factor out subdev init and
- cleanup to functions
+Subject: [PATCH] media: i2c: imx290: Factor out subdev init and cleanup to
+ functions
 
 Upstream commit dfb704da8300.
 

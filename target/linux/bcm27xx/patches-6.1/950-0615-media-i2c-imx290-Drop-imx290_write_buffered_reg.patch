@@ -1,4 +1,4 @@
-From 51fc780bc99a0cfe74fcfc42744d8265fcafedcb Mon Sep 17 00:00:00 2001
+From b1af2b327ade5b60846bae618da8d41f06cd5bb2 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:08 +0300
 Subject: [PATCH] media: i2c: imx290: Drop imx290_write_buffered_reg()

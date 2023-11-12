@@ -1,4 +1,4 @@
-From 0ae6d14764389f409facd3a7493d70c4de63a82c Mon Sep 17 00:00:00 2001
+From faa7cd1d39c61cdcab867711580752a803b02451 Mon Sep 17 00:00:00 2001
 From: popcornmix <popcornmix@gmail.com>
 Date: Wed, 9 Nov 2016 13:02:52 +0000
 Subject: [PATCH] bcm: Make RASPBERRYPI_POWER depend on PM

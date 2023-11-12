@@ -1,8 +1,7 @@
-From 8400889a0f241a12353673c35087bf6c38ea09e9 Mon Sep 17 00:00:00 2001
+From e2339bd2c4fd484b8be3e2b662bfaf514834e3c7 Mon Sep 17 00:00:00 2001
 From: Maxime Ripard <maxime@cerno.tech>
 Date: Mon, 15 Aug 2022 13:34:02 +0200
-Subject: [PATCH] media: uapi: Add some RGB bus formats for VC4 DPI
- output
+Subject: [PATCH] media: uapi: Add some RGB bus formats for VC4 DPI output
 
 The VC4 DPI controller can output more RGB formats that aren't described
 through a media bus format yet, so let's add them.

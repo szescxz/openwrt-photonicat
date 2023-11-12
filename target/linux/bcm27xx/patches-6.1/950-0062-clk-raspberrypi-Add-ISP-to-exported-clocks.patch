@@ -1,4 +1,4 @@
-From d4ebd5479019e939b14452f104f6cead150a59e7 Mon Sep 17 00:00:00 2001
+From e83914825e59198988203f5ed879a64f3557b280 Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Tue, 12 Apr 2022 20:07:20 +0100
 Subject: [PATCH] clk-raspberrypi: Add ISP to exported clocks

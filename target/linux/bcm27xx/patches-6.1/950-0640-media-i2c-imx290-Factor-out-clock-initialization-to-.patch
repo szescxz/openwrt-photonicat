@@ -1,8 +1,8 @@
-From 88c013f4c7e60431bca7bc6487971f671397e0fd Mon Sep 17 00:00:00 2001
+From cedf19f68415f66fe86bf8a0681afdb92c0167b5 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:47 +0100
-Subject: [PATCH] media: i2c: imx290: Factor out clock initialization
- to separate function
+Subject: [PATCH] media: i2c: imx290: Factor out clock initialization to
+ separate function
 
 Upstream commit e5d363ca82b9
 

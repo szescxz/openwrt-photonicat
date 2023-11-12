@@ -1,8 +1,7 @@
-From d2db7798740061f6d54487ecaa9da15bc89cdc3c Mon Sep 17 00:00:00 2001
+From 0cd9c3da58c5f2f1d2df9c6a901475be3c5fce24 Mon Sep 17 00:00:00 2001
 From: Javier Martinez Canillas <javierm@redhat.com>
 Date: Tue, 28 Mar 2023 05:11:58 +0200
-Subject: [PATCH] dtoverlays: Add inverted override property to
- ssd1306-spi
+Subject: [PATCH] dtoverlays: Add inverted override property to ssd1306-spi
 
 The new ssd130x DRM driver supports both SSD1306 I2C and SPI panels and is
 compatible with the ssd1307fb driver bindings. So the "solomon,com-invdir"

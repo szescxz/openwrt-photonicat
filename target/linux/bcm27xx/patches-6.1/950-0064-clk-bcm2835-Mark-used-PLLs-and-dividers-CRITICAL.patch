@@ -1,4 +1,4 @@
-From bb935818eb9d7a8ba76f184f9355c9e71c4f0f7f Mon Sep 17 00:00:00 2001
+From 2f4b354fedfd33cd996d261f66c887a87cbee641 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Mon, 13 Feb 2017 17:20:08 +0000
 Subject: [PATCH] clk-bcm2835: Mark used PLLs and dividers CRITICAL

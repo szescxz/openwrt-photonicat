@@ -1,4 +1,4 @@
-From 9c48213eaa5603790ef3213637fd49bdb07e234a Mon Sep 17 00:00:00 2001
+From f4f85afe1641fc846b011dff80ef5c0b6b206258 Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Thu, 7 Apr 2022 18:23:07 +0100
 Subject: [PATCH] raspberrypi-firmware: Update mailbox commands

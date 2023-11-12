@@ -1,4 +1,4 @@
-From a57b5bb7e16f524f39ce6a68f9d0dc9b64b075ed Mon Sep 17 00:00:00 2001
+From 34a1764a301c3a18ec016f4331ba104d7cd38f26 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Mon, 6 Mar 2017 09:06:18 +0000
 Subject: [PATCH] clk-bcm2835: Read max core clock from firmware

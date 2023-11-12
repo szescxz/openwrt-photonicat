@@ -1,4 +1,4 @@
-From d3fa68cc641f6a64a15f73203f1bf48f11de91a0 Mon Sep 17 00:00:00 2001
+From 2bd63288dcd33f32b529ef073e9b716444846e48 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Mon, 13 Feb 2017 17:20:08 +0000
 Subject: [PATCH] clk-bcm2835: Add claim-clocks property

@@ -1,4 +1,4 @@
-From ca82414470eea1d81f8fe4169ee19b89245989dc Mon Sep 17 00:00:00 2001
+From 1772d6d383fe550ec9c8f7fa2526a114e036e3a9 Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Wed, 26 Jan 2022 15:58:13 +0000
 Subject: [PATCH] drm: Add chroma siting properties

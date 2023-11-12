@@ -1,8 +1,8 @@
-From fd31edb90963d91390b372153028fab79e7f060e Mon Sep 17 00:00:00 2001
+From 26e59ee4f1a45111658878914e8eefcf4c9fdc2e Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 17 Oct 2022 12:44:27 +0200
-Subject: [PATCH] media: i2c: imx290: Rename, extend and expand usage
- of imx290_pixfmt
+Subject: [PATCH] media: i2c: imx290: Rename, extend and expand usage of
+ imx290_pixfmt
 
 Upstream commit 10591fe63691
 

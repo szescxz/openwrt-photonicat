@@ -1,4 +1,4 @@
-From eedea0d30a542f255626876be44929af8efc337a Mon Sep 17 00:00:00 2001
+From 59af37c19b6ceb1caa4f8aa144d114c30667961b Mon Sep 17 00:00:00 2001
 From: Maxime Ripard <maxime@cerno.tech>
 Date: Mon, 6 Jun 2022 11:02:16 +0200
 Subject: [PATCH] arm64: setup: Fix build warning

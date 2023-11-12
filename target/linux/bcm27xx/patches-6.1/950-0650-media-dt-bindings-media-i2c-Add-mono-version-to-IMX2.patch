@@ -1,8 +1,8 @@
-From 695dadec7459162f4945320081c9c4d2712406a4 Mon Sep 17 00:00:00 2001
+From 744ed853e9eced8a5c7d1ca9d63ba13652ee3680 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Feb 2023 00:29:49 +0200
-Subject: [PATCH] media: dt-bindings: media: i2c: Add mono version to
- IMX290 bindings
+Subject: [PATCH] media: dt-bindings: media: i2c: Add mono version to IMX290
+ bindings
 
 Should be upstream commit f0c720ff2d21
 

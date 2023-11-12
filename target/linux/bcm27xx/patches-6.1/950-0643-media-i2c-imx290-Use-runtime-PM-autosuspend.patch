@@ -1,4 +1,4 @@
-From 28725443a44ba4ed854195cd2916a0ae59c4259f Mon Sep 17 00:00:00 2001
+From 5d03af4bd443f053d84fe9aef9bfa15994056c28 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:50 +0100
 Subject: [PATCH] media: i2c: imx290: Use runtime PM autosuspend

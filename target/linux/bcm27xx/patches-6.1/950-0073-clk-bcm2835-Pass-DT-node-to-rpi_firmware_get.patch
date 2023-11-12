@@ -1,4 +1,4 @@
-From 0bd540c587577c9f585b163f4b44842f83bebbf9 Mon Sep 17 00:00:00 2001
+From 83438d9e501ae9439b951f225d3d81bea7930568 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.com>
 Date: Thu, 8 Jul 2021 09:37:10 +0100
 Subject: [PATCH] clk: bcm2835: Pass DT node to rpi_firmware_get

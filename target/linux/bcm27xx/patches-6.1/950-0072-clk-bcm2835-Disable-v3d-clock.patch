@@ -1,4 +1,4 @@
-From 59d8d02b527bd16a03f1abf9669dae0e2ea94a02 Mon Sep 17 00:00:00 2001
+From bcca26f6e384cfb43bcdcf36873e85476de9fab1 Mon Sep 17 00:00:00 2001
 From: popcornmix <popcornmix@gmail.com>
 Date: Tue, 3 Sep 2019 20:28:00 +0100
 Subject: [PATCH] clk-bcm2835: Disable v3d clock

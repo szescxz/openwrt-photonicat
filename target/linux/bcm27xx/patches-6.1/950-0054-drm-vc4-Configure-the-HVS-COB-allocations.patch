@@ -1,4 +1,4 @@
-From 4477b8c71c8b3b5aa8bd15f9993f48d02d178fc5 Mon Sep 17 00:00:00 2001
+From 482f1cbc27b336c12cbea38360a580cc0c8a8e62 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 11 Aug 2022 13:49:16 +0100
 Subject: [PATCH] drm/vc4: Configure the HVS COB allocations

@@ -1,4 +1,4 @@
-From b43bf8ecf329669ce3ae032c0332bc5f6e3a4701 Mon Sep 17 00:00:00 2001
+From 29aa62aa5af2f290d9dd2a20f4bdd5d5bb612a65 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Thu, 9 Feb 2017 14:36:44 +0000
 Subject: [PATCH] sound: Demote deferral errors to INFO level

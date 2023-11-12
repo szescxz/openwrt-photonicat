@@ -1,4 +1,4 @@
-From abd81cbef43375bdca1414bb97960161e7a8fe49 Mon Sep 17 00:00:00 2001
+From 88c07badc7a952682f5914abeb0bb789015b67c6 Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Tue, 19 Oct 2021 14:14:55 +0100
 Subject: [PATCH] clk-bcm2835: Remove VEC clock support

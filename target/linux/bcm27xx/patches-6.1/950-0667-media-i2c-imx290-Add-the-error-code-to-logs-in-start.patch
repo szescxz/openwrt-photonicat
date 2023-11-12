@@ -1,4 +1,4 @@
-From ca2e3e4cb1704ae28a15e889165bf5f319dcb905 Mon Sep 17 00:00:00 2001
+From 101499e3fd077ad3e30e1f19c87169ac33aa5c41 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Feb 2023 00:30:03 +0200
 Subject: [PATCH] media: i2c: imx290: Add the error code to logs in

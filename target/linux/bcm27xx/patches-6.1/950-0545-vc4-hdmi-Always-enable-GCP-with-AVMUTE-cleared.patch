@@ -1,4 +1,4 @@
-From 3bd2ed90a679b87d4dc3fe0a70a83c323df915de Mon Sep 17 00:00:00 2001
+From 92c5eb8929f0fe9855047205707a1489dd52c4fb Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Wed, 11 Jan 2023 17:30:58 +0000
 Subject: [PATCH] vc4/hdmi: Always enable GCP with AVMUTE cleared

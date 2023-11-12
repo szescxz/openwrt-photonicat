@@ -1,8 +1,7 @@
-From eefa9ce2af54be4a6fa33add2c3d0ddac2739622 Mon Sep 17 00:00:00 2001
+From 9d18d12656e2e5e24bf3e9863803dc772254c761 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:18 +0300
-Subject: [PATCH] media: i2c: imx290: Implement HBLANK and VBLANK
- controls
+Subject: [PATCH] media: i2c: imx290: Implement HBLANK and VBLANK controls
 
 Upstream commit 0c3b56c905e3.
 

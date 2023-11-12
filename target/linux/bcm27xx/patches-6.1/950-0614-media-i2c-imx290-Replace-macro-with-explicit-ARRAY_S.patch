@@ -1,8 +1,7 @@
-From 40361e75c3da4145a21ef6284ad76c28983b4364 Mon Sep 17 00:00:00 2001
+From b5fd7795eb7cb22ed02d35f019c473af8827024f Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:07 +0300
-Subject: [PATCH] media: i2c: imx290: Replace macro with explicit
- ARRAY_SIZE()
+Subject: [PATCH] media: i2c: imx290: Replace macro with explicit ARRAY_SIZE()
 
 Upstream commit 2548df538cdd.
 

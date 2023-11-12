@@ -1,4 +1,4 @@
-From cdb7a9e14810f5cd40abf9cd3959294ee9283069 Mon Sep 17 00:00:00 2001
+From e8d0e03fcc00e871ecf963838d99b91b992252ea Mon Sep 17 00:00:00 2001
 From: Maxime Ripard <maxime@cerno.tech>
 Date: Mon, 11 Jul 2022 15:58:36 +0200
 Subject: [PATCH] clk: bcm: rpi: Create helper to retrieve private data

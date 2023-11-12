@@ -1,4 +1,4 @@
-From 22774ebfc4073fd3c0fc729e2ae1e0e762ec127e Mon Sep 17 00:00:00 2001
+From aa0d532157cfbb4e2ac639f6a36e3140209ea75a Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:04 +0300
 Subject: [PATCH] media: dt-bindings: Convert imx290.txt to YAML

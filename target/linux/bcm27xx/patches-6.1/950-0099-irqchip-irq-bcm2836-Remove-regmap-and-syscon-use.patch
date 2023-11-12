@@ -1,4 +1,4 @@
-From 179240b8f8d928abe71dbff54e4f88ef76fc5684 Mon Sep 17 00:00:00 2001
+From 9e2bbe439ce51f4af6952dd80febb5bb32ef3491 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.org>
 Date: Tue, 23 Jan 2018 16:52:45 +0000
 Subject: [PATCH] irqchip: irq-bcm2836: Remove regmap and syscon use

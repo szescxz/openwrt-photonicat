@@ -1,4 +1,4 @@
-From 3537a855e3858b1f8b6cee545a22b8b67037235c Mon Sep 17 00:00:00 2001
+From 52e517bf8e7c3e92aa760a624732ff589bd30201 Mon Sep 17 00:00:00 2001
 From: Phil Elwell <phil@raspberrypi.com>
 Date: Wed, 22 Mar 2023 15:30:38 +0000
 Subject: [PATCH] hwrng: bcm2835 - sleep more intelligently

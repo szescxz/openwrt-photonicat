@@ -1,8 +1,8 @@
-From bf9263611ac50bbe7b0113782468f653a28d2e52 Mon Sep 17 00:00:00 2001
+From acc367502cc3133bc7ce7260714fd77e0c264e10 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Tue, 14 Mar 2023 14:29:52 +0000
-Subject: [PATCH] staging: bcm2835-codec: Add
- V4L2_CID_MPEG_VIDEO_B_FRAMES control
+Subject: [PATCH] staging: bcm2835-codec: Add V4L2_CID_MPEG_VIDEO_B_FRAMES
+ control
 
 FFmpeg insists on trying to set V4L2_CID_MPEG_VIDEO_B_FRAMES to
 0, and generates an error should it fail.

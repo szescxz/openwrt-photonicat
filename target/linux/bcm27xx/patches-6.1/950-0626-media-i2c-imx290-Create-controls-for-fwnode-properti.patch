@@ -1,8 +1,7 @@
-From 10594f95e425d0eb7d36344cac5f276ab7e99658 Mon Sep 17 00:00:00 2001
+From 5a9c01fe81d6b50537d1402d94f874e4277d34a4 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Sun, 16 Oct 2022 09:15:19 +0300
-Subject: [PATCH] media: i2c: imx290: Create controls for fwnode
- properties
+Subject: [PATCH] media: i2c: imx290: Create controls for fwnode properties
 
 Upstream commit 4c9c93cf8657.
 

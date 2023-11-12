@@ -1,4 +1,4 @@
-From 6674a753e11c7c623926a8fed128a9ed86530e5c Mon Sep 17 00:00:00 2001
+From 816a2693d6dd7058f96b0f8d089ec1ece8b6db14 Mon Sep 17 00:00:00 2001
 From: Maxime Ripard <maxime@cerno.tech>
 Date: Mon, 11 Jul 2022 10:38:25 +0200
 Subject: [PATCH] drm/vc4: hvs: Skip DebugFS Registration for FKMS

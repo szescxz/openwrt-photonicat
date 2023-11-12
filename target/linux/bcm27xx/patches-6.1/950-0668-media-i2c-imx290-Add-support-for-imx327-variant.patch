@@ -1,4 +1,4 @@
-From 953826015a003f08f033d33e09799a5380c1b5ae Mon Sep 17 00:00:00 2001
+From 62376a873449f736ebbc59ca4146df58e5053e86 Mon Sep 17 00:00:00 2001
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 Date: Fri, 17 Feb 2023 10:52:21 +0100
 Subject: [PATCH] media: i2c: imx290: Add support for imx327 variant

@@ -1,8 +1,7 @@
-From d0cc0819d6750d39624741d9091ab3f73836f11b Mon Sep 17 00:00:00 2001
+From f4cdb65667e80e3407268f204f03f985b0df43df Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Thu, 16 Feb 2023 00:29:50 +0200
-Subject: [PATCH] media: i2c: imx290: Add support for the mono sensor
- variant
+Subject: [PATCH] media: i2c: imx290: Add support for the mono sensor variant
 
 Should be upstream commit 9bf52c7136d1
 

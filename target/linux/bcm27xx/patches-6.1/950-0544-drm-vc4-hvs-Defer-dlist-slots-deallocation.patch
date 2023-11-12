@@ -1,4 +1,4 @@
-From 01576f30d7af7455fcf6d650834791f4b80901e8 Mon Sep 17 00:00:00 2001
+From e31462779454d6a3b623d14d45a4c4025ef3b531 Mon Sep 17 00:00:00 2001
 From: Maxime Ripard <maxime@cerno.tech>
 Date: Thu, 16 Dec 2021 14:54:54 +0100
 Subject: [PATCH] drm/vc4: hvs: Defer dlist slots deallocation

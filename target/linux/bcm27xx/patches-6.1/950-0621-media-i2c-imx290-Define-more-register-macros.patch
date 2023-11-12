@@ -1,4 +1,4 @@
-From 43a9d91f96b8206813d95dce2fd5bbcf5f3bf586 Mon Sep 17 00:00:00 2001
+From 302664f4cbc8aba3975a794cb41c303faf6b4882 Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 17 Oct 2022 11:35:45 +0300
 Subject: [PATCH] media: i2c: imx290: Define more register macros

@@ -1,4 +1,4 @@
-From be5c4814f18effda98a7c111aefce9c9c51d0926 Mon Sep 17 00:00:00 2001
+From 94d16d548bce05e1c330842f3e6ba9370d522b05 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
 Date: Fri, 12 Jun 2015 19:01:05 +0200
 Subject: [PATCH] irqchip: bcm2835: Add FIQ support

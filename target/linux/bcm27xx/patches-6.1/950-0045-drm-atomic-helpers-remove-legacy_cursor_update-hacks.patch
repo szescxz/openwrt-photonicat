@@ -1,4 +1,4 @@
-From 34b4470575bd300507847093497516f1adbc5020 Mon Sep 17 00:00:00 2001
+From 713e11c488cb9066e0c52c1d454773c495ba718f Mon Sep 17 00:00:00 2001
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 Date: Fri, 23 Oct 2020 14:39:23 +0200
 Subject: [PATCH] drm/atomic-helpers: remove legacy_cursor_update hacks

@@ -1,8 +1,8 @@
-From bf53b44573db760e243ef2fdf542bc3e991c97a6 Mon Sep 17 00:00:00 2001
+From 8fd080d355a9af07751c2080151347132c8ad1f2 Mon Sep 17 00:00:00 2001
 From: Dom Cobley <popcornmix@gmail.com>
 Date: Thu, 5 May 2022 18:50:04 +0100
-Subject: [PATCH] drm/vc4_hdmi: Force a modeset when Broadcast RGB
- setting changes
+Subject: [PATCH] drm/vc4_hdmi: Force a modeset when Broadcast RGB setting
+ changes
 
 Without this the change is not visible until the next modeset
 

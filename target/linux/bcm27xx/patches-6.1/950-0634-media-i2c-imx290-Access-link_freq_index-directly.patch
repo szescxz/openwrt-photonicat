@@ -1,4 +1,4 @@
-From 27404eb8c29cfe1e0d40925f6d628fad8cc5a977 Mon Sep 17 00:00:00 2001
+From b11e67508d3e195d39b0e747a810f806469bcb5b Mon Sep 17 00:00:00 2001
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Date: Mon, 16 Jan 2023 15:44:41 +0100
 Subject: [PATCH] media: i2c: imx290: Access link_freq_index directly

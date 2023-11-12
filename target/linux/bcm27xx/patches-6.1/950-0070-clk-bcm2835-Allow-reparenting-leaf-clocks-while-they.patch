@@ -1,8 +1,8 @@
-From da04f315a9aad8344c363e08939dfb7fda22df2e Mon Sep 17 00:00:00 2001
+From a9f709127c1a912517bd4e1160360bb4ab3e1498 Mon Sep 17 00:00:00 2001
 From: Eric Anholt <eric@anholt.net>
 Date: Thu, 2 May 2019 15:24:04 -0700
-Subject: [PATCH] clk: bcm2835: Allow reparenting leaf clocks while
- they're running.
+Subject: [PATCH] clk: bcm2835: Allow reparenting leaf clocks while they're
+ running.
 
 This falls under the same "we can reprogram glitch-free as long as we
 pause generation" rule as updating the div/frac fields.  This can be

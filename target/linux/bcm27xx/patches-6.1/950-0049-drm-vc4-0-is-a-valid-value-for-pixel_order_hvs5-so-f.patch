@@ -1,8 +1,8 @@
-From b16dcc5f735739444da66149b473bb88fb44d4d9 Mon Sep 17 00:00:00 2001
+From 078bf356a2677a2bfb078aac5ac275e81c31d583 Mon Sep 17 00:00:00 2001
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Date: Fri, 3 Jun 2022 16:49:09 +0100
-Subject: [PATCH] drm: vc4: 0 is a valid value for pixel_order_hvs5, so
- fix conditionals
+Subject: [PATCH] drm: vc4: 0 is a valid value for pixel_order_hvs5, so fix
+ conditionals
 
 vc4_plane_mode_set for HVS5 was using pixel_order unless pixel_order_hvs5
 was non-zero, except 0 is a valid value for the pixel_order.
