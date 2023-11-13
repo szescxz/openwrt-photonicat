@@ -159,3 +159,13 @@ define Device/xunlong_orangepi-5-plus
  DEVICE_PACKAGES := kmod-r8169
 endef
 TARGET_DEVICES += xunlong_orangepi-5-plus
+
+define Device/ariaboard_photonicat
+  DEVICE_VENDOR := Ariaboard
+  DEVICE_MODEL := Photonicat
+  SOC := rk3568
+  UBOOT_DEVICE_NAME := photonicat-rk3568
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script photonicat-rk3568 | pine64-img | gzip | append-metadata
+  DEVICE_PACKAGES := ath10k-firmware-qca9377-sdio kmod-ath10k kmod-ath10k-sdio pcat-manager
+endef
+TARGET_DEVICES += ariaboard_photonicat
