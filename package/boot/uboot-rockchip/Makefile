@@ -114,6 +114,17 @@ define U-Boot/nanopi-r5s-rk3568
   DDR_3568:=$(1)
 endef
 
+define U-Boot/photonicat-rk3568
+  BUILD_SUBTARGET:=armv8
+  NAME:=PHOTONICAT-RK3568
+  BUILD_DEVICES:= \
+    photonicat-rk3568
+  DEPENDS:=+PACKAGE_u-boot-photonicat-rk3568:arm-trusted-firmware-rockchip
+  PKG_BUILD_DEPENDS:=arm-trusted-firmware-rockchip
+  ATF:=rk3568_bl31.elf
+  DDR_3568:=$(1)
+endef
+
 define U-Boot/rock-3a-rk3568
   BUILD_SUBTARGET:=armv8
   NAME:=ROCK-3A
