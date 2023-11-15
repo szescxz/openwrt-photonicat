@@ -166,6 +166,6 @@ define Device/ariaboard_photonicat
   SOC := rk3568
   UBOOT_DEVICE_NAME := photonicat-rk3568
   IMAGE/sysupgrade.img.gz := boot-common | boot-script photonicat-rk3568 | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := ath10k-firmware-qca9377-sdio kmod-ath10k kmod-ath10k-sdio
+  DEVICE_PACKAGES := ath10k-firmware-qca9377-sdio kmod-ath10k
 endef
 TARGET_DEVICES += ariaboard_photonicat
